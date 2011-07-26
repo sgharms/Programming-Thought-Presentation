@@ -1,0 +1,207 @@
+%
+%  untitled
+%
+%  Created by Steven Harms (HOME) on 2011-07-26.
+%  Copyright (c) 2011 Steven G. Harms. All rights reserved.
+%
+\documentclass[slidestop,compress,mathserif]{beamer}
+\usepackage[bars]{beamerthemetree}
+\usetheme{Antibes}
+\usecolortheme{lily}
+
+% Use utf-8 encoding for foreign characters
+\usepackage[utf8]{inputenc}
+
+% Surround parts of graphics with box
+\usepackage{boxedminipage}
+
+% Package for including code in the document
+\usepackage{listings}
+
+% This is now the recommended way for checking for PDFLaTeX:
+\usepackage{ifpdf}
+
+\ifpdf
+\usepackage[pdftex]{graphicx}
+\else
+\usepackage{graphicx}
+\fi
+\title{A LaTeX Article}
+\author{  }
+
+\date{2011-07-26}
+
+\begin{document}
+
+\ifpdf
+\DeclareGraphicsExtensions{.pdf, .jpg, .tif}
+\else
+\DeclareGraphicsExtensions{.eps, .jpg}
+\fi
+
+\maketitle
+
+
+\begin{abstract}
+\end{abstract}
+
+\section{Introduction}
+
+\bibliographystyle{plain}
+\bibliography{}
+\end{document}
+
+-------
+
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+
+[SLIDE]
+Practical Metaprogramming:  Modeling Thought
+
+
+Steven Harms
+Date:  August 12, 2011
+
+Good morning, I want to welcome you all to the first day of Lone Star Ruby
+Conference V. It's great to be back here in Austin. I've lived here for over
+eight years off and on and love this town, its vibrant Ruby community, and
+creativity with turning cheese into a soup that you put chips in. If you don't
+know what I'm talking about, talk to me later and we'll get you set up
+properly.
+
+[SLIDE]
+
+Contact:  Steven Harms
+Twitter:  @sgharms
+GitHub:  sgharms
+G+
+http://stevengharms.com
+
+These are my contact details, if you would like them here's your chance to
+write them down. If you have questions or recommendations about this
+presentation, feel free to contat me via one of these methods.
+
+[SLIDE]
+
+What we are here to talk about today should be:
+
+[SLIDE]
+
+Practical Metaprogramming
+
+or
+
+[SLIDE]
+
+Modeling Thought
+
+or
+
+[SLIDE]
+
+``Things I learned while modeling a 2,500 year old dead language in Ruby''
+
+Now I'll assume that as I have only met one other person interested in
+modeling languages in Ruby in 5 years of hanging out amongst you fine folks,
+I'm going to assume you're not going to talk about this one.
+
+[SLIDE]
+
+@dmiessler: ``Is there anything from your presentation that you left out of
+that title?''
+
+[SLIDE]
+
+I'd like to give you a bit of an overview of where we're going to go today.  
+
+[SLIDE]
+
+Practical Metaprogramming: 
+
+This describes content that will help developers
+familiar with basic Metaprogramming techniques level-up in Ruby. I'll also
+cover why you \emph{need} to understand Ruby's MP model. I'll also talk a bit
+about the FUD around whether or not you should make heavy use of MP.
+
+[SLIDE]
+
+I hope that after demonstrating why you need to understand MP and why you can't
+avoid it, you will then be curious about how to decide where to use
+Metaprogramming. I will argue that your guide in this should be ``modeling
+thought.'' This is a term of my own invention, so don't look that up in your
+Pickaxe book. 
+
+[SLIDE]
+
+What I mean by this term is not some sort of scary AI vision for
+the future, involving humans as batteries 
+
+[SLIDE]
+
+Or killer cyborgs with gubenatorial careers. Rather I can sum it up as: 
+
+[SLIDE]
+
+``When you seek to model problem domains where method calls may be ambiguous
+bu where you demand discrete return sets.''
+
+[SLIDE]
+
+A running thread though this will be my code project LatinVerb which is a
+library used to conjugate all 5 paradigms of Verbs in Latin into the 45-odd
+tenses and near 200 unique forms \emph{of each verb}. It makes heavy use of
+the ``modeling thought'' paradigm but was also a project that would have been
+horribly unweildy \emph{had it not been} for Ruby's metaprogramming
+capaabilities.
+
+[SLIDE]  
+
+That's the lay of the land for this talk. If you're thinking this talk might
+not be for you, then you're welcome to hop over to Wynn's talk to learn about
+mobile development and deployment using TI.
+
+[SLIDE:  I lied guy]
+
+``I lied''
+
+[SLIDE:  SAP]
+
+Whew, I'm glad we only lost those few. Honestly I was afraid that that gesture
+of open communication might backfire
+
+[SLIDE:  Forever Alone]
+
+As I said in the beginning, our first topic to undertake is ``Practical''
+metaprogramming. Can I get a show of hands, how many of you were lured to Ruby
+by its MP capabilities?  
+
+I'll admit it, when I saw this example, I was pretty wowed.
+
+\begin{verbatim}
+	ruby-1.9.2-p180 > "pee-wee".respond_to? :awake
+	 => false 
+\end{verbatim}
+
+\begin{verbatim}
+	ruby-1.9.2-p180 > class String
+	ruby-1.9.2-p180 ?>  def awake; 'I remember...The Alamo!'; end
+	ruby-1.9.2-p180 ?>  end
+	 => nil 
+	ruby-1.9.2-p180 > "pee-wee".respond_to? :awake
+	 => true 
+	ruby-1.9.2-p180 > "pee-wee".awake
+	 => "I remember...The Alamo!"
+\end{verbatim}
+
+Or consider what we find in the earliest pages of the Pickaxe:
+
+\begin{verbatim}
+	class Song
+	  attr_reader :name, :artist, :duration
+	end
+\end{verbatim}
+
+\underline{Programming Ruby}.  8th ed., 2006.
