@@ -1,1 +1,10 @@
 .DS_*
+MP_talk.aux
+MP_talk.log
+MP_talk.nav
+MP_talk.out
+MP_talk.pdf
+MP_talk.snm
+logMP_talk.synctex.gz
+MP_talk.toc
+*.gz

@@ -1,13 +1,13 @@
 %
-%  untitled
+%  MP_talk.tex
 %
 %  Created by Steven Harms (HOME) on 2011-07-26.
 %  Copyright (c) 2011 Steven G. Harms. All rights reserved.
 %
 \documentclass[slidestop,compress,mathserif]{beamer}
-\usepackage[bars]{beamerthemetree}
-\usetheme{Antibes}
-\usecolortheme{lily}
+% \usepackage[bars]{beamerthemetree}
+\usetheme{Dresden}
+\usecolortheme{seahorse}
 
 % Use utf-8 encoding for foreign characters
 \usepackage[utf8]{inputenc}
@@ -21,13 +21,14 @@
 % This is now the recommended way for checking for PDFLaTeX:
 \usepackage{ifpdf}
 
-\ifpdf
-\usepackage[pdftex]{graphicx}
+\ifx\pdftexversion\undefined
+\usepackage[dvips]{graphicx}
 \else
 \usepackage{graphicx}
+\DeclareGraphicsRule{*}{mps}{*}{}
 \fi
-\title{A LaTeX Article}
-\author{  }
+\title{Practical Metaprogramming:  Modeling Thought}
+\author{ Steven G. harms }
 
 \date{2011-07-26}
 
@@ -42,13 +43,6 @@
 \maketitle
 
 
-\begin{abstract}
-\end{abstract}
-
-\section{Introduction}
-
-\bibliographystyle{plain}
-\bibliography{}
 \end{document}
 
 -------
@@ -205,3 +199,16 @@ Or consider what we find in the earliest pages of the Pickaxe:
 \end{verbatim}
 
 \underline{Programming Ruby}.  8th ed., 2006.
+
+[SLIDE]
+
+So, obviously it's practical to USE some of the MP capabilities of Ruby. But
+the question is ``So what?'' Obviously this is a pretty fun trick to baffle
+your Java-programming friends, and sure generating getters and setters at
+runtime versus using annotations or some sort of IDE-magic is nice, but why
+should you invest the time and effort to take your MP skills further than
+this?
+
+[SLIDE]
+
+
