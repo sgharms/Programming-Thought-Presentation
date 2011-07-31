@@ -1,0 +1,34 @@
+# Spell: Argument Array
+# Spell: Around Alias
+# Spell: Blank Slate
+# Spell: Class Extension
+# Spell: Class Extension Mixin
+# Spell: Class Instance Variable 
+# Spell: Class Macro
+# Spell: Clean Room
+# Spell: Code Processor
+# Spell: Context Probe
+# Spell: Deferred Evaluation
+# Spell: Dynamic Dispatch
+# Spell: Dynamic Method
+# Spell: Dynamic Proxy
+# Spell: Flat Scope
+# Spell: Ghost Method
+# Spell: Hook Method
+# Spell: Kernel Method
+# Spell: Lazy Instance Variable
+# Spell: Mimic Method
+# Spell: Monkeypatch
+# Spell: Named Arguments
+# Spell: Namespace
+# Spell: Nil Guard
+# Spell: Object Extension
+# Spell: Open Class
+# Spell: Pattern Dispatch
+# Spell: Sandbox
+# Spell: Scope Gate
+# Spell: Self Yield
+# Spell: Shared Scope
+# Spell: Singleton Method
+# Spell: String of Code
+# Spell: Symbol to Proc
