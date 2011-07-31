@@ -1,0 +1,9 @@
+This describes content that will help developers familiar with basic
+Metaprogramming techniques level-up and how to attack problems with
+Metaprogramming CONFIDENTLY. I'll also cover why you \emph{need} to understand
+Ruby's MP model. I'll also talk a bit about the FUD around whether or not you
+should make heavy use of MP.
+
+WARNING:
+ - Side effect soup
+   - Functional v. structured
