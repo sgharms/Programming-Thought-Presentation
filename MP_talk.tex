@@ -4,9 +4,11 @@
 %  Created by Steven Harms (HOME) on 2011-07-26.
 %  Copyright (c) 2011 Steven G. Harms. All rights reserved.
 %
-\documentclass[slidestop,compress,mathserif]{beamer}
+\documentclass[slidestop,compress,mathserif,notes]{beamer}
+% Toggle between 'notes' and no notes to display or undisplay notes pages
+
 % \usepackage[bars]{beamerthemetree}
-\usetheme{Dresden}
+\usetheme{PaloAlto}
 \usecolortheme{seahorse}
 
 % Use utf-8 encoding for foreign characters
@@ -28,9 +30,9 @@
 \DeclareGraphicsRule{*}{mps}{*}{}
 \fi
 \title{Practical Metaprogramming:  Modeling Thought}
-\author{ Steven G. harms }
+\author{ Steven G. Harms }
 
-\date{2011-07-26}
+\date{2011-08-12}
 
 \begin{document}
 
@@ -40,175 +42,515 @@
 \DeclareGraphicsExtensions{.eps, .jpg}
 \fi
 
-\maketitle
 
+\section{Introduction} % (fold)
+\label{sec:introduction}
+\begin{frame}
+	\maketitle
+\end{frame}
 
-\end{document}
+\subsection{Administration}
+\begin{frame}
+	\frametitle{Contact Me!}
+	\begin{center}
+		Steven G. Harms \\
+		\vskip 1.25cm	
+		Physically:  San Francisco, CA\\
+		Email:  \texttt{lsrcv@sgharms.oib.com} \\
+		Twitter / GitHub:  \texttt{sgharms} \\
+		G+
+	\end{center}
+\end{frame}
 
--------
+\note{
+Good afternoon, I want to welcome you all to the first day of Lone Star Ruby
+Conference V. 
+}
 
-
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
-
-[SLIDE]
-Practical Metaprogramming:  Modeling Thought
-
-
-Steven Harms
-Date:  August 12, 2011
-
-Good morning, I want to welcome you all to the first day of Lone Star Ruby
-Conference V. It's great to be back here in Austin. I've lived here for over
+\begin{frame}
+	\frametitle{Austin}
+	\begin{center}
+		\includegraphics[scale=0.75]{img/queso.JPG}	
+	\end{center}
+	
+\end{frame}
+\note{
+It's great to be back here in Austin. I've lived here for over
 eight years off and on and love this town, its vibrant Ruby community, and
 creativity with turning cheese into a soup that you put chips in. If you don't
 know what I'm talking about, talk to me later and we'll get you set up
 properly.
+}
+% section introduction (end)
 
-[SLIDE]
+\begin{frame}
+	\frametitle{SpeakerRate}
+	\centering{Help me Get Better!}
+	\vskip 1.25cm
+	\centering{\texttt{http://speakerrate.com/talks/\\7831-practical-metaprogramming-modeling-thought}}
+\end{frame}
 
-Contact:  Steven Harms
-Twitter:  @sgharms
-GitHub:  sgharms
-G+
-http://stevengharms.com
+\subsection{Overview}
 
-These are my contact details, if you would like them here's your chance to
-write them down. If you have questions or recommendations about this
-presentation, feel free to contat me via one of these methods.
+\begin{frame}
+	\frametitle{What We'll Cover}
+	Practical Programming:  Modeling Thought
+\end{frame}
 
-[SLIDE]
+\begin{frame}
+	\frametitle{What we'll cover cont'd}
+	\textbf{OR}:Lessons Learned While Using Ruby's MP System to Model a 2,500 Year-Old, Dead Language 
+\end{frame}
+\note{
+In all seriousness, I want to give you all a bit of an overview of what we're
+going to talk about today. Let's first talk about Practical Metaprogramming.
+}
 
-What we are here to talk about today should be:
 
-[SLIDE]
+% Use this at Rubyconf
+% \begin{frame}
+% 	\frametitle{``Long Title''}
+% \includegraphics[scale=0.55]{img/daniel_comment.png}	
+% \end{frame}
+% \note{
+% In all seriousness, I want to give you all a bit of an overview of what we're
+% going to talk about today. Let's first talk about Practical Metaprogramming.
+% }
 
-Practical Metaprogramming
+\begin{frame} 
+	\frametitle{``Practical Metaprogramming:  First Contact''}
+  ``How do we start exploring MP in Ruby?''
 
-or
+	\includegraphics[scale=0.55]{img/first_contact.jpg}
+\end{frame} 
+\note{
 
-[SLIDE]
+}
 
-Modeling Thought
+\begin{frame} \frametitle{``Practical Metaprogramming''}
 
-or
+ 	\begin{itemize} 
+		\item \texttt{attr\_*}Z \emph{Page 30}
+  \end{itemize}
+	\vskip 0.5cm
+	\includegraphics[scale=0.45]{img/ruby_pickaxe.jpg}	
+\end{frame} 
+\note{For many Ruby developers, our first exposure to the world of
+Metaprogramming starts around page thrity of the PickAxe book when we are
+introduced to attr\_reader, attr\_writer, and attr\_accessor. For those of us
+coming rom Java ,the ability to be able to have attributes' accessors and
+mutators be provided for us is one of the things that makes us go ``Ooh!''
+about Ruby.  In my edition of the Pickaxe book, this first appeared on page
+30.
+}
 
-[SLIDE]
+\begin{frame} \frametitle{``Practical Metaprogramming''}
 
-``Things I learned while modeling a 2,500 year old dead language in Ruby''
+ \begin{itemize} 
+	\item \texttt{attr\_*}:  \emph{Page 30}
+	\item Rails (\texttt{order.discount=0.5}):  \emph{Page 28}
+\end{itemize}
+	\begin{center}
+		\includegraphics[scale=0.55]{img/awdwr_mp.png}	
+	\end{center}
+	
+\end{frame}
 
+\note{ Further, given that many people come to Ruby \emph{via} Rails, Rails
+asks us to accept a great many things as ``magic'' as we get underway with it.
+Rails first presents MP on page 28 in the context of how ActiveRecord maps
+database fields to instance variables in its object-relational mapping.
+}
+
+
+\begin{frame}
+	\frametitle{``Practical Metaprogramming''}
+	\begin{itemize} 
+		\item \texttt{attr\_*}:  \emph{Page 30}
+		\item Rails (\texttt{ORM}):  \emph{Page 28}
+	\end{itemize}
+\end{frame}
+
+\note{This is generally a suitable beginning and once we accept that we live in
+a world laced with metaprogramming magic, we're generally content to simply
+inhabit it. If we start to explore more about Metaprogramming, we start to
+move to a place that, I contend, is generally \emph{impractical}.}
+
+\begin{frame}
+	\frametitle{``Slightly Impractical Metaprogramming:''  Open Classes}
+	\begin{itemize}
+		\item Open Classes
+	\end{itemize}
+		\includegraphics[scale=0.45,width=10cm,height=2cm]{img/open_class.png}	
+\end{frame}
+\note{It usually starts like this. You realize that you can add methods to an
+existing class and add ``interesting'' features to classes. \emph{Describe
+``Open Class''}. Incidentally I have taken these names from the nomenclature
+provided by Paolo Perrotta's book with Pragmatic Press: Metaprogramming Ruby.
+I'll provide a link to that book as well as to a gist, published by Paolo,
+that has copy-able code available at GitHub}
+
+\begin{frame}
+	\frametitle{``Slightly Impractical Metaprogramming:''  Kernel Method}
+	\begin{itemize}
+		\item Open Classes
+		\item Kernel Method
+	\end{itemize}
+		\includegraphics[scale=0.55]{img/kernel_method.png}	
+\end{frame}
+\note{At this point we're starting to feel some power here and we'll start to
+do some interesting work. Although from my entirely unscientific survey,
+here's the one that we Rubyists love to show Java programmers}
+
+\begin{frame}
+	\frametitle{``Slightly Impractical Metaprogramming:  Singleton Method''}
+	\begin{itemize}
+		\item Open Classes
+		\item Kernel Method
+		\item Singleton Method
+	\end{itemize}
+		\includegraphics[scale=0.35]{img/singleton_method.png}
+\end{frame}
+\note{This is undoubtedly the one that makes the pro-Java camp weep. In
+compiled languages the definition of a class represents a contract of sorts,
+between you and the compiler. A class is an expression of that contract. In
+Ruby, a class is really a namespace expression.  This is pretty cool stuff.}
+
+\begin{frame}
+		\frametitle{AWESOMENESS}
+		\begin{center}
+			\includegraphics[scale=0.45]{img/lion_horse.jpg}
+		\end{center}			
+\end{frame}
+\note{It might not be the most awsome thing ever, which is, of course, a lion riding a horse, but it's still pretty good.}
+
+\begin{frame}
+	\frametitle{Madness}
+	This leads to the dangers of MP:
+	\begin{itemize}
+		\item Opaqueness
+		\item Unpredictability
+		\item Unsupportability
+	\end{itemize}
+	\begin{center}
+			\emph{Abandon all hope ye who enter \ldots}
+		\includegraphics[scale=0.45]{img/dante.jpg}		
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{F.U.D.}
+		\includegraphics[width=0.98\textwidth, height=0.25\textheight]{img/tim_hates_mp.png}		
+		\vskip 0.5cm
+		\emph{--Tim Connor:  SF Ruby Mailing List}
+\end{frame}
+
+\begin{frame}
+	\frametitle{anti-F.U.D.}
+		\includegraphics[width=0.98\textwidth, height=0.45\textheight]{img/paolo_anti_fud.png}		
+		\vskip 0.5cm
+		\emph{--Paolo Perrotta, author of Metaprogramming Ruby, in e-mail to Steven Harms}
+\end{frame}
+
+\begin{frame}
+	\frametitle{What this talk will do:}
+	\begin{itemize}
+		\item Practical Metaprogramming: Move you beyond the F.U.D. around Metaprogramming
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{What this talk will do:}
+	\begin{itemize}
+		\item Practical Metaprogramming: Move you beyond the F.U.D. around Metaprogramming
+		\item Modeling Thought:  A guideline for identifying ideal cases for Metaprogramming
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{What this talk will do:}
+	\begin{itemize}
+		\item Practical Metaprogramming: Move you beyond the F.U.D. around Metaprogramming
+		\item Modeling Thought:  A guideline for identifying ideal cases for Metaprogramming
+		\item Use examples from my LatinVerb library
+	\end{itemize}
+\end{frame}
+
+% \begin{frame}
+% 	\frametitle{VALETE!}
+% 	\begin{center}
+% 		\includegraphics[scale=0.25]{img/wynn.png}			
+% 	\end{center}
+% 	\emph{Maybe you want to learn about mobile development with Wynn\ldots}
+% 	
+% \end{frame}
+\note{
+That's the lay of the land for this talk. If you're thinking this talk might
+not be for you, then you're welcome to hop over. 
+}
+
+\begin{frame}
+	\frametitle{Socially Awkward Penguin}
+	\begin{center}
+		\includegraphics[scale=0.3]{img/sap.png}			
+	\end{center}	
+\end{frame}
+\note{
+Whew, I'm glad we only lost those few. 
+}
+
+\begin{frame}
+	\frametitle{Forever Alone}
+	\begin{center}
+		\includegraphics[scale=0.25]{img/forever_alone.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{``Impractical'' to ``Practical'' Metaprogramming}	
+  34 ``Spells''
+\end{frame}
+\note{
+Earlier I suggested that the problem was that when we learned the various
+MP techniuqes, we were learning tools or gimmicks. Accordingly, you can't
+build something great, an edifice of importance out of a gimmick. }
+
+\begin{frame}
+	\frametitle{``Impractical'' to ``Practical'' Metaprogramming}	
+		34 ``Spells''
+		\begin{center}
+			\tiny
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				Argument Array & 
+				Around Alias & 
+				Blank Slate & 
+				Class Extension \\
+		
+				\hline			
+				Class Extension Mixin &
+				Clean Room & 
+				Code Processor &
+				Context Probe \\
+				
+				\hline
+				Deferred Evaluation & 
+				Dynamic Dispatch &
+				Flat Scope & 
+				Ghost Method \\ 
+				
+				\hline			
+				Hook Method & 
+				Kernel Method &
+				Lazy Instance Variable &
+				Named Arguments \\
+
+				\hline
+				Namespace & 
+				Nil Guard & 
+				Object Extension & 
+				Pattern Dispatch  \\
+
+				\hline
+				Sandbox &
+				Scope Gate & 
+				Self Yield & 
+				Shared Scope \\
+
+				\hline
+				Singleton Method &
+				String of Code & 
+				Open Class & 
+				Symbol to Proc \\
+
+				\hline			
+				Class Instance Variable  & 
+				Class Macro &
+				Dynamic Method & 
+				Dynamic Proxy  \\
+
+				\hline
+				Mimic Method &
+				Monkeypatch \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\normalsize
+		\vskip 0.5cm
+		\emph{Source:  \underline{Metaprogramming Ruby}}
+\end{frame}
+\note{
+Thanks to Paolo's work, there are now 34 possible formulae available. If by
+having one hammer, everything starts to look like a nail, it's unsurprising
+that when you have 34 hammers, you indulge in finding 34 ways to use hammers.
+
+And this is probably the reason for our friend Tim to take a fairly hard line
+against MP, as we saw earlier.
+
+A house is not several thousand home improvement projects. A house is a vision
+whose execution requires that amount of work.
+
+In consideration of these thrity-four opportuntites for misdirection, let's
+try to come up with a unified vision of what makes certain situations call for
+a metaprogrammatic solution. }
+
+\begin{frame}
+	\frametitle{Harms' First Law of Metaprogramming}
+	\centering{\emph{	A metaprogrammatic solution is suitable when you need to provide
+	unambiguous answers (return values) to ambiguously asked things (flexible /
+	incomplete method calls)}
+}\end{frame}
+
+\begin{frame}
+	\frametitle{Harms' First Law of Metaprogramming}
+	\centering{\emph{	A metaprogrammatic solution is suitable when you need to provide
+	unambiguous answers (return values) to ambiguously asked things (flexible /
+	incomplete method calls)}
+	\vskip 0.5cm
+	\centering{\emph{Rails' ORM Calculation}}
+}\end{frame}
+
+\begin{frame}
+	\frametitle{Harms' Second Law of Metaprogramming}
+	\centering{\emph{	A metaprogrammatic solution is suitable when typing the syntax required would totally suck}
+	\vskip 0.5cm
+	\centering{\empth{attr\_\* methods}}
+}\end{frame}
+
+\begin{frame}
+	\frametitle ``Modeling Thought''
+	\centering{First Law + Second Law = ``Modeling Thought''}
+\end{frame}
+\note{
+
+``Modeling Thought'' is a name for evaluating when MP is a good idea. If we
+aggregate the first law and the second law, we start to see that they are
+exactly descripitve of two important qualities of the way humans think.
+
+That is, human minds are very good at the formation of heuristics based on
+patterns that Rubyists would recognize like \texttt{Enumerable\#map} or
+\texttt{Enumerable\#grep} so that instead of having to memorize thousands of
+discrete rules, we can operate a heuristic to generate the answers.
+
+Similarly, humans are very good at receiving a partial representation of a
+reference to a data-set and understanding whether a unique data-set is being
+requested, or if we can represent the data sought in a smaller format or in a
+shorter format.
+}
+
+\begin{frame}
+	\frametitle{``Modeling Thought: Born That Way''}
+	\includegraphics[scale=0.6]{img/matz.jpg}		
+\end{frame}
+\note{
+And no language supports the ``modeling thought'' paradigm like Ruby. By
+providing a language that gives rise to the 30-odd ``Spells'' limned by
+Perrotta, and under guidance of ``Modeling Thought\'s'' paradigms we can
+safely decide whether we are using or abusing Ruby's metaprogramming
+capabilities. We can mitigate the grounds for Tim's FUD around MP's
+sensibility.
+
+In this case you're modeling with human's thought processes before the syntax
+rules of the language. 
+}
+
+\begin{frame}
+	\frametitle{Dead Language}
+\emph{	Owing to the irregularity of human communication, modeling the provision of
+unambiguous answers (return values) to ambiguously asked things (flexible /
+incomplete method calls)
+}
+	\vskip 0.5cm
+	No problem domain exemplifies this problem as well as human language.
+\end{frame}
+
+\begin{frame}
+	\frametitle{LATIN}
+	\begin{itemize}
+		\item Dead:  \emph{Easier to hit a still target}
+		\item Highly Regular
+		\item Well-documented
+		\item Defined by heuristic
+	\end{itemize}
+\end{frame}
+\note{
 Now I'll assume that as I have only met one other person interested in
 modeling languages in Ruby in 5 years of hanging out amongst you fine folks,
 I'm going to assume you're not going to talk about this one.
+}
 
-[SLIDE]
 
-@dmiessler: ``Is there anything from your presentation that you left out of
-that title?''
 
-[SLIDE]
+\section{Modeling Thought} % (fold)
+\label{sec:modeling_thought}
 
-I'd like to give you a bit of an overview of where we're going to go today.  
+\begin{frame}
+	\frametitle{Placeholder}
+	\ldots
+\end{frame}
 
-[SLIDE]
+\subsection{Repetition} % (fold)
+\label{sub:repetition}
 
-Practical Metaprogramming: 
+\begin{frame}
+	\frametitle{Placeholder}
+	\ldots
+\end{frame}
 
-This describes content that will help developers
-familiar with basic Metaprogramming techniques level-up in Ruby. I'll also
-cover why you \emph{need} to understand Ruby's MP model. I'll also talk a bit
-about the FUD around whether or not you should make heavy use of MP.
 
-[SLIDE]
+% subsection repetition (end)
 
-I hope that after demonstrating why you need to understand MP and why you can't
-avoid it, you will then be curious about how to decide where to use
-Metaprogramming. I will argue that your guide in this should be ``modeling
-thought.'' This is a term of my own invention, so don't look that up in your
-Pickaxe book. 
+\subsection{Methods} % (fold)
+\label{sub:methods}
 
-[SLIDE]
+\begin{frame}
+	\frametitle{Placeholder}
+	\ldots
+\end{frame}
 
-What I mean by this term is not some sort of scary AI vision for
-the future, involving humans as batteries 
+\subsubsection{De-parameterize}
 
-[SLIDE]
+\begin{frame}
+	\frametitle{Placeholder}
+	\ldots
+\end{frame}
 
-Or killer cyborgs with gubenatorial careers. Rather I can sum it up as: 
 
-[SLIDE]
+\subsubsection{Embed Parameters in Method Calls}
 
-``When you seek to model problem domains where method calls may be ambiguous
-bu where you demand discrete return sets.''
+\begin{frame}
+	\frametitle{Placeholder}
+	\ldots
+\end{frame}
 
-[SLIDE]
+% subsection methods (end)
 
-A running thread though this will be my code project LatinVerb which is a
-library used to conjugate all 5 paradigms of Verbs in Latin into the 45-odd
-tenses and near 200 unique forms \emph{of each verb}. It makes heavy use of
-the ``modeling thought'' paradigm but was also a project that would have been
-horribly unweildy \emph{had it not been} for Ruby's metaprogramming
-capaabilities.
+\subsection{Domain-Specific Languages} % (fold)
+\label{sub:domain_specific_languages}
+\begin{frame}
+	\frametitle{Placeholder}
+	\ldots
+\end{frame}
 
-[SLIDE]  
+% subsection domain_specific_languages (end)
 
-That's the lay of the land for this talk. If you're thinking this talk might
-not be for you, then you're welcome to hop over to Wynn's talk to learn about
-mobile development and deployment using TI.
+% section modeling_thought (end)
 
-[SLIDE:  I lied guy]
+\section{Supplementary} % (fold)
+\label{sec:supplementary}
 
-``I lied''
+\begin{frame}
+	\frametitle{Book}
+	\underline{Metaprogramming Ruby} by Paolo Perrotta
+\end{frame}
 
-[SLIDE:  SAP]
+\begin{frame}
+	\frametitle{Gist}
+	
+	
+\end{frame}
 
-Whew, I'm glad we only lost those few. Honestly I was afraid that that gesture
-of open communication might backfire
+% section supplementary (end)
 
-[SLIDE:  Forever Alone]
-
-As I said in the beginning, our first topic to undertake is ``Practical''
-metaprogramming. Can I get a show of hands, how many of you were lured to Ruby
-by its MP capabilities?  
-
-I'll admit it, when I saw this example, I was pretty wowed.
-
-\begin{verbatim}
-	ruby-1.9.2-p180 > "pee-wee".respond_to? :awake
-	 => false 
-\end{verbatim}
-
-\begin{verbatim}
-	ruby-1.9.2-p180 > class String
-	ruby-1.9.2-p180 ?>  def awake; 'I remember...The Alamo!'; end
-	ruby-1.9.2-p180 ?>  end
-	 => nil 
-	ruby-1.9.2-p180 > "pee-wee".respond_to? :awake
-	 => true 
-	ruby-1.9.2-p180 > "pee-wee".awake
-	 => "I remember...The Alamo!"
-\end{verbatim}
-
-Or consider what we find in the earliest pages of the Pickaxe:
-
-\begin{verbatim}
-	class Song
-	  attr_reader :name, :artist, :duration
-	end
-\end{verbatim}
-
-\underline{Programming Ruby}.  8th ed., 2006.
-
-[SLIDE]
-
-So, obviously it's practical to USE some of the MP capabilities of Ruby. But
-the question is ``So what?'' Obviously this is a pretty fun trick to baffle
-your Java-programming friends, and sure generating getters and setters at
-runtime versus using annotations or some sort of IDE-magic is nice, but why
-should you invest the time and effort to take your MP skills further than
-this?
-
-[SLIDE]
-
+\end{document}
 
