@@ -4,7 +4,8 @@
 %  Created by Steven Harms (HOME) on 2011-07-26.
 %  Copyright (c) 2011 Steven G. Harms. All rights reserved.
 %
-\documentclass[slidestop,compress,mathserif,notes]{beamer}
+\documentclass[slidestop,compress,mathserif]{beamer}
+% \documentclass[slidestop,compress,mathserif, slidesonly]{beamer}
 % Toggle between 'notes' and no notes to display or undisplay notes pages
 
 % \usepackage[bars]{beamerthemetree}
@@ -22,6 +23,10 @@
 
 % This is now the recommended way for checking for PDFLaTeX:
 \usepackage{ifpdf}
+
+% Support for handouts
+\usepackage{pgfpages}
+% \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm]
 
 \ifx\pdftexversion\undefined
 \usepackage[dvips]{graphicx}
@@ -348,7 +353,10 @@ Ruby, a class is really a namespace expression. This is pretty cool stuff.
 		\vskip 0.5cm
 		\emph{--Tim Connor:  SF Ruby Mailing List}
 \end{frame}
-\note{Read aloud\ldots}
+\note{
+Read aloud\ldots. Note, I had a mail from Tim and his personal views aren't as
+strong as this, but he's definitely urging caution over MP's over-use.
+}
 
 \begin{frame}
 	\frametitle{Antithesis:  anti-F.U.D.}
@@ -746,7 +754,7 @@ concept, actually opened the gateways to other thoughts.
 \end{frame}
 
 \begin{frame}
-	\frametitle{\underline{Ghost Method} in TenseBlock}
+	\frametitle{\underline{Ghost Method} in \texttt{TenseBlock}}
 	\includegraphics[scale=0.45]{img/tenseblock_mm.png}
 \end{frame}
 
@@ -754,7 +762,7 @@ concept, actually opened the gateways to other thoughts.
 \begin{frame}
 	\frametitle{Benefits}
 	\begin{itemize}
-		\item Saved many keystrokes by writing a class and \texttt{method_missing} definition
+		\item Saved many keystrokes by writing a class and \texttt{method\_missing} definition
 		\pause
 		\item Saved creating 6 additional methods per tense for vectors
 		\pause
@@ -789,7 +797,7 @@ parameterization is not how we think.
 		\pause
 		\item NO:  \emph{``I'll have a sandwich:  bread is rustic Italian, meat is salami, cheese is provelone, veggies are an array of lettuce, tomato \ldots''}
 		\pause
-		\item YES:  \emph{``I'll have an Italian on rustic Italian with salami and provelone\ldots''}
+		\item YES:  \emph{``I'll have an Italian on rustic Italian with salami and provelone and from the veggie bin, lessee, lettuce and tomato\ldots''}
 	\end{itemize}
 	
 \end{frame}
@@ -805,17 +813,28 @@ parameterization is not how we think.
 	\end{itemize}
 \end{frame}
 
-%-------------------
 \begin{frame}
-	\frametitle{method\_missing and method\_called}
-	\includegraphics[scale=0.45]{img/lv_mm.png}	
+	\frametitle{MP Techniques Used}
+	\begin{enumerate}
+		\item Ghost Method:  Dont define a method (in \texttt{TenseBlock}) so that its \texttt{method\_missing} acts as \texttt{method\_called}
+		\item Blank Slate:  A TenseBlock is a Blank Slate, effectively
+		\item Dynamic Dispatch:  \texttt{self.send} in \texttt{TenseBlock}
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}
-	\frametitle{ \texttt{method\_missing} and \texttt{method\_called}}
+	\frametitle{The Corollary}
+	\begin{itemize}
+		\item 	We pursued ``less typing'' but wound up with ``respond to ambiguous calls with unambiguous data''
+		\pause
+		\item 	`Modeling Thought'' is full of these surprises
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Scale it Up!}
+	\frametitle{method\_missing and method\_called}
 	\includegraphics[scale=0.45]{img/lv_mm.png}	
-	\vskip 0.5cm
-	\emph{Use the Blank Slate Technique}
 \end{frame}
 
 \begin{frame}
@@ -824,40 +843,30 @@ parameterization is not how we think.
 		\item 24 methods
 		\item One reponse class (\texttt{TenseBlock})
 		\item Covered the thousands of methods predicted
-		\item \ldots and provided the clustering methods as well
+		\item \ldots and provided the clustering methods as well as a surprising bonus
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Law II into Law I}
-	\begin{enumerate}
-		\item We started by trying to cut down typing
-		\item \ldots but produced something that was oddly reflective of how we think: ``modeling thought''
-	\end{enumerate}
-\end{frame}
-
-\begin{frame}
-	\frametitle{This is the goldn use of Metaprogramming}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Metaprogramming Techniques that Facilitate}
-	\begin{itemize}
-		\item \texttt{alias}
-		\item Ghost Method
-		\item Blank Slate
-	\end{itemize}
+	\frametitle{This is the golden use of Metaprogramming}
 \end{frame}
 
 
-\subsection{Domain-Specific Languages} % (fold)
-\label{sub:domain_specific_languages}
-\begin{frame}
-	\frametitle{Placeholder}
-	\ldots
-\end{frame}
+% ---- TO INCLUDE? ------
+% \subsection{Domain-Specific Languages} % (fold)
+% \label{sub:domain_specific_languages}
+% \begin{frame}
+% 	\frametitle{Placeholder}
+% 	\ldots
+% \end{frame}
 
+
+%  Dynamic dispatch
+% Dynamic method (definition)
+% Extension by result from MP
 % subsection domain_specific_languages (end)
+
+% ---- TO INCLUDE? ------
 
 % section modeling_thought (end)
 
@@ -895,6 +904,17 @@ constructive. If the slides didn't advance the point, if you didn't like my
 jokes. If the contrast or typeface are bad, please let me know.
 }
 
+\begin{frame}
+	\frametitle{Contact Me!}
+	\begin{center}
+		Steven G. Harms \\
+		\vskip 1.25cm	
+		Physically:  San Francisco, CA\\
+		Email:  \texttt{lsrcv@sgharms.oib.com} \\
+		Twitter / GitHub:  \texttt{sgharms} \\
+		G+
+	\end{center}
+\end{frame}
 
 \end{document}
 
