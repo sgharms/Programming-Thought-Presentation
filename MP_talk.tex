@@ -137,16 +137,20 @@ exhaustive tour is outside of our scope for the day.
 \begin{frame}
 	\frametitle{Goals}
 	\begin{enumerate}
-		\item Consider how we learn MP in the Ruby community
-		\item Demonstrate that MP is a common style of thinking, and should be a common style of coding
-		\item Provide a rubric for when to reach for the MP-hammer
+		\item Reflect upon how we learn MP in the Ruby community
+		\pause
+		\item Demonstrate MP's ubiquity:  you can't \emph{not} learn this
+		\pause
+		\item Advise when you should reach for the MP ``hammer''
+		\pause
 		\item Give you the confidence to use MP \textbf{boldly}
-		\item Provide a real-world example
+		\pause
+		\item Provide a real-world example of thinking in terms of MP
 	\end{enumerate}
 \end{frame}
 \note{
 That's the lay of the land for this talk. If you're thinking this talk might
-not be for you, then you're welcome to hop over.
+not be for you, then you're welcome to hop over to the other track.
 }
 
 \begin{frame}
@@ -180,25 +184,19 @@ Whew, I'm glad we only lost those few.
 \section{Modeling Thought} % (fold)
 \label{sec:modeling_thought}
 
-\begin{frame}
-	\begin{center}
-		Practical Metaprogramming
-	\end{center}
-\end{frame}
-
 \subsection{Early Exposure} % (fold)
 \label{sub:early_exposure}
 
 \begin{frame} 
 	\frametitle{``Practical Metaprogramming:  First Contact''}
 	\includegraphics[scale=0.55]{img/first_contact.jpg} \\
-	\emph{\ldots and is it to be called an ``eigenclass'' or a ``singleton class?''}
+	\emph{\ldots and is it to be called an ``eigenclass'' or a ``singleton class, ma'am?''}
 \end{frame} 
 \note{
-To understand practical metaprogramming I think it's helpful to imagine the
-path of someone new to Ruby coming into first contact with the unique and
-powerful metaprogramming capabilities of Ruby. In short to ask: ``How do we
-start exploring MP in Ruby?''
+As per our first goal, let's take a look at how we, as a community, educate
+our newest members in the technology of metaprogramming.
+
+In short, let us ask: ``How do we start exploring MP in Ruby?''
 }
 
 \begin{frame} \frametitle{To Metaprogramming via Ruby}
@@ -218,11 +216,6 @@ introduced to attr\_reader, attr\_writer, and attr\_accessor.
 	\includegraphics[scale=0.45]{img/attr_demo_1.png}	
 \end{frame}
 
-\begin{frame}
-	\frametitle{Dynamic Getter / Setter Generation (2)}
-	\includegraphics[scale=0.45]{img/attr_demo_2.png}	
-\end{frame}
-
 \begin{frame} \frametitle{To Metaprogramming via Rails}
 	Rails (\texttt{order.discount=0.5}):  \emph{Page 28}
 	\begin{center}
@@ -240,7 +233,7 @@ fabricated -- not unlike what happened in the Ruby example.
 }
 
 \begin{frame}
-	\frametitle{``Practical Metaprogramming''}
+	\frametitle{Practical Metaprogramming}
 	\begin{itemize} 
 		\item \texttt{attr\_*}:  \emph{Page 30}
 		\item Rails (ORM):  \emph{Page 28}
@@ -254,7 +247,11 @@ metaprogramming is going on, really. We accept these metaprogrammatic
 behaviors as if they were core features of the language or the framework.
 
 However, as we start to explore more about Metaprogramming, we start to move
-to a place that, I contend, is generally \emph{impractical}.}
+to a place that, I contend, is generally \emph{impractical}. While I will
+argue that many of these uses feel impractical, I have nevertheless tried to
+make them consistent by giving them a standardized and repreated set of names.
+
+}
 
 % subsection early_exposure (end)
 \subsection{Intermediate Use} % (fold)
@@ -278,6 +275,8 @@ book for further exploration, so I would like to expose you to these
 techniques in the language to which you will see them referred as.
 
 There are about 30 of these ``spells,'' as Paolo calls them.
+
+Let's talk about some of our ``gateway drug'' metaprogramming spells.
 }
 
 \begin{frame}
@@ -334,16 +333,16 @@ Ruby, a class is really a namespace expression. This is pretty cool stuff.
 
 \begin{frame}
 	\frametitle{Madness}
-	This leads to the dangers of MP:
+	Incautiously used, this leads to the dangers of MP:
 	\begin{itemize}
 		\item Opaqueness
 		\item Unpredictability
 		\item Unsupportability
 	\end{itemize}
-	\begin{center}
-			\emph{Abandon all hope ye who enter \ldots}
-		\includegraphics[scale=0.45]{img/dante.jpg}		
-	\end{center}
+	% \begin{center}
+	% 		\emph{Abandon all hope ye who enter \ldots}
+	% 	\includegraphics[scale=0.45]{img/dante.jpg}		
+	% \end{center}
 \end{frame}
 \note{Read aloud\ldots}
 
