@@ -454,6 +454,9 @@ Let's transform those motivations just mentioned into some ``Laws'' and
 	\centering{\emph{	A metaprogrammatic solution is suitable when you need to provide
 	unambiguous answers (return values) to ambiguously asked things (flexible /
 	incomplete method calls)}
+	\pause
+	\vskip 0.5cm
+	\centering{\emph{e.g. Rails' ORM Calculation}}
 }\end{frame}
 \note{
 Now let me first be clear that I'm not saying these are laws as in
@@ -462,17 +465,6 @@ set-in-stone sense. Calling them ``guidelines'' seemed a bit weak,
 will be schisms over proper adherence to ``Steven\'s laws of
 metaprogramming.'' I'm trying to refer to a practical guideline with some heft
 to it.
-}
-
-\begin{frame}
-	\frametitle{First Law of Metaprogramming}
-	\centering{\emph{	A metaprogrammatic solution is suitable when you need to provide
-	unambiguous answers (return values) to ambiguously asked things (flexible /
-	incomplete method calls)}
-	\vskip 0.5cm
-	\centering{\emph{e.g. Rails' ORM Calculation}}
-}\end{frame}
-\note{
 
 Let's think about how Rails handles attribute definition. As a user of Rails
 we can say things like ``Get my attributes.'' This is what the first law terms
@@ -486,23 +478,17 @@ that's harder to do in other languages, but that is a core principle of Ruby.
 We'll talk more about that momentarily. Let's take a look at the second law.
 }
 
-\begin{frame}
-	\frametitle{Second Law of Metaprogramming}
-	\centering{\emph{ A metaprogrammatic solution is suitable when mechanical
-recording of the the values is time inefficient when compared to learning the
-generating heuristic}}
-\end{frame}
 
 \begin{frame}
 	\frametitle{Second Law of Metaprogramming}
 	\centering{\emph{ A metaprogrammatic solution is suitable when mechanical
 recording of the the values is time inefficient when compared to learning the
 generating heuristic}}
+	\pause
 	\vskip 0.5cm
 	\centering{\emph{e.g. attr\_* methods}}
 \end{frame}
-\note{
-I consider typing a lot to be a code smell. If I find that I'm writing
+\note{I consider typing a lot to be a code smell. If I find that I'm writing
 anything where each so-called unique case is only different from another case,
 then I start to get worried that I'm doing something wrong.
 
@@ -512,7 +498,7 @@ macros that are effectively doing a lot of typing for you) seem like the
 natural order of things. As Rubyists, we should eschew this tendency.
 
 An interesting tendency has emerged during my work with Ruby's MP model, and
-that's this first corrolary:
+that's this first Corrolary:
 }
 
 \begin{frame}
@@ -541,11 +527,12 @@ And no language supports the ``modeling thought'' paradigm like Ruby.
 }
 
 \begin{frame}
-	\frametitle Stepwise Progress
+	\frametitle{Stepwise Progress}
 	\begin{itemize}
 		\item Matz' Design
 		\item Paolo's ``Spells''
 		\item A rule of thumb:  ``Modeling Thought''
+		\item Your \textbf{bold} usage
 	\end{itemize}
 \end{frame}
 \note{
@@ -554,14 +541,31 @@ and put into his book. And now with a rule of thumb, we can start to achieve
 consistency in how we use MP. As we are now more comfortable with our
 expressions making use of metaprogramming, we can be bold and not worry about
 the FUD, but can rather use MP \textbf{boldly}.
+
+As a last impetus to help you move to \textbf{bold} metaprogramming use, I would like to present to you a real-world example.  My library:  LatinVerb.
+
+I'll start by showing you what LatinVerb does and how MP got the code to scale around a particularly thorny problem.  So, LatinVerb.
 }
 
 \subsection{LatinVerb} % (fold)
 \label{sub:_modeling_thought_in_latinverb}
 
 \begin{frame}
+	\frametitle{Demo}
+	\begin{center}
+		\texttt{LatinVerb}
+	\end{center}	
+\end{frame}
+
+\begin{frame}
 	\frametitle{LatinVerb}
-	LatinVerb is a library for conjugating Latin verbs given their ``four principle parts''
+	LatinVerb is a library for conjugating Latin verbs given their ``four principle parts.''
+	\pause
+	\vskip 0.5cm
+	Turn:  ``am\={o}, am\={a}re, am\={a}v\={\i}, amatum''
+	\vskip 0.5cm
+	\pause
+	Into:  $\approx$ 160$+$ unique forms per verb
 \end{frame}
 
 \begin{frame}
@@ -575,7 +579,15 @@ the FUD, but can rather use MP \textbf{boldly}.
 	\begin{center}
 		\emph{``Captain!  My Captain!''}
 	\end{center}
-	
+\end{frame}
+
+\begin{frame}
+	\frametitle{This Shouldn't Hurt}
+	\begin{center}
+		\includegraphics[scale=0.45]{img/MartinWizard.jpg}
+		\vskip 0.5cm
+		\emph{Martin, the Wizard of Latin}
+	\end{center}			
 \end{frame}
 
 \begin{frame}
@@ -616,35 +628,29 @@ the FUD, but can rather use MP \textbf{boldly}.
 \end{frame}
 
 \begin{frame}
+	\frametitle{Aggregation}
+	Occasionally we want to cluster unique vectors
+	\pause
+	\begin{itemize}
+		\item ``active voice indicative mood present tense''
+		\pause
+		\item ``active voice indicative mood present tense first person''
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	No more Latin theory\ldots
+\end{frame}
+
+\begin{frame}
 	\frametitle{Translating a Domain Problem to Ruby} 
 	\includegraphics[scale=0.45]{img/conj_how_1.png}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Translating a Domain Problem to Ruby} 
-	\includegraphics[scale=0.45]{img/conj_how_1b.png}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby} 
 	\includegraphics[scale=0.45]{img/conj_how_2.png}
 \end{frame}
-
-\begin{frame}
-	\frametitle{Combine!}
-	\emph{``Take an array of elements and tack them onto a base with the results
-returned as an array. Why does that sound familiar?''}
-	\includegraphics[scale=0.45]{img/determined.png}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby} 
-	\vskip 1.0cm
-	\begin{center}
-		\includegraphics[scale=0.45]{img/conj_how_2b.png}	
-	\end{center}
-\end{frame}
-
 
 \begin{frame}
 	\frametitle{Translating a Domain Problem to Ruby} 
@@ -657,8 +663,29 @@ conjugation of this tense here:
 }
 
 \begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby} 
-	\includegraphics[scale=0.45]{img/conj_how_3b.png}	
+	\frametitle{Specification}
+	Take an array of elements and tack them onto a base, derived from the given,
+with the results returned as an array.  Sub-specify by \underline{person} (1, 2, 3) or \underline{number} or cluster by either.
+	\pause
+	\vskip 0.5cm
+	\emph{Why does that sound familiar?}
+	\vskip 0.5cm
+	\includegraphics[scale=0.45]{img/determined.png}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Translating a Domain Problem to Ruby (1/3)} 
+	\emph{Take an array of elements and tack them onto a base, derived from the
+    given, with the results returned as an array.
+}	\begin{center}
+		\includegraphics[scale=0.38]{img/conj_how.png}	
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Translating a Domain Problem to Ruby (2/3)} 
+	\includegraphics[scale=0.39]{img/conj_how_3b.png}	
 \end{frame}
 \note{
 So what happens here? In LatinIRB (an IRB wrapper around LatinVerb that I
@@ -675,19 +702,42 @@ concept, actually opened the gateways to other thoughts.
 }
 
 \begin{frame}
+	\frametitle{Translating a Domain Problem to Ruby (3/3)} 
+	\emph{
+		Sub-specify by \underline{person} (1, 2, 3) or \underline{number} or
+    cluster by either.
+  }
+	\begin{center}
+		\includegraphics[scale=0.38]{img/conj_subspec.png}	
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Pause for applause}
+	\begin{center}
+		\texttt{LatinVerb:  Demo End}
+		\vskip 0.5cm
+		\emph{FYI:  Applause is derived from our example word ``laudare'' meaning ``to praise'' literally meaning ``to praise toward''}
+	\end{center}	
+\end{frame}
+
+
+\begin{frame}
 	\frametitle{Standard Domain Modeling}
 	\begin{itemize}
 		\item Generated results to save typing
+		\pause
 		\item Implements a standardized heuristic (from \emph{Wheelock's Latin}) so that domain experts retain familiarity
+		\pause
+		\item Incredibly flexible, and domain-representative, call syntax
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle Madness set in\ldots
+	\frametitle{Madness set in\ldots}
 	\vskip 1.0cm
 	\emph{Could I scale this to \underline{all} Latin verbs?}
 \end{frame}
-
 
 \begin{frame}
 	\frametitle{Painful Math}
@@ -698,7 +748,7 @@ concept, actually opened the gateways to other thoughts.
 		\pause
 		\item \ldots $\times$ 2 voices (active|present)
 		\pause
-		\item \ldots \emph{and then there's another voice!}
+		\item \ldots \emph{and then there's another mood with 4 tenses of its own!}
 		\pause
 		\item Each regular Latin verb has $\approx$  160 unique vectors
 		\pause
@@ -709,11 +759,11 @@ concept, actually opened the gateways to other thoughts.
 \end{frame}
 
 \begin{frame}
-		\frametitle{Suck}
+		\frametitle{Pain}
 		\begin{itemize}
-			\item Typing all of these several hundred(thousand?)-odd values in would definitely suck.
+			\item Typing all of these several hundred(thousand?)-odd values for \emph{fully-specified} vectors would definitely hurt
 			\pause
-			\item What if you had incomplete data?  4/5 of the vector specification?
+			\item What if you had \emph{incomplete} data?  4/5 of the vector specification?  3/5?
 		\end{itemize}
 		\begin{center}
 			\begin{tabular}{|c|c|c|}
@@ -732,40 +782,38 @@ concept, actually opened the gateways to other thoughts.
 
 
 \begin{frame}
-	\frametitle{ Use Metaprogramming}
+	\frametitle{ Use Metaprogramming:  Bottom-Up}
 	\begin{itemize}
 		\item Could we make the result array \texttt{[laud\={o}, laud\={a}s, laudat laud\={a}mus, laudatis, laudant]} smarter?
 		\pause
+		\item Could it gain sub-selection semantics more useful than simple indexing?  \emph{e.g.} \texttt{[2], [0]}
 		\item Yes!
 		\pause 
-		\item Make that Array a class whose \texttt{method\_missing} resolves the last two aspects flexibly.
+		\item Make that Array a wrapper class whose \texttt{method\_missing} resolves the last two aspects flexibly.
 	\end{itemize}
 \end{frame}
+\note{
+Earlier I showed you that a tense-block was basically an array but that it
+gained the ability to have some ambiguous methods called on it. Here's how I
+gained that.
+}
 
 
 \subsection{Handling Ambiguity} % (fold)
 \label{sub:methods}
 
 \begin{frame}
-	\frametitle{What It Looks Like}
-
-	\includegraphics[scale=0.35]{img/flexibility_1.png}	
-	\vskip 0.5cm
-	\includegraphics[scale=0.35]{img/flexibility_2.png}	
-	\vskip 0.5cm
-	\includegraphics[scale=0.30]{img/flexibility_3.png}	
-\end{frame}
-
-\begin{frame}
-	\frametitle{How To Do It:  Call to a Tense Returns a TenseBlock}
-	\begin{center}
-		\includegraphics[scale=0.45]{img/tense_method_call.png}
-	\end{center}
-\end{frame}
-
-\begin{frame}
 	\frametitle{\underline{Ghost Method} in \texttt{TenseBlock}}
 	\includegraphics[scale=0.45]{img/tenseblock_mm.png}
+\end{frame}
+
+\begin{frame}
+	\frametitle{MP Techniques Used}
+	\begin{enumerate}
+		\item \underline{Ghost Method}:  Dont define a method (in \texttt{TenseBlock}) so that its \texttt{method\_missing} acts as \texttt{method\_called}
+		\item \underline{Blank Slate}:  A TenseBlock is a Blank Slate, effectively
+		\item \underline{Dynamic Dispatch}:  \texttt{self.send} in \texttt{TenseBlock}
+	\end{enumerate}
 \end{frame}
 
 
@@ -778,30 +826,36 @@ concept, actually opened the gateways to other thoughts.
 		\pause
 		\item Saved creating 5 additional ``aggregate methods'' per tense
 		\pause
-		\item Avoids C-style brain damage
-		\pause
-		\item More meaningful aggregate chunking
+		\item Avoids Java-ish paramteterized brain damage
 	\end{itemize}
 \end{frame}
-\note{I believe these first two benefits are obvious, so instead I'll focus on these other three.}
+\note{I believe these first two benefits are obvious, so instead I'll focus on one that i find particularly aesthetically unpleasing.}
 
 \begin{frame}
-	\frametitle{C-ish Brain Damage:  Parameterization}	
+	\frametitle{Java-ish Brain Damage:  Parameterization}	
  	\texttt{String calculate\_vector(VerbyType aV, String v, String m, String t, String p, String n)}
-\end{frame}
+	\vskip 0.5cm
 
-\begin{frame}
-	\frametitle{C-ish Brain Damage:  Parameterization}	
+	\begin{center}
+		\textbf{OR}
+	\end{center}
+
+	\vskip 0.5cm	
 	\texttt{Object[] calculated\_values = \{aV, v, m, t, p, n\};} 
-	\texttt{String calculate\_vector(calculated\_values)}; 
+	\texttt{String calculate\_vector(calculated\_values)}; 	
 \end{frame}
 \note
-{A particular reason that I want to highlight this benefit is because C-style
+{A particular reason that I want to highlight this benefit is because Java/C-style
 parameterization is not how we think.
 }
 
 \begin{frame}
-	\frametitle{Not How We Think}
+	\frametitle{anti-Parameterization:  Not How We Think, Not Modeled Thought}
+
+		\begin{center}
+			\includegraphics[scale=0.15]{img/SubwayLogo.png}
+		\end{center}			
+
 	\begin{itemize}
 		\item We \emph{do not} think like we are ordering from Subway.
 		\pause
@@ -813,27 +867,18 @@ parameterization is not how we think.
 \end{frame}
 \note{This is probably something \emph{right} about the Objective-C language.}
 
-
 \begin{frame}
-	\frametitle{ ``Modeling Thought:''  Arbitrary Chunking}
-	\begin{itemize}
-		\item In Latin we talk about ``tenses'' as an aggregate of six vectors.  Let's use this as a ``chunk.''
-		\pause
-		\item We needn't be limited to Arrays, Hashes, Vectors, or other DS'
-	\end{itemize}
+	\frametitle{Pretty Parameterization}		
+	\texttt{instance.active\_voice\_indicative\_mood\_present\_tense}
+	\begin{center}
+		\textbf{NOT}
+	\end{center}
+	\texttt{instance.calculate\_vector('active','indicative')} \ldots
 \end{frame}
 
-\begin{frame}
-	\frametitle{MP Techniques Used}
-	\begin{enumerate}
-		\item Ghost Method:  Dont define a method (in \texttt{TenseBlock}) so that its \texttt{method\_missing} acts as \texttt{method\_called}
-		\item Blank Slate:  A TenseBlock is a Blank Slate, effectively
-		\item Dynamic Dispatch:  \texttt{self.send} in \texttt{TenseBlock}
-	\end{enumerate}
-\end{frame}
 
 \begin{frame}
-	\frametitle{The Corollary}
+	\frametitle{The Corollary Emerges}
 	\begin{itemize}
 		\item 	We pursued ``less typing'' but wound up with ``respond to ambiguous calls with unambiguous data''
 		\pause
@@ -842,13 +887,15 @@ parameterization is not how we think.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Scale it Up!}
-	\frametitle{method\_missing and method\_called}
+	\frametitle{Scale it Up!: method\_missing and method\_called}
 	\includegraphics[scale=0.45]{img/lv_mm.png}	
 \end{frame}
+\note{
+The same technique that we used with a Tense Block that gave each one several extra methods, I then scaled that shortcut by doubling the dynamic method call.
+}
 
 \begin{frame}
-	\frametitle{Result}
+	\frametitle{Result:  Massive Laziness Win}
 	\begin{itemize}
 		\item 24 methods
 		\item One reponse class (\texttt{TenseBlock})
@@ -859,6 +906,37 @@ parameterization is not how we think.
 
 \begin{frame}
 	\frametitle{This is the golden use of Metaprogramming}
+	\begin{center}
+		\emph{This is the golden use of Metaprogramming}
+		\includegraphics[scale=0.45]{img/Zen04.jpg}	
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Recall Our Goals\ldots}
+	\begin{enumerate}
+		\item Reflect upon how we learn MP in the Ruby community
+		\item Demonstrate MP's ubiquity:  you can't \emph{not} learn this
+		\item Advise when you should reach for the MP ``hammer''
+		\item Provide a real-world example of thinking in terms of MP
+		\item Give you the confidence to use MP \textbf{boldly}
+	\end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Conclusion:  Goals Into Action!}
+	\begin{enumerate}
+		\item \textbf{Let's provide a clearer path to learning} MP in the Ruby community \ldots
+		\pause
+		\item \textbf{since we know we} can't \emph{not} learn this.
+		\pause
+		\item \textbf{Since we know when we} should reach for the MP ``hammer''
+		\pause
+		\item \textbf{and have a demonstrated} example of thinking in terms of MP
+		\pause
+		\item \textbf{we will} use MP \textbf{boldly}
+	\end{enumerate}
 \end{frame}
 
 
@@ -884,13 +962,20 @@ parameterization is not how we think.
 \label{sec:supplementary}
 
 \begin{frame}
+	\frametitle{Supplementary}
+	\begin{center}
+		Supplementary Information
+	\end{center}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Book}
 	\underline{Metaprogramming Ruby} by Paolo Perrotta
 \end{frame}
 
 \begin{frame}
 	\frametitle{List of Spells}
-	\texttt{http://ducktypo.blogspot.com/2010/08/metaprogramming-spell-book.html}
+	\texttt{http://ducktypo.blogspot.com/2010/\\08/metaprogramming-spell-book.html}
 \end{frame}
 
 \begin{frame}
@@ -898,24 +983,15 @@ parameterization is not how we think.
 	\LaTeX and the Beamer Slide Style
 \end{frame}
 
-
-% section supplementary (end)
-
 \begin{frame}
 	\frametitle{SpeakerRate}
 	\centering{Help Me Get Better!}
 	\vskip 1.25cm
 	\centering{\texttt{http://speakerrate.com/talks/\\7831-practical-metaprogramming-modeling-thought}}
 \end{frame}
-\note{
-At the conclusion of this presentation please take the time to help me out by
-giving me some feedback about how things went. Please be honest, but
-constructive. If the slides didn't advance the point, if you didn't like my
-jokes. If the contrast or typeface are bad, please let me know.
-}
 
 \begin{frame}
-	\frametitle{Contact Me!}
+	\frametitle{Contact Me! (Again)}
 	\begin{center}
 		Steven G. Harms \\
 		\vskip 1.25cm	
