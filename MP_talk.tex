@@ -190,7 +190,7 @@ Whew, I'm glad we only lost those few.
 \begin{frame} 
 	\frametitle{``Practical Metaprogramming:  First Contact''}
 	\includegraphics[scale=0.55]{img/first_contact.jpg} \\
-	\emph{\ldots and is it to be called an ``eigenclass'' or a ``singleton class, ma'am?''}
+	\emph{\ldots and is it to be called an ``eigenclass'' or a ``singleton class,'' ma'am?}
 \end{frame} 
 \note{
 As per our first goal, let's take a look at how we, as a community, educate
@@ -305,7 +305,7 @@ create methods that behave as if they were core builtins to the language.
 }
 
 \begin{frame}
-	\frametitle{``Slightly Impractical Metaprogramming:  Singleton Method''}
+	\frametitle{``Slightly Impractical Metaprogramming:''  Singleton Method}
 	\begin{itemize}
 		\item Open Classes
 		\item Kernel Method
@@ -384,7 +384,6 @@ That is, that developers will figure it out if they need it. I would contend,
 		\includegraphics[scale=0.45, width=0.89\textwidth]{img/e2mmap.png}
 		\pause
 		\item Rails uses MP all over the place
-		\pause
 	\end{enumerate}
 \end{frame}
 \note{
@@ -481,9 +480,13 @@ We'll talk more about that momentarily. Let's take a look at the second law.
 
 \begin{frame}
 	\frametitle{Second Law of Metaprogramming}
-	\centering{\emph{ A metaprogrammatic solution is suitable when mechanical
-recording of the the values is time inefficient when compared to learning the
-generating heuristic}}
+	\centering{\emph
+	{ 
+	A metaprogrammatic solution is suitable when the mechanical recording of the
+the values is time-inefficient when compared to learning the generating
+heuristic
+	}
+}
 	\pause
 	\vskip 0.5cm
 	\centering{\emph{e.g. attr\_* methods}}
@@ -530,8 +533,11 @@ And no language supports the ``modeling thought'' paradigm like Ruby.
 	\frametitle{Stepwise Progress}
 	\begin{itemize}
 		\item Matz' Design
+		\pause
 		\item Paolo's ``Spells''
+		\pause
 		\item A rule of thumb:  ``Modeling Thought''
+		\pause
 		\item Your \textbf{bold} usage
 	\end{itemize}
 \end{frame}
@@ -558,17 +564,6 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 \end{frame}
 
 \begin{frame}
-	\frametitle{LatinVerb}
-	LatinVerb is a library for conjugating Latin verbs given their ``four principle parts.''
-	\pause
-	\vskip 0.5cm
-	Turn:  ``am\={o}, am\={a}re, am\={a}v\={\i}, amatum''
-	\vskip 0.5cm
-	\pause
-	Into:  $\approx$ 160$+$ unique forms per verb
-\end{frame}
-
-\begin{frame}
 	\frametitle{Just Enough Latin}
 	\vskip 0.5cm
 	\begin{center}
@@ -582,7 +577,7 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 \end{frame}
 
 \begin{frame}
-	\frametitle{This Shouldn't Hurt}
+	\frametitle{This Shouldn't Hurt{\ldots}Much}
 	\begin{center}
 		\includegraphics[scale=0.45]{img/MartinWizard.jpg}
 		\vskip 0.5cm
@@ -591,21 +586,25 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 \end{frame}
 
 \begin{frame}
-	\frametitle{Therefore\ldots}
-	Given:  ``am\={o}, am\={a}re, am\={a}v\={\i}, amatum''
+	\frametitle{Conjugation\ldots}
+	Given the \underline{four principle parts}:  ``am\={o}, am\={a}re, am\={a}v\={\i}, amatum''
 	\vskip 0.5cm
-	Specific Vector: ``Active Voice / indicative mood / present tense/ first person / singular number'' 
+	The Specific Vector: ``Active Voice / indicative mood / present tense/ first person / singular number'' uniquely identifies:
 	\vskip 0.5cm
 	\begin{center}
 		\emph{am\={o}}
+		\vskip 0.5cm
+		This process is called \underline{conjugation}.
 	\end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Unique Specification:  Stargate}
-	\includegraphics[scale=0.25]{img/stargate.jpg}
-	\vskip 0.5cm
-	\centering{6 Points in Space}
+	\frametitle{A Conjugation is a Unique Specification:  Stargate}
+	\begin{center}
+		\includegraphics[scale=0.25]{img/stargate.jpg}
+		\vskip 0.5cm
+		\centering{6 Points in Space}
+	\end{center}
 \end{frame}
 
 \begin{frame}
@@ -629,7 +628,7 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 
 \begin{frame}
 	\frametitle{Aggregation}
-	Occasionally we want to cluster unique vectors
+	Occasionally we want to cluster unique vectors or leave out data
 	\pause
 	\begin{itemize}
 		\item ``active voice indicative mood present tense''
@@ -639,33 +638,74 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 \end{frame}
 
 \begin{frame}
-	No more Latin theory\ldots
+	\frametitle{Vector Generation}
+	\begin{itemize}
+		\item Vector generation is a well-known, well-established domain.
+		\item $\approx$ 2500 years of documentation
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby} 
-	\includegraphics[scale=0.45]{img/conj_how_1.png}
+	\frametitle{Model it in Ruby!}
+	\begin{center}
+		\includegraphics[scale=0.45]{img/brosh_all.png}
+	\end{center}	
 \end{frame}
 
 \begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby} 
-	\includegraphics[scale=0.45]{img/conj_how_2.png}
+	\frametitle{LatinVerb's Purpose}
+	LatinVerb is a library for conjugating Latin verbs provided their ``four principle parts (am\={o}, am\={a}re, am\={a}v\={\i}, amatum).''
+	\pause
+	\vskip 0.5cm
+	Vectors are accessed by pretty method calls like: \texttt{active\_voice\_indicative\_mood\_present\_tense{\ldots}\\\_first\_person\_singular\_number}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby} 
-	\includegraphics[scale=0.45]{img/conj_how_3.png}	
+	\frametitle{Painful Combinations}
+	\begin{itemize}
+		\item 6 results means 6 methods to be defined \emph{per tense}
+		\pause
+		\item \ldots $\times$ 6 tenses (present|imperfect|future|perfect|past-perfect|future-perfect)
+		\pause
+		\item \ldots $\times$ 2 voices (active|present)
+		\pause
+		\item \ldots \emph{and then there's another mood with 4 tenses of its own!}
+		\pause
+		\item Each regular Latin verb has $\approx$  160 unique vectors
+		\pause
+		\item There are 5 standard paradigms
+		\pause
+		\item \ldots and at least $1,000$ verbs
+	\end{itemize}
 \end{frame}
-\note{
-I'm going to skip over some of the details here about the phongraphic rules
-for shortening vowels and am going to provide the test case for correct
-conjugation of this tense here:
-}
+
+\begin{frame}
+		\frametitle{Pain}
+		\begin{itemize}
+			\item Typing all of these several hundred(thousand?)-odd values for \emph{fully-specified} vectors would definitely hurt
+			\pause
+			\item What if you had \emph{incomplete} data?  4/5 of the vector specification?  3/5?  Yet even more methods
+		\end{itemize}
+		\begin{center}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				  & Singular Number &  Plural Number\\
+				\hline
+				First Person  & laud\={o}  & laud\={a}mus\\
+				Second Person & laud\={a}s & laudatis \\
+				Thrid Person  & laudat     & laudant \\
+				\hline
+			\end{tabular}
+		\end{center}
+		\pause
+		Law II says to MP our way out of the pain
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Specification}
-	Take an array of elements and tack them onto a base, derived from the given,
-with the results returned as an array.  Sub-specify by \underline{person} (1, 2, 3) or \underline{number} or cluster by either.
+	Take an array of elements and tack them onto a base, derived from the given, second part,
+with the results returned as an array.  Sub-specify by \underline{person} (1, 2, 3) and/or \underline{number} or cluster by either.
 	\pause
 	\vskip 0.5cm
 	\emph{Why does that sound familiar?}
@@ -713,123 +753,59 @@ concept, actually opened the gateways to other thoughts.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Pause for applause}
-	\begin{center}
-		\texttt{LatinVerb:  Demo End}
-		\vskip 0.5cm
-		\emph{FYI:  Applause is derived from our example word ``laudare'' meaning ``to praise'' literally meaning ``to praise toward''}
-	\end{center}	
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Standard Domain Modeling}
+	\frametitle{Result:  Massive Laziness Win}
 	\begin{itemize}
-		\item Generated results to save typing
-		\pause
-		\item Implements a standardized heuristic (from \emph{Wheelock's Latin}) so that domain experts retain familiarity
-		\pause
-		\item Incredibly flexible, and domain-representative, call syntax
+		\item $\approx$ 48 methods covered; 6 written
+		\item One reponse class (\texttt{TenseBlock})
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Madness set in\ldots}
-	\vskip 1.0cm
-	\emph{Could I scale this to \underline{all} Latin verbs?}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Painful Math}
-	\begin{itemize}
-		\item 6 results means 6 methods to be defined \emph{per tense}
-		\pause
-		\item \ldots $\times$ 6 tenses (present|imperfect|future|perfect|past-perfect|future-perfect)
-		\pause
-		\item \ldots $\times$ 2 voices (active|present)
-		\pause
-		\item \ldots \emph{and then there's another mood with 4 tenses of its own!}
-		\pause
-		\item Each regular Latin verb has $\approx$  160 unique vectors
-		\pause
-		\item There are 5 standard paradigms
-		\pause
-		\item \ldots and at least $1,000$ verbs
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-		\frametitle{Pain}
-		\begin{itemize}
-			\item Typing all of these several hundred(thousand?)-odd values for \emph{fully-specified} vectors would definitely hurt
-			\pause
-			\item What if you had \emph{incomplete} data?  4/5 of the vector specification?  3/5?
-		\end{itemize}
-		\begin{center}
-			\begin{tabular}{|c|c|c|}
-				\hline
-				  & Singular Number &  Plural Number\\
-				\hline
-				First Person  & laud\={o}  & laud\={a}mus\\
-				Second Person & laud\={a}s & laudatis \\
-				Thrid Person  & laudat     & laudant \\
-				\hline
-			\end{tabular}
-		\end{center}
-		\pause
-		Law II says to MP our way out of the pain
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{ Use Metaprogramming:  Bottom-Up}
-	\begin{itemize}
-		\item Could we make the result array \texttt{[laud\={o}, laud\={a}s, laudat laud\={a}mus, laudatis, laudant]} smarter?
-		\pause
-		\item Could it gain sub-selection semantics more useful than simple indexing?  \emph{e.g.} \texttt{[2], [0]}
-		\item Yes!
-		\pause 
-		\item Make that Array a wrapper class whose \texttt{method\_missing} resolves the last two aspects flexibly.
-	\end{itemize}
+	\frametitle{Scale it Up!: method\_missing and method\_called}
+	\includegraphics[scale=0.45]{img/lv_mm.png}	
 \end{frame}
 \note{
-Earlier I showed you that a tense-block was basically an array but that it
-gained the ability to have some ambiguous methods called on it. Here's how I
-gained that.
+The same technique that we used with a Tense Block that gave each one several extra methods, I then scaled that shortcut by doubling the dynamic method call.
 }
 
-
-\subsection{Handling Ambiguity} % (fold)
-\label{sub:methods}
-
 \begin{frame}
-	\frametitle{\underline{Ghost Method} in \texttt{TenseBlock}}
-	\includegraphics[scale=0.45]{img/tenseblock_mm.png}
+	\frametitle{Result:  Super-Massive Laziness Win}
+	\begin{itemize}
+		\item Covered the thousands of methods predicted
+		\item \ldots and provided the clustering methods as well as a surprising bonus
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{MP Techniques Used}
-	\begin{enumerate}
-		\item \underline{Ghost Method}:  Dont define a method (in \texttt{TenseBlock}) so that its \texttt{method\_missing} acts as \texttt{method\_called}
-		\item \underline{Blank Slate}:  A TenseBlock is a Blank Slate, effectively
-		\item \underline{Dynamic Dispatch}:  \texttt{self.send} in \texttt{TenseBlock}
-	\end{enumerate}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Benefits}
+	\frametitle{Benefits via Law II}
 	\begin{itemize}
 		\item Saved many keystrokes by writing a class and \texttt{method\_missing} definition
 		\pause
 		\item Saved creating 6 additional methods per tense for vectors
-		\pause
-		\item Saved creating 5 additional ``aggregate methods'' per tense
-		\pause
-		\item Avoids Java-ish paramteterized brain damage
 	\end{itemize}
 \end{frame}
-\note{I believe these first two benefits are obvious, so instead I'll focus on one that i find particularly aesthetically unpleasing.}
+
+\begin{frame}
+	\frametitle{The Corollary Emerges}
+	\begin{itemize}
+		\item 	We pursued ``less typing'' but wound up with ``respond to ambiguous calls with unambiguous data''
+		\pause
+		\item 	`Modeling Thought'' is full of these surprises
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Law I Emerges \emph{causa sui}}
+	\begin{itemize}
+		\item 5 additional ``aggregate methods'' per tense emerged
+		\pause
+		\item Avoided Java-ish paramteterized brain damage
+	\end{itemize}
+\end{frame}
+
+
+
 
 \begin{frame}
 	\frametitle{Java-ish Brain Damage:  Parameterization}	
@@ -876,40 +852,51 @@ parameterization is not how we think.
 	\texttt{instance.calculate\_vector('active','indicative')} \ldots
 \end{frame}
 
-
-\begin{frame}
-	\frametitle{The Corollary Emerges}
-	\begin{itemize}
-		\item 	We pursued ``less typing'' but wound up with ``respond to ambiguous calls with unambiguous data''
-		\pause
-		\item 	`Modeling Thought'' is full of these surprises
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Scale it Up!: method\_missing and method\_called}
-	\includegraphics[scale=0.45]{img/lv_mm.png}	
-\end{frame}
-\note{
-The same technique that we used with a Tense Block that gave each one several extra methods, I then scaled that shortcut by doubling the dynamic method call.
-}
-
-\begin{frame}
-	\frametitle{Result:  Massive Laziness Win}
-	\begin{itemize}
-		\item 24 methods
-		\item One reponse class (\texttt{TenseBlock})
-		\item Covered the thousands of methods predicted
-		\item \ldots and provided the clustering methods as well as a surprising bonus
-	\end{itemize}
-\end{frame}
-
 \begin{frame}
 	\frametitle{This is the golden use of Metaprogramming}
 	\begin{center}
 		\emph{This is the golden use of Metaprogramming}
 		\includegraphics[scale=0.45]{img/Zen04.jpg}	
 	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Pause for ``applause''}
+	\begin{center}
+		\texttt{LatinVerb:  Demo End}
+		\vskip 0.5cm
+		\emph{FYI:  Applause is derived from our example word ``laudare'' meaning ``to praise'' literally meaning ``to praise toward''}
+	\end{center}	
+\end{frame}
+
+
+%%%%%%
+
+
+\begin{frame}
+	\frametitle{What MP Techniques Make This Possible?}
+	\begin{center}
+		HOW?
+	\end{center}
+	
+\end{frame}
+
+
+\subsection{MP Techniques} % (fold)
+\label{sub:methods}
+
+\begin{frame}
+	\frametitle{\underline{Ghost Method} in \texttt{TenseBlock}}
+	\includegraphics[scale=0.45]{img/tenseblock_mm.png}
+\end{frame}
+
+\begin{frame}
+	\frametitle{MP Techniques Used}
+	\begin{enumerate}
+		\item \underline{Blank Slate}:  A TenseBlock is a Blank Slate, effectively
+		\item \underline{Ghost Method}:  Dont define a method (in \texttt{TenseBlock}) so that its \texttt{method\_missing} acts as \texttt{method\_called} for dispatching
+		\item \underline{Dynamic Dispatch}:  \texttt{self.send} in \texttt{TenseBlock}
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}
@@ -922,7 +909,6 @@ The same technique that we used with a Tense Block that gave each one several ex
 		\item Give you the confidence to use MP \textbf{boldly}
 	\end{enumerate}
 \end{frame}
-
 
 \begin{frame}
 	\frametitle{Conclusion:  Goals Into Action!}
