@@ -181,9 +181,6 @@ Whew, I'm glad we only lost those few.
 \section{Practical MP} % (fold)
 \label{sub:practical_metaprogramming}
 
-\section{Modeling Thought} % (fold)
-\label{sec:modeling_thought}
-
 \subsection{Early Exposure} % (fold)
 \label{sub:early_exposure}
 
@@ -261,7 +258,7 @@ make them consistent by giving them a standardized and repreated set of names.
 
 \begin{frame}
 	\frametitle{Terminology}
-	``Spells'' and their names derive from \underline{Metaprogramming Ruby} by Paolo ``Nusco'' Perrotta
+	``Spells'' and their names derive from \underline{Metaprogramming Ruby} by Paolo ``Nusco'' Perrotta:
 	\vskip 0.5cm
 	\begin{center}
 		\underline{http://ducktypo.blogspot.com/2010/08/} \\
@@ -334,17 +331,13 @@ Ruby, a class is really a namespace expression. This is pretty cool stuff.
 \note{It might not be the most awesome thing ever, which is, of course, a lion riding a horse, but it's still pretty good.}
 
 \begin{frame}
-	\frametitle{Madness}
+	\frametitle{{\ldots}Or Madness?}
 	Incautiously used, these lead to the dangers of MP:
 	\begin{itemize}
 		\item Opaqueness
 		\item Unpredictability
 		\item Unsupportability
 	\end{itemize}
-	% \begin{center}
-	% 		\emph{Abandon all hope ye who enter \ldots}
-	% 	\includegraphics[scale=0.45]{img/dante.jpg}		
-	% \end{center}
 \end{frame}
 \note{Read aloud\ldots}
 
@@ -424,7 +417,7 @@ pitfalls as you move to metaprogram \textbf{boldly}.
 
 \begin{frame}
 	\begin{center}
-		Modeling Thought
+		``Modeling Thought''
 	\end{center}
 \end{frame}
 
@@ -444,7 +437,7 @@ pitfalls as you move to metaprogram \textbf{boldly}.
 calls for a metaprogrammatic solution.
 
 Let's transform those motivations just mentioned into some ``Laws'' and
-``Corrolaries.''
+``Corollaries.''
 }
 
 \subsection{Laws} % (fold)
@@ -503,11 +496,11 @@ macros that are effectively doing a lot of typing for you) seem like the
 natural order of things. As Rubyists, we should eschew this tendency.
 
 An interesting tendency has emerged during my work with Ruby's MP model, and
-that's this first Corrolary:
+that's this first Corollary:
 }
 
 \begin{frame}
-	\frametitle{First Corrolary:}
+	\frametitle{First Corollary:}
 	\begin{center}
 		\emph{Any significant metaprogramming work undertaken to meet either of
     the laws will eventually look like it was undertaken for a reason in
@@ -520,7 +513,7 @@ that's this first Corrolary:
 	Law I:  \textbf{Thinking} provides unambiguous answers to ambiguously asked things \\
 	Law II: \textbf{Thinking} is the more efficient learning of generating heuristics opposed to rote recording of data \\
 	\vskip 0.5cm
-	This symmetry is the basis of ``Modeling Thought''
+	This symmetry is the basis of ``Modeling Thought.''
 \end{frame}
 
 \begin{frame}
@@ -532,7 +525,7 @@ And no language supports the ``modeling thought'' paradigm like Ruby.
 }
 
 \begin{frame}
-	\frametitle{Stepwise Progress}
+	\frametitle{Stepwise Support for ``Modeling Thought''}
 	\begin{itemize}
 		\item Matz' Design
 		\pause
@@ -636,6 +629,8 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 		\item ``active voice indicative mood present tense''
 		\pause
 		\item ``active voice indicative mood present tense first person''
+		\pause
+		\item ``active voice indicative mood present tense first person singular number (Fully-Qualified)''
 	\end{itemize}
 \end{frame}
 
@@ -644,7 +639,7 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 	\begin{itemize}
 		\item Vector generation is a well-known, well-established domain.
 		\pause
-		\item $\approx$ 2500 years of documentation
+		\item $\approx$ 2,500 years of documentation
 	\end{itemize}
 \end{frame}
 
@@ -654,6 +649,14 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 		\includegraphics[scale=0.45]{img/brosh_all.png}
 	\end{center}	
 \end{frame}
+
+\begin{frame}
+	\frametitle{Or as Tenderlove once said:}
+	\begin{center}
+		``Do something worthless of questionable value.'' -- \emph{Aaron Patterson}
+	\end{center}	
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{LatinVerb's Purpose}
@@ -687,7 +690,7 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 		\begin{itemize}
 			\item Typing all of these several hundred(thousand?)-odd values for \emph{fully-specified} vectors would definitely hurt
 			\pause
-			\item What if you had \emph{incomplete} data?  4/5 of the vector specification?  3/5?  Yet even more methods
+			\item What if you had \emph{incomplete} data per our Aggregation section?  4/5 of the vector specification?  3/5?  Write \emph{yet} even more methods
 		\end{itemize}
 		\begin{center}
 			\begin{tabular}{|c|c|c|}
@@ -775,8 +778,12 @@ The same technique that we used with a Tense Block that gave each one several ex
 	\frametitle{Result:  Super-Massive Laziness Win}
 	\begin{itemize}
 		\item Covered the thousands of methods predicted
+		\pause
 		\item \ldots and provided the clustering methods as well as a surprising bonus
 	\end{itemize}
+	\pause
+	\vskip 0.5cm
+	\emph{{\ldots}wrote 24 methods}
 \end{frame}
 
 \begin{frame}
@@ -784,8 +791,7 @@ The same technique that we used with a Tense Block that gave each one several ex
 	\begin{itemize}
 		\item Saved many keystrokes by writing a class and \texttt{method\_missing} definition
 		\pause
-		\item Saved creating 48 additional methods per tense for vectors
-their own}
+		\item Saved creating \textbf{\$A\_LOT\_OF} additional methods per tense for vectors their own
 	\end{itemize}
 \end{frame}
 
@@ -800,12 +806,24 @@ their own}
 
 
 \begin{frame}
-	\frametitle{Law I Emerges \emph{causa sui}}
+	\frametitle{Law I Emerges{\ldots}With Surprises}
 	\begin{itemize}
 		\item 5 additional ``aggregate methods'' per tense emerged
+		\begin{itemize}
+			\item {aTenseBlock}.singular\_number (\texttt{3 results})
+			\item {aTenseBlock}.first\_person (\texttt{2 results})	
+		\end{itemize}
+		
 		\pause
-		\item Syntax was introduced that tolerated the method call being presented ``out of order'' -- \emph{but which still did the right thing!}
+		
+		\item Flexible word order \emph{emerged} that did the right thing
+		\begin{itemize}
+			\item first\_person\_singular\_number
+			\item singular\_number\_first\_person
+		\end{itemize}
+		
 		\pause
+		
 		\item Avoided Java-ish paramteterized brain damage
 	\end{itemize}
 \end{frame}
@@ -857,9 +875,9 @@ parameterization is not how we think.
 \end{frame}
 
 \begin{frame}
-	\frametitle{This is the golden use of Metaprogramming}
+	\frametitle{Clarity \& Communication}
 	\begin{center}
-		\emph{This is the golden use of Metaprogramming}
+		\emph{``Code that Communicates''}
 		\includegraphics[scale=0.45]{img/Zen04.jpg}	
 	\end{center}
 \end{frame}
@@ -869,7 +887,7 @@ parameterization is not how we think.
 	\begin{center}
 		\texttt{LatinVerb:  Demo End}
 		\vskip 0.5cm
-		\emph{FYI:  Applause is derived from our example word ``laudare'' meaning ``to praise'' literally meaning ``to praise toward''}
+		\emph{FYI:  Applause is derived from our example word ``laud\={a}re'' meaning ``to praise'' literally meaning ``to praise toward''}
 	\end{center}	
 \end{frame}
 
@@ -927,31 +945,13 @@ parameterization is not how we think.
 		\pause
 		\item \textbf{since we know we} can't \emph{not} learn this.
 		\pause
-		\item \textbf{Since we know when we} should reach for the MP ``hammer''
+		\item \textbf{Since we know when we} should reach for the MP ``hammer'' \textbf{thanks to the ``modeling thought'' guideline}
 		\pause
 		\item \textbf{and have a demonstrated} example of thinking in terms of MP
 		\pause
 		\item \textbf{we will} use MP \textbf{boldly}
 	\end{enumerate}
 \end{frame}
-
-
-% ---- TO INCLUDE? ------
-% \subsection{Domain-Specific Languages} % (fold)
-% \label{sub:domain_specific_languages}
-% \begin{frame}
-% 	\frametitle{Placeholder}
-% 	\ldots
-% \end{frame}
-
-
-%  Dynamic dispatch
-% Dynamic method (definition)
-% Extension by result from MP
-% subsection domain_specific_languages (end)
-
-% ---- TO INCLUDE? ------
-
 % section modeling_thought (end)
 
 \section{Supplementary} % (fold)
@@ -975,8 +975,14 @@ parameterization is not how we think.
 \end{frame}
 
 \begin{frame}
+	\frametitle{(Meta)programming Politely}
+	\texttt{http://confreaks.net/videos/\\374-rubyconf2010-the-polite-programmer-s-guide-to\\-ruby-etiquette}
+\end{frame}
+
+
+\begin{frame}
 	\frametitle{Colophon}
-	\LaTeX and the Beamer Slide Style
+	\LaTeX and the Beamer Slide Toolkit
 \end{frame}
 
 \begin{frame}
