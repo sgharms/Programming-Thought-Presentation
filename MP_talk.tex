@@ -238,6 +238,8 @@ fabricated -- not unlike what happened in the Ruby example.
 		\item \texttt{attr\_*}:  \emph{Page 30}
 		\item Rails (ORM):  \emph{Page 28}
 	\end{itemize}
+	\vskip 0.5cm
+	\emph{But then what?}
 \end{frame}
 
 \note{This is generally a suitable beginning and once we accept that we live
@@ -333,7 +335,7 @@ Ruby, a class is really a namespace expression. This is pretty cool stuff.
 
 \begin{frame}
 	\frametitle{Madness}
-	Incautiously used, this leads to the dangers of MP:
+	Incautiously used, these lead to the dangers of MP:
 	\begin{itemize}
 		\item Opaqueness
 		\item Unpredictability
@@ -518,11 +520,11 @@ that's this first Corrolary:
 	Law I:  \textbf{Thinking} provides unambiguous answers to ambiguously asked things \\
 	Law II: \textbf{Thinking} is the more efficient learning of generating heuristics opposed to rote recording of data \\
 	\vskip 0.5cm
-	Symmetry is the basis of ``Modeling Thought''
+	This symmetry is the basis of ``Modeling Thought''
 \end{frame}
 
 \begin{frame}
-	\frametitle{``Modeling Thought: Born That Way''}
+	\frametitle{``Modeling Thought:'' Born That Way}
 	\includegraphics[scale=0.6]{img/matz.jpg}		
 \end{frame}
 \note{
@@ -641,6 +643,7 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 	\frametitle{Vector Generation}
 	\begin{itemize}
 		\item Vector generation is a well-known, well-established domain.
+		\pause
 		\item $\approx$ 2500 years of documentation
 	\end{itemize}
 \end{frame}
@@ -665,9 +668,9 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 	\begin{itemize}
 		\item 6 results means 6 methods to be defined \emph{per tense}
 		\pause
-		\item \ldots $\times$ 6 tenses (present|imperfect|future|perfect|past-perfect|future-perfect)
+		\item \ldots $\times$ 6 tenses (present/imperfect/future/perfect/past-perfect/future-perfect)
 		\pause
-		\item \ldots $\times$ 2 voices (active|present)
+		\item \ldots $\times$ 2 voices (active/present)
 		\pause
 		\item \ldots \emph{and then there's another mood with 4 tenses of its own!}
 		\pause
@@ -781,7 +784,8 @@ The same technique that we used with a Tense Block that gave each one several ex
 	\begin{itemize}
 		\item Saved many keystrokes by writing a class and \texttt{method\_missing} definition
 		\pause
-		\item Saved creating 6 additional methods per tense for vectors
+		\item Saved creating 48 additional methods per tense for vectors
+their own}
 	\end{itemize}
 \end{frame}
 
@@ -800,11 +804,11 @@ The same technique that we used with a Tense Block that gave each one several ex
 	\begin{itemize}
 		\item 5 additional ``aggregate methods'' per tense emerged
 		\pause
+		\item Syntax was introduced that tolerated the method call being presented ``out of order'' -- \emph{but which still did the right thing!}
+		\pause
 		\item Avoided Java-ish paramteterized brain damage
 	\end{itemize}
 \end{frame}
-
-
 
 
 \begin{frame}
@@ -869,10 +873,6 @@ parameterization is not how we think.
 	\end{center}	
 \end{frame}
 
-
-%%%%%%
-
-
 \begin{frame}
 	\frametitle{What MP Techniques Make This Possible?}
 	\begin{center}
@@ -897,6 +897,16 @@ parameterization is not how we think.
 		\item \underline{Ghost Method}:  Dont define a method (in \texttt{TenseBlock}) so that its \texttt{method\_missing} acts as \texttt{method\_called} for dispatching
 		\item \underline{Dynamic Dispatch}:  \texttt{self.send} in \texttt{TenseBlock}
 	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Next Spells}
+	\begin{itemize}
+		\item Dynamic Method
+		\item Around Alias
+		\item DSL:  \emph{See Evan's talk!}
+		\item Class Extension a.k.a. Mixin
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
