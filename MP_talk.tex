@@ -424,7 +424,7 @@ pitfalls as you move to metaprogram \textbf{boldly}.
 \begin{frame}
 	\frametitle{``Modeling Thought''}
 	\large
-	\centering{First Law \\ + \\ Second Law \\ = \\ }
+	\centering{First Law of MP \\ + \\ Second Law of MP \\ = \\ }
 	\vskip 0.5cm
 	\begin{center}
 		``Modeling Thought''
@@ -451,6 +451,11 @@ Let's transform those motivations just mentioned into some ``Laws'' and
 	\pause
 	\vskip 0.5cm
 	\centering{\emph{e.g. Rails' ORM Calculation}}
+	\pause
+	\vskip 0.5cm
+	\begin{center}
+		\emph{``Pursuit of Insight''}
+	\end{center}
 }\end{frame}
 \note{
 Now let me first be clear that I'm not saying these are laws as in
@@ -485,6 +490,11 @@ heuristic
 	\pause
 	\vskip 0.5cm
 	\centering{\emph{e.g. attr\_* methods}}
+	\pause
+	\vskip 0.5cm
+	\begin{center}
+		\emph{``Avoidance of Typing''}
+	\end{center}
 \end{frame}
 \note{I consider typing a lot to be a code smell. If I find that I'm writing
 anything where each so-called unique case is only different from another case,
@@ -505,6 +515,9 @@ that's this first Corollary:
 		\emph{Any significant metaprogramming work undertaken to meet either of
     the laws will eventually look like it was undertaken for a reason in
     service to the opposite law}
+		\pause
+		\vskip 0.5cm
+		\emph{Avoidance of typing reveals insight; pursuit of insight reduces typing}
 	\end{center}
 \end{frame}
 
@@ -623,7 +636,7 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 
 \begin{frame}
 	\frametitle{Aggregation}
-	Occasionally we want to cluster unique vectors or leave out data
+	Occasionally we want to cluster unique vectors or leave out an aspect to get a less-granular result
 	\pause
 	\begin{itemize}
 		\item ``active voice indicative mood present tense''
@@ -637,7 +650,7 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 \begin{frame}
 	\frametitle{Vector Generation}
 	\begin{itemize}
-		\item Vector generation is a well-known, well-established domain.
+		\item Vector generation is a well-known, well-established, heuristically-modeled domain.
 		\pause
 		\item $\approx$ 2,500 years of documentation
 	\end{itemize}
@@ -653,17 +666,17 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 \begin{frame}
 	\frametitle{Or as Tenderlove once said:}
 	\begin{center}
-		``Do something worthless of questionable value.'' -- \emph{Aaron Patterson}
+		``Do something worthless of questionable value.'' \\ -- \emph{Aaron Patterson}
 	\end{center}	
 \end{frame}
 
 
 \begin{frame}
 	\frametitle{LatinVerb's Purpose}
-	LatinVerb is a library for conjugating Latin verbs provided their ``four principle parts (am\={o}, am\={a}re, am\={a}v\={\i}, amatum).''
+	LatinVerb should be a library for conjugating Latin verbs provided their ``four principle parts (am\={o}, am\={a}re, am\={a}v\={\i}, amatum).''
 	\pause
 	\vskip 0.5cm
-	Vectors are accessed by pretty method calls like: \texttt{active\_voice\_indicative\_mood\_present\_tense{\ldots}\\\_first\_person\_singular\_number}
+	Vectors should be accessed by pretty method calls like: \texttt{active\_voice\_indicative\_mood\_present\_tense{\ldots}\\\_first\_person\_singular\_number}
 \end{frame}
 
 \begin{frame}
@@ -791,7 +804,7 @@ The same technique that we used with a Tense Block that gave each one several ex
 	\begin{itemize}
 		\item Saved many keystrokes by writing a class and \texttt{method\_missing} definition
 		\pause
-		\item Saved creating \textbf{\$A\_LOT\_OF} additional methods per tense for vectors their own
+		\item Saved creating \textbf{\$A\_LOT\_OF} additional methods per tense -- \emph{many of which I didn't even think of!}
 	\end{itemize}
 \end{frame}
 
@@ -799,6 +812,8 @@ The same technique that we used with a Tense Block that gave each one several ex
 	\frametitle{The Corollary Emerges}
 	\begin{itemize}
 		\item 	We pursued ``less typing'' but wound up with ``respond to ambiguous calls with unambiguous data''
+		\pause
+		\item  \emph{Insights Emerged!}
 		\pause
 		\item 	`Modeling Thought'' is full of these surprises
 	\end{itemize}
