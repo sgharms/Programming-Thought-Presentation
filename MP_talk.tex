@@ -59,7 +59,7 @@
 	\frametitle{Contact Me!}
 	\begin{center}
 		Steven G. Harms \\
-		\vskip 1.25cm	
+		\vskip 1.25cm
 		Physically:  San Francisco, CA\\
 		Email:  \texttt{lsrcv@sgharms.oib.com} \\
 		Twitter / GitHub:  \texttt{sgharms} \\
@@ -98,26 +98,26 @@ properly.
 \end{frame}
 \note
 {
-\tiny              
+\tiny
 \begin{itemize}
 	\item \emph{Practical Metaprogramming}
 	\item Magic of MP
-	\begin{itemize}        
+	\begin{itemize}
 		\tiny
 		\item Short intro cycle
 		\item Possibly why we start Ruby in the first place
 	\end{itemize}
 	\item Poll
-	\begin{itemize}     
+	\begin{itemize}
 		\tiny
 		\item Who was introduced to Ruby as a side effect of ``Hey isn't it neat that Ruby can do this?''
 		\item How many of you have no idea what I'm talking about when I say ``metaprogramming?''; you will also be able to benefit from this discussion
 	\end{itemize}
 	\item Introduced as a gimmick
-	\item This talk can	help you dispel FUD, feel confident in metaprogramming       
-	\item I	will not have the ability to cover all the MP code blocks         
+	\item This talk can	help you dispel FUD, feel confident in metaprogramming
+	\item I	will not have the ability to cover all the MP code blocks
 	\item Modeling thought: a technique or a dispotition which is designed to help intermediate metaprogrammers evaluate whether an MP-based
-	solution is the right solution for them.  While not infallible, pretty good. 
+	solution is the right solution for them.  While not infallible, pretty good.
 \end{itemize}
 \normalsize
 }
@@ -151,11 +151,11 @@ not be for you, then you're welcome to hop over to the other track.
 \begin{frame}
 	\frametitle{Socially Awkward Penguin}
 	\begin{center}
-		\includegraphics[scale=0.3]{img/sap.png}			
-	\end{center}	
+		\includegraphics[scale=0.3]{img/sap.png}
+	\end{center}
 \end{frame}
 \note{
-Whew, I'm glad we only lost those few. 
+Whew, I'm glad we only lost those few.
 }
 
 \begin{frame}
@@ -174,12 +174,12 @@ Whew, I'm glad we only lost those few.
 \subsection{Early Exposure} % (fold)
 \label{sub:early_exposure}
 
-\begin{frame} 
+\begin{frame}
 	\frametitle{``Practical Metaprogramming:  First Contact''}
 	\includegraphics[scale=0.55]{img/first_contact.jpg} \\
 	\emph{\ldots and is it to be called an ``eigenclass'' or a ``singleton class,'' ma'am?}
-\end{frame} 
-\note{                                               
+\end{frame}
+\note{
 	\begin{itemize}
 		\item How we, as a community, educate our newest members in the technology of metaprogramming.
 		\item ``How do we start exploring MP in Ruby?''
@@ -190,28 +190,28 @@ Whew, I'm glad we only lost those few.
 	\texttt{attr\_*} \emph{Page 30}
 	\vskip 0.5cm
 	\begin{center}
-		\includegraphics[scale=0.45]{img/ruby_pickaxe.jpg}	
+		\includegraphics[scale=0.45]{img/ruby_pickaxe.jpg}
 	\end{center}
-\end{frame} 
+\end{frame}
 \note{
 	\begin{itemize}
 		\item Page thrity of the PickAxe book
-		\item \texttt{attr\_reader, attr\_writer, and attr\_accessor} 
+		\item \texttt{attr\_reader, attr\_writer, and attr\_accessor}
 	\end{itemize}
 }
 
 \begin{frame}
 	\frametitle{Dynamic Getter / Setter Generation}
-	\includegraphics[scale=0.45]{img/attr_demo_1.png}	
+	\includegraphics[scale=0.45]{img/attr_demo_1.png}
 \end{frame}
 
 \begin{frame} \frametitle{To Metaprogramming via Rails}
 	Rails (\texttt{order.discount=0.5}):  \emph{Page 28}
 	\begin{center}
-		\includegraphics[scale=0.55]{img/awdwr_mp.png}	
+		\includegraphics[scale=0.55]{img/awdwr_mp.png}
 	\end{center}
 \end{frame}
-\note{ 
+\note{
 	\begin{itemize}
 		\item Ruby \emph{via Rails}
 		\item Page 28 AWDWR
@@ -221,10 +221,10 @@ Whew, I'm glad we only lost those few.
 
 \begin{frame}
 	\frametitle{Practical Metaprogramming}
-	\begin{itemize} 
+	\begin{itemize}
 		\item \texttt{attr\_*}:  \emph{Page 30}
 		\item Rails (ORM):  \emph{Page 28}
-	\end{itemize}      
+	\end{itemize}
 	\pause
 	\vskip 0.5cm
 	\emph{But then what?}
@@ -252,7 +252,7 @@ Whew, I'm glad we only lost those few.
 		\underline{metaprogramming-spell-book.html}
 	\end{center}
 \end{frame}
-\note{       
+\note{
 	\begin{itemize}
 		\item Using the terminology provided by Perrotta
 		\item The names are good
@@ -266,7 +266,7 @@ Whew, I'm glad we only lost those few.
 	\begin{itemize}
 		\item Open Classes
 	\end{itemize}
-		\includegraphics[scale=0.42]{img/open_class.png}	
+		\includegraphics[scale=0.42]{img/open_class.png}
 \end{frame}
 \note{
 	\begin{itemize}
@@ -283,7 +283,7 @@ Whew, I'm glad we only lost those few.
 		\item Open Classes
 		\item Kernel Method
 	\end{itemize}
-		\includegraphics[scale=0.55]{img/kernel_method.png}	
+		\includegraphics[scale=0.55]{img/kernel_method.png}
 \end{frame}
 \note{
 At this point we're starting to feel some power here. We now see that we can
@@ -303,8 +303,8 @@ create methods that behave as if they were core builtins to the language.
 	\begin{itemize}
 		\item Jerks tears from Java programmers
 		\item This is undoubtedly the one that makes the pro-Java camp weep.
-		\item In compiled languages the definition of a class represents a static contract between the developer and the compiler. 
-		\item A class is an expression of that contract. 
+		\item In compiled languages the definition of a class represents a static contract between the developer and the compiler.
+		\item A class is an expression of that contract.
 		\item In Ruby, a class is really a namespace expression.
 		\item Simple truth that is easy to hear, but hard to \emph{understand}.
 		\item \textbf{THIS IS AWESOME}
@@ -335,7 +335,7 @@ create methods that behave as if they were core builtins to the language.
 
 \begin{frame}
 	\frametitle{Thesis:  F.U.D.}
-		\includegraphics[width=0.98\textwidth, height=0.25\textheight]{img/tim_hates_mp.png}		
+		\includegraphics[width=0.98\textwidth, height=0.25\textheight]{img/tim_hates_mp.png}
 		\vskip 0.5cm
 		\emph{--Tim Connor:  SF Ruby Mailing List}
 \end{frame}
@@ -346,11 +346,11 @@ he's definitely urging caution over MP's over-use.
 
 \begin{frame}
 	\frametitle{Antithesis:  anti-F.U.D.}
-	\includegraphics[width=0.98\textwidth, height=0.45\textheight]{img/paolo_anti_fud.png}		
+	\includegraphics[width=0.98\textwidth, height=0.45\textheight]{img/paolo_anti_fud.png}
 	\vskip 0.5cm
 	\emph{--Paolo Perrotta, author of Metaprogramming Ruby, in e-mail to Steven Harms}
 \end{frame}
-\note{                                                        
+\note{
 \begin{itemize}
 	\item Leaves quite a bit to chance
 	\item This attitude implies that we think the material is optional or unimportant.
@@ -371,7 +371,7 @@ he's definitely urging caution over MP's over-use.
 		\item Rails uses MP all over the place
 	\end{enumerate}
 \end{frame}
-\note{       
+\note{
 	\begin{itemize}
 		\item Part of a community
 		\item Precedent
@@ -385,18 +385,19 @@ he's definitely urging caution over MP's over-use.
 		\pause
 		\item Reflect the interior world of your problem domain in your application code
 		\pause
-		\item Pleasant surprises		
+		\item Pleasant surprises
 	\end{enumerate}
-\end{frame}       
+\end{frame}
 \note{ \textbf{How will I know when to use MP?}}
 
 \begin{frame}
 	\frametitle{How Will I Know?}
-	The key to knowing when to apply an MP solution is to turn the
-\underline{benefits} just described into \underline{conditions}. Together they
-form the basis of ``modeling thought.''
+	\begin{center}
+		\includegraphics[scale=0.10]{img/whitney.jpg}
+	\end{center}
+
 \end{frame}
-\note{                                                                     
+\note{
   \emph{Quickly}: Turn the \underline{benefits} just described into \underline{conditions}.
 }
 
@@ -417,10 +418,10 @@ form the basis of ``modeling thought.''
 	\begin{center}
 		``Modeling Thought''
 	\end{center}
-	
+
 	\normalsize
 \end{frame}
-\note{                
+\note{
 	\begin{itemize}
 		\item a conceptual rubric for evaluating when a solution calls for a metaprogrammatic solution
 		\item Let's transform those motivations just mentioned into some ``Laws'' and ``Corollaries.''
@@ -444,7 +445,7 @@ form the basis of ``modeling thought.''
 		\emph{``Pursuit of Insight''}
 	\end{center}
 }\end{frame}
-\note{                  
+\note{
 	\begin{itemize}
 		\item Not really ``laws''
 		\item Guidelines too weak
@@ -452,7 +453,7 @@ form the basis of ``modeling thought.''
 		\item Rails
 		\begin{itemize}
 			\item ``Get my attributes.''
-			\item Ambiguous call 
+			\item Ambiguous call
 			\item Always a discrete, clear, singular answer that is ``correct.''
 			\item Modeling for ambiguity is hard, but Ruby makes this easy-ish
 		\end{itemize}
@@ -463,7 +464,7 @@ form the basis of ``modeling thought.''
 \begin{frame}
 	\frametitle{Second Law of Metaprogramming}
 	\centering{\emph
-	{ 
+	{
 	A metaprogrammatic solution is suitable when the mechanical recording of the
 the values is time-inefficient when compared to learning the generating
 heuristic.
@@ -512,11 +513,11 @@ heuristic.
 \begin{frame}
 	\frametitle{``Modeling Thought:'' Born That Way}
 	\begin{center}
-		\includegraphics[scale=0.6]{img/matz.jpg}		
+		\includegraphics[scale=0.6]{img/matz.jpg}
 	\end{center}
 \end{frame}
 \note{
-And no language supports the ``modeling thought'' paradigm like Ruby. 
+And no language supports the ``modeling thought'' paradigm like Ruby.
 }
 
 \begin{frame}
@@ -553,7 +554,7 @@ And no language supports the ``modeling thought'' paradigm like Ruby.
 	\frametitle{Demo}
 	\begin{center}
 		\texttt{LatinVerb}
-	\end{center}	
+	\end{center}
 \end{frame}
 
 \begin{frame}
@@ -652,7 +653,7 @@ And no language supports the ``modeling thought'' paradigm like Ruby.
 	\frametitle{Or as Aaron Patterson once said:}
 	\begin{center}
 		``Do something worthless of questionable value.'' \\ -- \emph{Aaron Patterson}
-	\end{center}	
+	\end{center}
 \end{frame}
 \note{
 So, let's talk about how I went about modeling this problem.  Here's a specification.
@@ -664,8 +665,8 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
 	LatinVerb should be a library for conjugating Latin verbs provided their ``four principle parts (am\={o}, am\={a}re, am\={a}v\={\i}, amatum).''
 	\pause
 	\vskip 0.5cm
-	Vectors should be accessed by pretty method calls like: 
-	\vskip 0.5cm 
+	Vectors should be accessed by pretty method calls like:
+	\vskip 0.5cm
 
 	\texttt{active\_voice\_indicative\_mood\_present\_tense{\ldots}\\
 	\_first\_person\_singular\_number}
@@ -733,22 +734,22 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
 
 
 \begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby (1/3)} 
+	\frametitle{Translating a Domain Problem to Ruby (1/3)}
 	\emph{Take an array of elements and tack them onto a base, derived from the
     given, with the results returned as an array.
 }	\begin{center}
-		\includegraphics[scale=0.38]{img/conj_how.png}	
+		\includegraphics[scale=0.38]{img/conj_how.png}
 	\end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby (2/3)} 
-	\includegraphics[scale=0.39]{img/conj_how_3b.png}	
+	\frametitle{Translating a Domain Problem to Ruby (2/3)}
+	\includegraphics[scale=0.39]{img/conj_how_3b.png}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby (3/3)} 
+	\frametitle{Translating a Domain Problem to Ruby (3/3)}
 	\emph{
 		Sub-specify by \underline{person} (1, 2, 3) or \underline{number} or
     cluster by either. \\
@@ -757,7 +758,7 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
   }
 	\vskip 0.5cm
 	\begin{center}
-		\includegraphics[scale=0.38]{img/conj_subspec.png}	
+		\includegraphics[scale=0.38]{img/conj_subspec.png}
 	\end{center}
 \end{frame}
 
@@ -777,7 +778,7 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
 	\begin{center}
 		\emph{Be flexible on all 5 aspects}
 	\end{center}
-	\includegraphics[scale=0.45]{img/lv_mm.png}	
+	\includegraphics[scale=0.45]{img/lv_mm.png}
 \end{frame}
 \note{
 The same technique that we used with a Tense Block that gave each one several extra methods, I then scaled that shortcut by doubling the dynamic method call.
@@ -820,26 +821,26 @@ The same technique that we used with a Tense Block that gave each one several ex
 		\item 5 additional ``aggregate methods'' per tense emerged
 		\begin{itemize}
 			\item {aTenseBlock}.singular\_number (\texttt{3 results})
-			\item {aTenseBlock}.first\_person (\texttt{2 results})	
+			\item {aTenseBlock}.first\_person (\texttt{2 results})
 		\end{itemize}
-		
+
 		\pause
-		
+
 		\item Flexible word order \emph{emerged} that did the right thing
 		\begin{itemize}
 			\item first\_person\_singular\_number
 			\item singular\_number\_first\_person
 		\end{itemize}
-		
+
 		\pause
-		
+
 		\item Avoided Java-ish paramteterized brain damage
 	\end{itemize}
 \end{frame}
 
 
 \begin{frame}
-	\frametitle{Java-ish Brain Damage:  Parameterization}	
+	\frametitle{Java-ish Brain Damage:  Parameterization}
  	\texttt{String calculate\_vector(VerbyType aV, String v, String m, String t, String p, String n)}
 	\vskip 0.5cm
 
@@ -847,9 +848,9 @@ The same technique that we used with a Tense Block that gave each one several ex
 		\textbf{OR}
 	\end{center}
 
-	\vskip 0.5cm	
-	\texttt{Object[] calculated\_values = \{aV, v, m, t, p, n\};} 
-	\texttt{String calculate\_vector(calculated\_values)}; 	
+	\vskip 0.5cm
+	\texttt{Object[] calculated\_values = \{aV, v, m, t, p, n\};}
+	\texttt{String calculate\_vector(calculated\_values)};
 \end{frame}
 \note
 {A particular reason that I want to highlight this benefit is because Java/C-style
@@ -861,7 +862,7 @@ parameterization is not how we think.
 
 		\begin{center}
 			\includegraphics[scale=0.15]{img/SubwayLogo.png}
-		\end{center}			
+		\end{center}
 
 	\begin{itemize}
 		\item We \emph{do not} think like we are ordering from Subway.
@@ -870,12 +871,12 @@ parameterization is not how we think.
 		\pause
 		\item YES:  \emph{``I'll have an Italian on rustic Italian with salami and provelone and from the veggie bin, lessee, lettuce and tomato\ldots''}
 	\end{itemize}
-	
+
 \end{frame}
 \note{This is probably something \emph{right} about the Objective-C language.}
 
 \begin{frame}
-	\frametitle{Pretty Parameterization}		
+	\frametitle{Pretty Parameterization}
 	\texttt{instance.active\_voice\_indicative\_mood\_present\_tense}
 	\begin{center}
 		\textbf{NOT}
@@ -898,7 +899,7 @@ parameterization is not how we think.
 		\pause
 		\vskip 0.5cm
 		\emph{FYI:  Applause is derived from our example word ``laud\={a}re'' meaning ``to praise'' literally meaning ``to praise toward''}
-	\end{center}	
+	\end{center}
 \end{frame}
 
 \begin{frame}
@@ -918,7 +919,7 @@ parameterization is not how we think.
 	\begin{center}
 		\includegraphics[scale=0.45]{img/tenseblock_mm.png}
 	\end{center}
-	
+
 \end{frame}
 
 \begin{frame}
@@ -998,7 +999,7 @@ parameterization is not how we think.
 	\frametitle{Contact Me! (Again)}
 	\begin{center}
 		Steven G. Harms \\
-		\vskip 1.25cm	
+		\vskip 1.25cm
 		Physically:  San Francisco, CA\\
 		Email:  \texttt{lsrcv@sgharms.oib.com} \\
 		Twitter / GitHub:  \texttt{sgharms} \\
