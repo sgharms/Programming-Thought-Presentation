@@ -66,7 +66,6 @@
 		G+
 	\end{center}
 \end{frame}
-
 \note{
 Good afternoon, I want to welcome you all to the first day of Lone Star Ruby
 Conference V. 
@@ -99,38 +98,27 @@ properly.
 \end{frame}
 \note
 {
-\tiny
-Today I would like to talk to you about \emph{Practical Metaprogramming}.
-After one gets one's basic bearings in Ruby, it's not too long before one is
-exposed to the magical world of Metaprogramming. In fact, sometimes it is the
-reason people take up Ruby in the first place.
-\\
-Can I get a quick show of hands? Who was introduced to Ruby as a side effect
-of ``Hey isn't it neat that Ruby can do this?'' How many of you have no idea
-what I'm talking about when I say ``metaprogramming?''
-\\
-Regrettably, most of the time MP is introduced as a gimmick. Or, after it's
-introduced, you may have a ``helpful'' colleage or friend who insists that
-using MP is dangerous or something similar. I believe that if one is in that
-spot, that's precisely where ``Practical Metaprogramming'' comes in. It can
-help you dispel FUD, feel confident in metaprogramming, and realize why you
-can't hide from it.
-\\
-As a tool as you undertake this transition as a Rubyist, I provide a concept
-called ``Modeling thought.'' This refers to a technique or a dispotition which
-is designed to help intermediate metaprogrammers evaluate whether an MP-based
-solution is the right solution for them.  While not infallible, it's a good
-rule of thumb.
-\\
-Let me take another quick poll: How many of you have never seen or heard about
-Ruby's metaprogramming model? OK, well, I believe you will also be able to
-benefit from this discussion as well and it may help you shape how you
-approach learning the details of Metaprogramming.
-\\
-I also want to level set with you all, especially among those new to MP, I
-will not have the ability to cover all the MP code blocks within the time we
-have today. I will cover \emph{some} of the most important spells, but an
-exhaustive tour is outside of our scope for the day.
+\tiny              
+\begin{itemize}
+	\item \emph{Practical Metaprogramming}
+	\item Magic of MP
+	\begin{itemize}        
+		\tiny
+		\item Short intro cycle
+		\item Possibly why we start Ruby in the first place
+	\end{itemize}
+	\item Poll
+	\begin{itemize}     
+		\tiny
+		\item Who was introduced to Ruby as a side effect of ``Hey isn't it neat that Ruby can do this?''
+		\item How many of you have no idea what I'm talking about when I say ``metaprogramming?''; you will also be able to benefit from this discussion
+	\end{itemize}
+	\item Introduced as a gimmick
+	\item This talk can	help you dispel FUD, feel confident in metaprogramming       
+	\item I	will not have the ability to cover all the MP code blocks         
+	\item Modeling thought: a technique or a dispotition which is designed to help intermediate metaprogrammers evaluate whether an MP-based
+	solution is the right solution for them.  While not infallible, pretty good. 
+\end{itemize}
 \normalsize
 }
 
@@ -173,7 +161,9 @@ Whew, I'm glad we only lost those few.
 \begin{frame}
 	\frametitle{End Slide if Everyone Leaves}
 	\begin{center}
-		\includegraphics[scale=0.25]{img/forever_alone.png}
+		\includegraphics[scale=0.15]{img/forever_alone.png}
+		\vskip 0.5cm
+		\emph{Forever Alone{\ldots}}
 	\end{center}
 \end{frame}
 
@@ -189,11 +179,11 @@ Whew, I'm glad we only lost those few.
 	\includegraphics[scale=0.55]{img/first_contact.jpg} \\
 	\emph{\ldots and is it to be called an ``eigenclass'' or a ``singleton class,'' ma'am?}
 \end{frame} 
-\note{
-As per our first goal, let's take a look at how we, as a community, educate
-our newest members in the technology of metaprogramming.
-
-In short, let us ask: ``How do we start exploring MP in Ruby?''
+\note{                                               
+	\begin{itemize}
+		\item How we, as a community, educate our newest members in the technology of metaprogramming.
+		\item ``How do we start exploring MP in Ruby?''
+	\end{itemize}
 }
 
 \begin{frame} \frametitle{To Metaprogramming via Ruby}
@@ -203,9 +193,11 @@ In short, let us ask: ``How do we start exploring MP in Ruby?''
 		\includegraphics[scale=0.45]{img/ruby_pickaxe.jpg}	
 	\end{center}
 \end{frame} 
-\note{For many Ruby developers, our first exposure to the world of
-Metaprogramming starts around page thrity of the PickAxe book when we are
-introduced to attr\_reader, attr\_writer, and attr\_accessor. 
+\note{
+	\begin{itemize}
+		\item Page thrity of the PickAxe book
+		\item \texttt{attr\_reader, attr\_writer, and attr\_accessor} 
+	\end{itemize}
 }
 
 \begin{frame}
@@ -219,14 +211,12 @@ introduced to attr\_reader, attr\_writer, and attr\_accessor.
 		\includegraphics[scale=0.55]{img/awdwr_mp.png}	
 	\end{center}
 \end{frame}
-\note{ Further, given that many people come to Ruby \emph{via} Rails, Rails
-asks us to accept a great many things as ``magic'' as we get underway with it.
-Rails first presents MP on page 28 in the context of how ActiveRecord maps
-database fields to instance variables in its object-relational mapping. In
-this case, having done nothing in the class \texttt{Order}, ActiveRecord does
-the work and finds out from the database that the table schma has field
-\texttt{discount} and that it should have getters and setters for it
-fabricated -- not unlike what happened in the Ruby example.
+\note{ 
+	\begin{itemize}
+		\item Ruby \emph{via Rails}
+		\item Page 28 AWDWR
+		\item ORM calculation
+	\end{itemize}
 }
 
 \begin{frame}
@@ -234,22 +224,19 @@ fabricated -- not unlike what happened in the Ruby example.
 	\begin{itemize} 
 		\item \texttt{attr\_*}:  \emph{Page 30}
 		\item Rails (ORM):  \emph{Page 28}
-	\end{itemize}
+	\end{itemize}      
+	\pause
 	\vskip 0.5cm
 	\emph{But then what?}
 \end{frame}
-
-\note{This is generally a suitable beginning and once we accept that we live
-in a world laced with metaprogramming magic, we're generally content to simply
-inhabit it. In this phase of our development, we don't know that
-metaprogramming is going on, really. We accept these metaprogrammatic
-behaviors as if they were core features of the language or the framework.
-
-However, as we start to explore more about Metaprogramming, we start to move
-to a place that, I contend, is generally \emph{impractical}. While I will
-argue that many of these uses feel impractical, I have nevertheless tried to
-make them consistent by giving them a standardized and repreated set of names.
-
+\note{
+	\begin{itemize}
+		\item Skim the surface
+		\item Seems like you have a lot of power
+		\item Experimentation
+		\item ``First Tier of Metaprogramming Spells''
+		\item We tend to use them \emph{impractically} though
+	\end{itemize}
 }
 
 % subsection early_exposure (end)
@@ -265,17 +252,13 @@ make them consistent by giving them a standardized and repreated set of names.
 		\underline{metaprogramming-spell-book.html}
 	\end{center}
 \end{frame}
-\note{
-As a quick note, I thought I would add that I am going to be using the
-terminology provided by Perrotta in his book. This is for two reasons. First
-his names are good and I think that we, as a community, should find a common
-lexicon for referring to these patterns. Furthermore, I want to recommend this
-book for further exploration, so I would like to expose you to these
-techniques in the language to which you will see them referred as.
-
-There are about 30 of these ``spells,'' as Paolo calls them.
-
-Let's talk about some of our ``gateway drug'' metaprogramming spells.
+\note{       
+	\begin{itemize}
+		\item Using the terminology provided by Perrotta
+		\item The names are good
+		\item As a community needs a common lexicon for reference
+		\item There are about 30 of these ``spells,'' as Paolo calls them.
+	\end{itemize}
 }
 
 \begin{frame}
@@ -285,9 +268,13 @@ Let's talk about some of our ``gateway drug'' metaprogramming spells.
 	\end{itemize}
 		\includegraphics[scale=0.42]{img/open_class.png}	
 \end{frame}
-\note{It usually starts like this. You realize that you can add methods to an
-existing class and add ``interesting'' features to classes. \emph{Describe
-``Open Class''}.}
+\note{
+	\begin{itemize}
+		\item Starts here
+		\item You can add methods to an existing \textbf{core} class
+		\item ``Open Class'' spell
+	\end{itemize}
+}
 
 
 \begin{frame}
@@ -313,10 +300,15 @@ create methods that behave as if they were core builtins to the language.
 		\includegraphics[scale=0.35]{img/singleton_method.png}
 \end{frame}
 \note{
-This is undoubtedly the one that makes the pro-Java camp weep. In compiled
-languages the definition of a class represents a static contract between the
-developer and the compiler. A class is an expression of that contract. In
-Ruby, a class is really a namespace expression. This is pretty cool stuff.
+	\begin{itemize}
+		\item Jerks tears from Java programmers
+		\item This is undoubtedly the one that makes the pro-Java camp weep.
+		\item In compiled languages the definition of a class represents a static contract between the developer and the compiler. 
+		\item A class is an expression of that contract. 
+		\item In Ruby, a class is really a namespace expression.
+		\item Simple truth that is easy to hear, but hard to \emph{understand}.
+		\item \textbf{THIS IS AWESOME}
+	\end{itemize}
 }
 
 \subsection{Danger Zone} % (fold)
@@ -339,7 +331,7 @@ Ruby, a class is really a namespace expression. This is pretty cool stuff.
 		\item Unsupportability
 	\end{itemize}
 \end{frame}
-\note{Read aloud\ldots}
+\note{This quickly becomes side-effect soup.  So much so that you get elements of doubt.}
 
 \begin{frame}
 	\frametitle{Thesis:  F.U.D.}
@@ -348,8 +340,8 @@ Ruby, a class is really a namespace expression. This is pretty cool stuff.
 		\emph{--Tim Connor:  SF Ruby Mailing List}
 \end{frame}
 \note{
-Read aloud\ldots. Note, I had a mail from Tim and his personal views aren't as
-strong as this, but he's definitely urging caution over MP's over-use.
+	I had a mail from Tim and his personal views aren't as strong as this, but
+he's definitely urging caution over MP's over-use.
 }
 
 \begin{frame}
@@ -358,14 +350,12 @@ strong as this, but he's definitely urging caution over MP's over-use.
 	\vskip 0.5cm
 	\emph{--Paolo Perrotta, author of Metaprogramming Ruby, in e-mail to Steven Harms}
 \end{frame}
-\note{
-I hope we can now all agree that the way we, as a community, leaves quite a
-bit to chance as well as the individual developer's own predilections and
-tendencies. I don't think that this is wise.
-
-This attitude implies that we think the material is optional or unimportant.
-That is, that developers will figure it out if they need it. I would contend,
-\emph{they need it} and to not provide tutelage and guidance is a disservice.
+\note{                                                        
+\begin{itemize}
+	\item Leaves quite a bit to chance
+	\item This attitude implies that we think the material is optional or unimportant.
+	\item It is not
+\end{itemize}
 }
 
 \subsection{Benefits} % (fold)
@@ -381,10 +371,11 @@ That is, that developers will figure it out if they need it. I would contend,
 		\item Rails uses MP all over the place
 	\end{enumerate}
 \end{frame}
-\note{
-You are part of a community. The proof of that is that we are all here
-together today. It's important that all of us be familiar with and adhere to
-the standards and norms of this community.  For these reasons I believe some of the motivating factors for leveling up with MP are precedential.
+\note{       
+	\begin{itemize}
+		\item Part of a community
+		\item Precedent
+	\end{itemize}
 }
 
 \begin{frame}
@@ -396,7 +387,8 @@ the standards and norms of this community.  For these reasons I believe some of 
 		\pause
 		\item Pleasant surprises		
 	\end{enumerate}
-\end{frame}
+\end{frame}       
+\note{ \textbf{How will I know when to use MP?}}
 
 \begin{frame}
 	\frametitle{How Will I Know?}
@@ -404,12 +396,8 @@ the standards and norms of this community.  For these reasons I believe some of 
 \underline{benefits} just described into \underline{conditions}. Together they
 form the basis of ``modeling thought.''
 \end{frame}
-\note{
-Modeling thought is the guideline as to when we need to consider reaching for
-the MP toolkit. Again, let me stress that there is no absolute rule, only a
-guideline. If there's one concept I want for you to take home is the
-``modeling thought'' guideline. It can help you find opportunities and avoid
-pitfalls as you move to metaprogram \textbf{boldly}.
+\note{                                                                     
+  \emph{Quickly}: Turn the \underline{benefits} just described into \underline{conditions}.
 }
 
 \section{Modeling Thought} % (fold)
@@ -432,12 +420,11 @@ pitfalls as you move to metaprogram \textbf{boldly}.
 	
 	\normalsize
 \end{frame}
-\note{
-``Modeling Thought'' is a conceptual rubric for evaluating when a solution
-calls for a metaprogrammatic solution.
-
-Let's transform those motivations just mentioned into some ``Laws'' and
-``Corollaries.''
+\note{                
+	\begin{itemize}
+		\item a conceptual rubric for evaluating when a solution calls for a metaprogrammatic solution
+		\item Let's transform those motivations just mentioned into some ``Laws'' and ``Corollaries.''
+	\end{itemize}
 }
 
 \subsection{Laws} % (fold)
@@ -446,7 +433,7 @@ Let's transform those motivations just mentioned into some ``Laws'' and
 \begin{frame}
 	\frametitle{First Law of Metaprogramming}
 	\centering{\emph{	A metaprogrammatic solution is suitable when you need to provide
-	unambiguous answers (return values) to ambiguously asked things (flexible /
+	unambiguous answers (return values) to ambiguously questions (flexible /
 	incomplete method calls)}
 	\pause
 	\vskip 0.5cm
@@ -457,24 +444,19 @@ Let's transform those motivations just mentioned into some ``Laws'' and
 		\emph{``Pursuit of Insight''}
 	\end{center}
 }\end{frame}
-\note{
-Now let me first be clear that I'm not saying these are laws as in
-set-in-stone sense. Calling them ``guidelines'' seemed a bit weak,
-``recommendations'' too. And I certainly don't expect that years hence there
-will be schisms over proper adherence to ``Steven\'s laws of
-metaprogramming.'' I'm trying to refer to a practical guideline with some heft
-to it.
-
-Let's think about how Rails handles attribute definition. As a user of Rails
-we can say things like ``Get my attributes.'' This is what the first law terms
-an ``ambiguous request.'' Bear in mind, ``ambiguous'' here has no value
-judgment, but is simply to say that the question could be, conceivably,
-answered different ways on differing queries.
-
-Nevertheless, for a given request, there is always a discrete, clear, singular
-answer that is ``correct.'' Modeling for ambiguity and tolerance is something
-that's harder to do in other languages, but that is a core principle of Ruby.
-We'll talk more about that momentarily. Let's take a look at the second law.
+\note{                  
+	\begin{itemize}
+		\item Not really ``laws''
+		\item Guidelines too weak
+		\item Too egotistical to call them ``Steven\'s laws of metaprogramming.''
+		\item Rails
+		\begin{itemize}
+			\item ``Get my attributes.''
+			\item Ambiguous call 
+			\item Always a discrete, clear, singular answer that is ``correct.''
+			\item Modeling for ambiguity is hard, but Ruby makes this easy-ish
+		\end{itemize}
+	\end{itemize}
 }
 
 
@@ -484,7 +466,7 @@ We'll talk more about that momentarily. Let's take a look at the second law.
 	{ 
 	A metaprogrammatic solution is suitable when the mechanical recording of the
 the values is time-inefficient when compared to learning the generating
-heuristic
+heuristic.
 	}
 }
 	\pause
@@ -496,17 +478,15 @@ heuristic
 		\emph{``Avoidance of Typing''}
 	\end{center}
 \end{frame}
-\note{I consider typing a lot to be a code smell. If I find that I'm writing
-anything where each so-called unique case is only different from another case,
-then I start to get worried that I'm doing something wrong.
-
-This is generally a good instinct to have in the world of object orientation,
-but certain other languages make typing a lot (or defining pre-processor
-macros that are effectively doing a lot of typing for you) seem like the
-natural order of things. As Rubyists, we should eschew this tendency.
-
-An interesting tendency has emerged during my work with Ruby's MP model, and
-that's this first Corollary:
+\note{
+\begin{itemize}
+	\item Typing a lot is a code smell
+	\item Some try to fix this in IDE
+	\item Others try to fix in preprocessor macros
+	\item That is dumb and opaque
+	\item Rubyists should eschew this
+	\item An interesting tendency has emerged during my work with Ruby's MP model, and that's this first Corollary:
+\end{itemize}
 }
 
 \begin{frame}
@@ -531,14 +511,16 @@ that's this first Corollary:
 
 \begin{frame}
 	\frametitle{``Modeling Thought:'' Born That Way}
-	\includegraphics[scale=0.6]{img/matz.jpg}		
+	\begin{center}
+		\includegraphics[scale=0.6]{img/matz.jpg}		
+	\end{center}
 \end{frame}
 \note{
 And no language supports the ``modeling thought'' paradigm like Ruby. 
 }
 
 \begin{frame}
-	\frametitle{Stepwise Support for ``Modeling Thought''}
+	\frametitle{Stepwise Support in Ruby for ``Modeling Thought''}
 	\begin{itemize}
 		\item Matz' Design
 		\pause
@@ -550,15 +532,18 @@ And no language supports the ``modeling thought'' paradigm like Ruby.
 	\end{itemize}
 \end{frame}
 \note{
-Thanks to Matz' design, we can define 30-odd ``Spells'' enumerated by Perrotta
-and put into his book. And now with a rule of thumb, we can start to achieve
-consistency in how we use MP. As we are now more comfortable with our
-expressions making use of metaprogramming, we can be bold and not worry about
-the FUD, but can rather use MP \textbf{boldly}.
-
-As a last impetus to help you move to \textbf{bold} metaprogramming use, I would like to present to you a real-world example.  My library:  LatinVerb.
-
-I'll start by showing you what LatinVerb does and how MP got the code to scale around a particularly thorny problem.  So, LatinVerb.
+\begin{itemize}
+	\item Matz made Ruby with this ``thinking'' symmetry in mind
+	\item He made Ruby to be a programmer's friend
+	\item Paolo distilled and named these techniques
+	\item I
+	\begin{itemize}
+		\item I hope to provide you a rule of thumb for development
+		\item I hope to give you a demo of how I used MP to tackle a non-trivial problem
+	\end{itemize}
+	\item I want you to use MP \textbf{boldly}
+	\item Let me demonstrate my library: LatinVerb
+\end{itemize}
 }
 
 \subsection{LatinVerb} % (fold)
@@ -631,19 +616,19 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 		\pause
 	\end{enumerate}
 	\vskip 0.5cm
-	A unique coordinate is a \emph{vector}
+	A unique coordinate is a \emph{vector} or a \emph{conjugation}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Aggregation}
-	Occasionally we want to cluster unique vectors or leave out an aspect to get a less-granular result
+	Occasionally we want to cluster unique vectors \emph{or} leave out an aspect to get a less-granular result:
 	\pause
 	\begin{itemize}
-		\item ``active voice indicative mood present tense''
+		\item ``active voice indicative mood present tense'' (3 aspect, 6 reslts)
 		\pause
-		\item ``active voice indicative mood present tense first person''
+		\item ``active voice indicative mood present tense first person'' (4 apsects, 3 results)
 		\pause
-		\item ``active voice indicative mood present tense first person singular number (Fully-Qualified)''
+		\item ``active voice indicative mood present tense first person singular number (Fully-Qualified)'' (5 aspects, 1 result)
 	\end{itemize}
 \end{frame}
 
@@ -664,11 +649,14 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 \end{frame}
 
 \begin{frame}
-	\frametitle{Or as Tenderlove once said:}
+	\frametitle{Or as Aaron Patterson once said:}
 	\begin{center}
 		``Do something worthless of questionable value.'' \\ -- \emph{Aaron Patterson}
 	\end{center}	
 \end{frame}
+\note{
+So, let's talk about how I went about modeling this problem.  Here's a specification.
+}
 
 
 \begin{frame}
@@ -676,7 +664,12 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 	LatinVerb should be a library for conjugating Latin verbs provided their ``four principle parts (am\={o}, am\={a}re, am\={a}v\={\i}, amatum).''
 	\pause
 	\vskip 0.5cm
-	Vectors should be accessed by pretty method calls like: \texttt{active\_voice\_indicative\_mood\_present\_tense{\ldots}\\\_first\_person\_singular\_number}
+	Vectors should be accessed by pretty method calls like: 
+	\vskip 0.5cm 
+
+	\texttt{active\_voice\_indicative\_mood\_present\_tense{\ldots}\\
+	\_first\_person\_singular\_number}
+
 \end{frame}
 
 \begin{frame}
@@ -716,15 +709,21 @@ I'll start by showing you what LatinVerb does and how MP got the code to scale a
 				\hline
 			\end{tabular}
 		\end{center}
-		\pause
-		Law II says to MP our way out of the pain
 \end{frame}
 
+\begin{frame}
+	\frametitle{Metaprogramming Makes a Saving Throw!}
+	\begin{center}
+		Law II says to MP our way out of the pain
+		\vskip 1.0cm
+		\includegraphics[scale=0.25]{img/natural_20.jpg} \\
+		\emph{Credit: Marco26 on DeviantArt}
+	\end{center}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Specification}
-	Take an array of elements and tack them onto a base, derived from the given, second part,
-with the results returned as an array.  Sub-specify by \underline{person} (1, 2, 3) and/or \underline{number} or cluster by either.
+	Take an array of elements and tack them onto a base, derived from the given, second part, with the results returned as an array.  Sub-specify by \underline{person} (1, 2, 3) and/or \underline{number} or cluster by either.
 	\pause
 	\vskip 0.5cm
 	\emph{Why does that sound familiar?}
@@ -746,41 +745,38 @@ with the results returned as an array.  Sub-specify by \underline{person} (1, 2,
 	\frametitle{Translating a Domain Problem to Ruby (2/3)} 
 	\includegraphics[scale=0.39]{img/conj_how_3b.png}	
 \end{frame}
-\note{
-So what happens here? In LatinIRB (an IRB wrapper around LatinVerb that I
-wrote). We specify the characterizing string. We use that string to create a
-LatinVerb object and then we provide 3 of the 5 criteria required for
-producing a single unique vector and as a result we acquire 6 answers. The
-additional criteria would have to be added to get a specific unique value, as
-we stated previously.
 
-This is actually the way I memorized the materials for my Latin class. I just
-remembered \texttt{map} operations.  This realization was very powerful, one 
-of those ``a-ha'' moments that, while on the surface of it, was a very simple
-concept, actually opened the gateways to other thoughts.
-}
 
 \begin{frame}
 	\frametitle{Translating a Domain Problem to Ruby (3/3)} 
 	\emph{
 		Sub-specify by \underline{person} (1, 2, 3) or \underline{number} or
-    cluster by either.
+    cluster by either. \\
+		\pause
+		{\ldots} and allow terms in method call to be reordered
   }
+	\vskip 0.5cm
 	\begin{center}
 		\includegraphics[scale=0.38]{img/conj_subspec.png}	
 	\end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Result:  Massive Laziness Win}
+	\frametitle{MP Provides:  Massive Laziness Win}
 	\begin{itemize}
 		\item $\approx$ 48 methods covered; 6 written
+		\pause
+		\item 2 aspects in play
+		\pause
 		\item One reponse class (\texttt{TenseBlock})
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Scale it Up!: method\_missing and method\_called}
+	\frametitle{Scale it Up!: Dynamic Dispatch in \texttt{method\_missing}}
+	\begin{center}
+		\emph{Be flexible on all 5 aspects}
+	\end{center}
 	\includegraphics[scale=0.45]{img/lv_mm.png}	
 \end{frame}
 \note{
@@ -796,26 +792,24 @@ The same technique that we used with a Tense Block that gave each one several ex
 	\end{itemize}
 	\pause
 	\vskip 0.5cm
-	\emph{{\ldots}wrote 24 methods}
+	\emph{I only wrote 24 methods}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Benefits via Law II}
 	\begin{itemize}
-		\item Saved many keystrokes by writing a class and \texttt{method\_missing} definition
+		\item Saved many keystrokes by writing using a \underline{Ghost Method}
 		\pause
-		\item Saved creating \textbf{\$A\_LOT\_OF} additional methods per tense -- \emph{many of which I didn't even think of!}
+		\item Saved creating \textbf{\$A\_LOT\_OF} additional methods -- \emph{many of which I didn't even think of!}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{The Corollary Emerges}
 	\begin{itemize}
-		\item 	We pursued ``less typing'' but wound up with ``respond to ambiguous calls with unambiguous data''
+		\item 	Pursued ``less typing'' but wound up with ``respond to ambiguous calls with unambiguous data''
 		\pause
-		\item  \emph{Insights Emerged!}
-		\pause
-		\item 	`Modeling Thought'' is full of these surprises
+		\item  \emph{Insights Emerged!}:  `Modeling Thought'' yields many of these surprises
 	\end{itemize}
 \end{frame}
 
@@ -893,7 +887,7 @@ parameterization is not how we think.
 	\frametitle{Clarity \& Communication}
 	\begin{center}
 		\emph{``Code that Communicates''}
-		\includegraphics[scale=0.45]{img/Zen04.jpg}	
+		\includegraphics[scale=0.45]{img/Zen04.jpg}
 	\end{center}
 \end{frame}
 
@@ -901,6 +895,7 @@ parameterization is not how we think.
 	\frametitle{Pause for ``applause''}
 	\begin{center}
 		\texttt{LatinVerb:  Demo End}
+		\pause
 		\vskip 0.5cm
 		\emph{FYI:  Applause is derived from our example word ``laud\={a}re'' meaning ``to praise'' literally meaning ``to praise toward''}
 	\end{center}	
@@ -920,11 +915,14 @@ parameterization is not how we think.
 
 \begin{frame}
 	\frametitle{\underline{Ghost Method} in \texttt{TenseBlock}}
-	\includegraphics[scale=0.45]{img/tenseblock_mm.png}
+	\begin{center}
+		\includegraphics[scale=0.45]{img/tenseblock_mm.png}
+	\end{center}
+	
 \end{frame}
 
 \begin{frame}
-	\frametitle{MP Techniques Used}
+	\frametitle{MP Techniques Used:  Second-Degree Spells}
 	\begin{enumerate}
 		\item \underline{Blank Slate}:  A TenseBlock is a Blank Slate, effectively
 		\item \underline{Ghost Method}:  Dont define a method (in \texttt{TenseBlock}) so that its \texttt{method\_missing} acts as \texttt{method\_called} for dispatching
@@ -933,24 +931,13 @@ parameterization is not how we think.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Next Spells}
+	\frametitle{Third-Degree Spells}
 	\begin{itemize}
 		\item Dynamic Method
 		\item Around Alias
 		\item DSL:  \emph{See Evan's talk!}
 		\item Class Extension a.k.a. Mixin
 	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Recall Our Goals\ldots}
-	\begin{enumerate}
-		\item Reflect upon how we learn MP in the Ruby community
-		\item Demonstrate MP's ubiquity:  you can't \emph{not} learn this
-		\item Advise when you should reach for the MP ``hammer''
-		\item Provide a real-world example of thinking in terms of MP
-		\item Give you the confidence to use MP \textbf{boldly}
-	\end{enumerate}
 \end{frame}
 
 \begin{frame}
