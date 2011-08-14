@@ -527,7 +527,7 @@ And no language supports the ``modeling thought'' paradigm like Ruby.
 	\begin{itemize}
 		\item Matz' Design
 		\pause
-		\item Paolo's ``Spells''
+		\item Perrotta's ``Spells''
 		\pause
 		\item A rule of thumb:  ``Modeling Thought''
 		\pause
@@ -633,12 +633,23 @@ And no language supports the ``modeling thought'' paradigm like Ruby.
 	Occasionally we want to cluster unique vectors \emph{or} leave out an aspect to get a less-granular result:
 	\pause
 	\begin{itemize}
-		\item ``active voice indicative mood present tense'' (3 aspect, 6 reslts)
+		\item ``active voice indicative mood present tense'' (3 aspects, 6 results)
 		\pause
 		\item ``active voice indicative mood present tense first person'' (4 apsects, 3 results)
 		\pause
 		\item ``active voice indicative mood present tense first person singular number (Fully-Qualified)'' (5 aspects, 1 result)
 	\end{itemize}
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			  & Singular Number &  Plural Number\\
+			\hline
+			First Person  & laud\={o}  & laud\={a}mus\\
+			Second Person & laud\={a}s & laudatis \\
+			Thrid Person  & laudat     & laudant \\
+			\hline
+		\end{tabular}
+	\end{center}
 \end{frame}
 
 \begin{frame}
@@ -727,6 +738,9 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
 			\end{tabular}
 		\end{center}
 \end{frame}
+\note{
+Explore this chart to point out singular vectors or how you might want to slice vertically or horizontally
+}
 
 \begin{frame}
 	\frametitle{Metaprogramming Makes a Saving Throw!}
@@ -901,7 +915,7 @@ parameterization is not how we think.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Clarity \& Communication}
+	\frametitle{Greatest Benefit: Clarity \& Communication}
 	\begin{center}
 		\emph{``Code that Communicates''}
 		\includegraphics[scale=0.45]{img/Zen04.jpg}
