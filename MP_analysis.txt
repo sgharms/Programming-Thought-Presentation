@@ -1,0 +1,81 @@
+* Code that writes code
+* Writing code that writes other constructs
+* Programming other peoples' programs
+* Bowkett:  There's no such thing as MP, there is just P.
+
+"has_many"
+
+* From the outside in, you may not actually be able to tell
+* Editing structures versus 
+
+If it generates a class or a method, or is method_missing
+
+* JEG:  A chunk of code that modifies the object structure:  adds new methods, responds to new methods, 
+
+Is code generation MP?
+
+It's implicit and dynamic...generalized means of doing something statically
+
+If it would blow the mind of a Java programmer
+
+10 minutes in:  can't define what it is
+
+<< Programs that treat code as data >>
+
+-----
+
+Do you see too much or too little
+	Too much bad stuff
+	Not enough good stuff
+MP is difficult, or unavailable...people break their heads when it would be helpful
+
+----
+
+guidelines
+ - if you are gen aliases and / or redefining methods, you're in danger
+ - better is if you [GENERATE A DYNAMIC MODULE]
+ - defined? super (tells you if there is a super to be called) a la block.call if block_given?
+call superclass constructors
+
+
+----
+
+
+why MP?
+	* succinctly
+	* init design, no ; should be done as refactor
+	* allows #inspect to tell me the inclusion steps
+	* define method over class_eval def
+	* Modules are awesome
+	
+====================
+
+
+I did the alpha release of this talk at Lone Star Ruby conference. And after I found
+out that the Ruby Rogues had, just about 3 weeks before, covered the metaprogramming
+topic on their show.
+
+Needless to say I was a bit afraid that the likes of some of our most outstanding and
+educated community members would show me up. But when I took a listen to this podcast,
+I was rather amazed that even they spent the first 12 minutes of the podcast
+attempting to put a working definition around the term.
+
+	* ``Code that writes code''
+	* ``Writing code that writes other constructs''
+	* ``Programming other peoples' programs''
+	* ``Bowkett:  There's no such thing as MP, there is just P.''
+	* Things that treat code as data (does Ruby do this in the same way that Lisp does?)
+	* ``Anything that would blow the mind of a Java programmer..''
+	* Rails validations are not, but associations are
+	
+This discussion is /not/ pragmatic.  And I certainly hope that after you tackle and understand the art of practical metaprogramming, that you come back and consider Ruby from these myriad of points of view.  
+
+But not today.
+
+Rather, I hope, that with this talk, I will be able to present to you /pragmatic/ metaprogramming.  And while I know that we, as programmers love concreteness, there are times when we have to accept that life is messy, or flexible, and that that tolerance is one of the best things that we like about Ruby.  I think Potter Stewart's quote here might be able to be of help:
+
+> I shall not today attempt further to define the kinds of material I understand to be
+> embraced within that shorthand description ["metaprogramming"]; and perhaps I
+> could never succeed in intelligibly doing so. But I know it when I see it{\ldots}
+
+—Justice Potter Stewart, concurring opinion in Jacobellis v. Ohio 378 U.S. 184 (1964)
