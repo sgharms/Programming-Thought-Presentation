@@ -9,8 +9,8 @@
 % Toggle between 'notes' and no notes to display or undisplay notes pages
 
 % \usepackage[bars]{beamerthemetree}
-\usetheme{PaloAlto}
-\usecolortheme{seahorse}
+\usetheme{Warsaw}
+\usecolortheme{whale}
 
 % Use utf-8 encoding for foreign characters
 \usepackage[utf8]{inputenc}
@@ -53,8 +53,9 @@
 
 \section{Introduction} % (fold)
 \label{sec:introduction}
+
 \begin{frame}
-	\maketitle{Pragmatic Metaprogramming:  Modeling Thought}
+	\maketitle
 \end{frame}
 
 \subsection{Administration}
@@ -131,7 +132,7 @@ be back here.
 
 \begin{frame}
 	\frametitle{\textbf{Im}-practical Metaprogramming:  Metaprogramming \textbf{un}-defined}
-	A sample of responses:
+	Working definitions propsed:
 	\begin{itemize}
 		\item ``Code that writes code''
 		\pause
@@ -154,7 +155,7 @@ be back here.
 }
 
 \begin{frame}
-	\frametitle Practical Metaprogramming
+	\frametitle{Practical Metaprogramming}
 	\begin{itemize}
 		\pause
 		\item Written by a Ruby Average Joe{\texttrademark}, not Ruby-legend
@@ -169,33 +170,32 @@ be back here.
 \label{sub:benefits}
 
 \begin{frame}
-	\frametitle{You Need To Learn This:  Precedent}
+	\frametitle{Why You Need To Learn This:  Precedent}
 	\begin{enumerate}
-		\item Precedent:  Virtually all core libraries make use of MP
+		\item Virtually all core libraries make use of MP
 		\pause
 		\includegraphics[scale=0.45, width=0.89\textwidth]{img/e2mmap.png}
 		\pause
-		\item Community expectation:  Rails uses MP all over the place
+		\item Rails uses MP all over the place
 	\end{enumerate}
 \end{frame}
 
 \begin{frame}
-	\frametitle{You Need To Learn This:  Your Future}
+	\frametitle{Why You Need To Learn This:  Your Future}
 	\begin{enumerate}
 		\item Save yourself a lot of typing
 		\pause
-		\item Reflect the interior world of your problem domain in your application code
+		\item Reflect the interior world of your problem domain (including ambiguity!) in your application code
 		\pause
 		\item Pleasant surprises
 	\end{enumerate}
 \end{frame}
 \note{I believe you will start to see some of these benefits if I am able to attain some of the following goals in this presentation.}
 
-
 \begin{frame}
 	\frametitle{Goals}
 	\begin{enumerate}
-		\item Dispel FUD around Metaprogramming: you should metaprogram \textbf{boldly} -- \emph{I want you to feel awesome!}
+		\item Dispel FUD around metaprogramming: you should metaprogram \textbf{boldly} -- \emph{I want you to feel awesome!}
 		\pause
 		\begin{itemize}
 			\item Demonstrate that metaprogramming is ``just programming''
@@ -216,8 +216,15 @@ be back here.
 head around it at some point about how it does these lookups{\ldots}method call
 system is a straight line with stops along the way…once you get the hang of
 it{\ldots}you realize you can put a module at any point on that line.}
-	-- James Edward Gray II (\texttt{@JEGII}), $\approx$ 23m
+	-- James Edward Gray II (\texttt{@JEGII}), Ruby Rogues ep. 012, $\approx$ 23m
 	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Audience}
+	Beginner / Intermediate Rubyists will benefit from the first part of this talk.
+	\vskip 2.0cm
+	Intermediate/Advanced Rubyists will benefit from the ``metaprogramming in the wild'' demonstration that uses my library \texttt{LatinVerb}
 \end{frame}
 \note{
 That's the lay of the land for this talk. If you're thinking this talk might
@@ -251,7 +258,7 @@ Whew, I'm glad we only lost those few.
 \end{frame}
 
 
-\section{Understanding MP, Practically} % (fold)
+\section{Practical MP} % (fold)
 \label{sub:practical_metaprogramming}
 
 \subsection{Early Exposure} % (fold)
@@ -272,10 +279,10 @@ Whew, I'm glad we only lost those few.
 	\frametitle{So, seriously, what \textbf{is} metaprogramming?}
 	\begin{center}
 		\pause
-		``Writing code that re-directs passed messages at runtime or
+		``Writing code that re-directs passed messages at runtime \\ \textbf{or} \\
 that provides or alters the structures that do said processing.''
 		\pause
-		\emph{-- Steven Harms}
+		\emph{\\ --Steven Harms}
 	\end{center}
 \end{frame}
 \note{}
@@ -284,15 +291,16 @@ that provides or alters the structures that do said processing.''
 	\frametitle{But wait{\ldots}isn't that just \emph{regular} programming?}
 	\begin{center}
 		Yes.  Exactly.  Ergo:  ``There is no metaprogramming -- just programming''
+		\pause
+		\vskip 0.25cm
+		\emph{Let's see it in action}
 	\end{center}
-	\pause
-	\emph{Let's see it in action}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Start simply}
 		\begin{center}
-			\includegraphics[scale=0.25]{img/undefined_method_chain.png}
+			\includegraphics[scale=0.35]{img/undefined_method_chain.png}
 		\end{center}
 \end{frame}
 
@@ -301,8 +309,9 @@ that provides or alters the structures that do said processing.''
 	\pause
 	\begin{center}
 		\emph{Because a message was passed that Ruby did not know about}
+		\vskip 0.75cm
 		\pause
-		\includegraphics{img/duh.jpg}		
+		\includegraphics[scale=0.80]{img/duh.jpg}		
 	\end{center}
 \end{frame}
 
@@ -317,7 +326,10 @@ that provides or alters the structures that do said processing.''
 	\end{center}
 \end{frame}
 \note{
-Here we have put the def into the default ``main'' object of the Ruby 
+Here we have put the def into the default ``main'' object of the Ruby.  
+
+Now we're programmers, we like to keep things nice and neat.  So we might want to try
+to put our re-director into something -- like a class.
 }
 
 \begin{frame}
@@ -336,15 +348,15 @@ Here we have put the def into the default ``main'' object of the Ruby
 
 \begin{frame}
 	\frametitle{Put the \texttt{def}s in the module into the class (\emph{mixin})}
-	\includegraphics[scale=0.45]{img/frob_mixin.png} \\
+	\includegraphics[scale=0.45,scaleY=0.8]{img/frob_mixin.png} \\
 	\vskip 0.25cm
 	\includegraphics[scale=0.45]{img/frob_mixin_output.png}		
 \end{frame}
 
 \begin{frame}
-	\frametitle{Put the \texttt{def}s in the module into the class (\emph{mixin})}
-	\includegraphics[scale=0.45]{img/frob_double_mod.png} \\
-	\vskip 0.25cm
+	\frametitle{Put the \texttt{def}s in the module\textbf{s} into the class (\emph{mixin})}
+	\includegraphics[scale=0.45,height=4cm]{img/frob_double_mod.png} \\
+	\vskip 0.20cm
 	\includegraphics[scale=0.45]{img/frob_double_mod_output.png}		
 \end{frame}
 
@@ -354,15 +366,37 @@ Here we have put the def into the default ``main'' object of the Ruby
 \end{frame}
 
 \begin{frame}
+	\frametitle{Sometimes Ancestors Look Like\ldots}
+		\path{Frob}\\
+		\path{FrobModTwo}\\
+		\path{FrobMod}\\
+		\path{Object}\\
+		\path{Kernel}\\
+		\path{BasicObject}\\
+\end{frame}
+
+\begin{frame}
+	\frametitle{And Sometimes Look Like\ldots}
+		\path{Frob}\\
+		\path{FrobMod}\\
+		\path{FrobModTwo}\\
+		\path{Object}\\
+		\path{Kernel}\\
+		\path{BasicObject}\\
+\end{frame}
+
+\begin{frame}
 	\frametitle{Quod Erat Demonstrandum{\ldots}}
 	With:
 	\begin{itemize}
 		\item Ancestor chain
 		\item Modules and Classes
 	\end{itemize}
-	
+	\vskip 0.25cm
 	Catching, intercepting, and re-routing messages based on conditions (e.g.
-\texttt{rand}) occurs; We ``wrote code that re-directed passed messages at
+\texttt{rand}) occurs. 
+\vskip 0.25cm 
+We ``wrote code that re-directed passed messages at
 runtime or that provided or altered the structures that do said processing.''
 
 \end{frame}
@@ -372,7 +406,9 @@ runtime or that provided or altered the structures that do said processing.''
 	\begin{itemize}
 		\item We were metaprogramming (by my definition)
 		\pause
-		\item We used only techniques from Ruby basics tutorials (e.g. \texttt{def}, \texttt{module}, \texttt{class}) but reacted and re-directed based on runtime logic ( \texttt{$>$rand})
+		\item We used only techniques from Ruby basics tutorials (e.g. \texttt{def},
+\texttt{module}, \texttt{class}) but reacted and re-directed based on runtime
+logic ( \texttt{$>$rand})
 		\pause
 		\item Therefore:  Either metaprogramming is much easier than we thought, OR
 		\pause
@@ -387,16 +423,11 @@ runtime or that provided or altered the structures that do said processing.''
 		\item When the language has a clear function to do X, don't write a MP re-implementation
 	\end{itemize}
 \end{frame}
-
-\begin{frame}
-	\frametitle{Metaprogramming Pre-Requisites}
-	\begin{itemize}
-		\item Basic Method Manipulation
-		\item Basic Class Definition
-		\item Basic Module Definition
-		\item The Mix-In
-	\end{itemize}
-\end{frame}
+\note{Now that we see that we've all been quote-metaprogramming since the beginning
+of our Ruby careers. Let's dispel some of the fear about the quote-advanced
+metaprogramming techniques. I hope to offer 4-part sectioning of common MP
+spells, or idioms that will help you measure and evaluate your skill with this
+subset of the Ruby language.}
 
 \begin{frame}
 	\frametitle{Momentary Aside: Terminology}
@@ -417,7 +448,18 @@ runtime or that provided or altered the structures that do said processing.''
 }
 
 \begin{frame}
-	\frametitle{Tier 1 Metaprogramming}
+	\frametitle{Metaprogramming Pre-Requisites}
+	\begin{itemize}
+		\item Basic Method Manipulation
+		\item Basic Class Definition
+		\item Basic Module Definition
+		\item The Mix-In
+	\end{itemize}
+\end{frame}
+\note{We just covered these}
+
+\begin{frame}
+	\frametitle{Tier 1 Metaprogramming: \emph{Advanced Message Redirection}}
 	\begin{itemize}
 		\item Open Class
 			\begin{itemize}
@@ -427,26 +469,9 @@ runtime or that provided or altered the structures that do said processing.''
 		\item \texttt{attr\_*} methods
 		\item alias :new :old
 	\end{itemize}
-\end{frame}
-
-
-\begin{frame} \frametitle{Tier 1 Metaprogramming in Ruby}
 	\vskip 0.5cm
-	\begin{center}
-		\includegraphics[scale=0.45]{img/ruby_pickaxe.jpg}
-	\end{center}
 \end{frame}
-\note{
-	\begin{itemize}
-		\item Page thrity of the PickAxe book
-		\item \texttt{attr\_reader, attr\_writer, and attr\_accessor}
-	\end{itemize}
-}
 
-\begin{frame}
-	\frametitle{Dynamic Getter / Setter Generation}
-	\includegraphics[scale=0.45]{img/attr_demo_1.png}
-\end{frame}
 
 \begin{frame}
 	\frametitle{Tier 1 Metaprogramming:  Open Classes}
@@ -460,7 +485,6 @@ runtime or that provided or altered the structures that do said processing.''
 	\end{itemize}
 }
 
-
 \begin{frame}
 	\frametitle{Tier 1 Metaprogramming:  Kernel Method}
 		\includegraphics[scale=0.55]{img/kernel_method.png}
@@ -471,7 +495,13 @@ create methods that behave as if they were core builtins to the language.
 }
 
 \begin{frame}
-	\frametitle{``Slightly Impractical Metaprogramming:''  Singleton Method}
+	\frametitle{Tier 1 Metaprogramming:  Dynamic Getter / Setter Generation}
+	\includegraphics[scale=0.45]{img/attr_demo_1.png}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Iter 1 Metaprogramming: Singleton Method}
 		\includegraphics[scale=0.35]{img/singleton_method.png}
 \end{frame}
 \note{
@@ -496,7 +526,8 @@ create methods that behave as if they were core builtins to the language.
 			\emph{-- Credit Unknown}
 		\end{center}
 \end{frame}
-\note{It might not be the most awesome thing ever, which is, of course, a lion riding a horse, but it's still pretty good.}
+\note{It might not be the most awesome thing ever, which is, of course, a lion
+riding a horse, but it's still pretty good.}
 
 \begin{frame}
 	\frametitle{{\ldots}Or Madness?}
@@ -534,6 +565,38 @@ he's definitely urging caution over MP's over-use.
 \end{itemize}
 }
 
+\subsubsection{Teenagers} % (fold)
+\label{ssub:teenagers}
+
+\begin{frame}
+	\frametitle{Teens:  Foolishness}
+	\begin{center}
+		\includegraphics[scale=0.1]{img/license.jpg}
+	\end{center}
+	
+\end{frame}
+\note{All the power and free will of an adult, but not a whole lot of judgment, and poor impulse control.}
+
+\begin{frame}
+	\frametitle{Teens:  Brilliance}
+	\includegraphics[scale=0.25]{img/daniel.jpg}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Synthesis:  Good Parenting, or Alloparenting}
+	\begin{center}
+		\emph{``{\ldots}if root's strong, tree survive''} \\
+		-- Mr. Miyagi
+	\end{center}
+	\begin{itemize}
+		\item Singleton Module (``Eigenclass'')
+		\item Module\#ancestors
+	\end{itemize}
+\end{frame}
+\note{You all have a good root, but be careful with these!  You'll paint yourself into a corner or two, but keep a git branch or two handy.}
+
+% subsubsection teenagers (end)
+
 \begin{frame}
 	\frametitle{How Will I Know?}
 	\begin{center}
@@ -546,39 +609,11 @@ he's definitely urging caution over MP's over-use.
 
 \begin{frame}
 	\frametitle{Explain this: Why are these methods identical structurally?}
-	\includegraphics{img/challenge.png}
+	\includegraphics[scale=0.50]{img/challenge.png}
 \end{frame}
 
-\subsection{Tier 2 Metaprogramming Idioms} % (fold)
+\subsection{Tier 2 MP} % (fold)
 \label{sub:tier_2_metaprogramming_idioms}
-
-\subsubsection{Teenagers} % (fold)
-\label{ssub:teenagers}
-
-\begin{frame}
-	\frametitle{Teens:  Foolishness}
-	\includegraphics[scale=0.45]{img/license.jpg}
-\end{frame}
-\note{All the power and free will, but not a whole lot of judgment, and poor impulse control.}
-
-\begin{frame}
-	\frametitle{Teens:  Brilliance}
-	\includegraphics[scale=0.45]{img/daniel.jpg}	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Good Parenting, or Alloparenting}
-	\begin{center}
-		\emph{``{\ldots}if root's strong, tree survive''}
-	\end{center}
-	\begin{itemize}
-		\item Singleton Method
-		\item Module\#ancestors
-	\end{itemize}
-\end{frame}
-\note{You all have a good root, but be careful with these!  You'll paint yourself into a corner or two, but keep a git branch or two handy.}
-
-% subsubsection teenagers (end)
 
 \subsubsection{Idioms} % (fold)
 \label{ssub:idioms}
@@ -586,7 +621,7 @@ he's definitely urging caution over MP's over-use.
 \begin{frame}
 	\frametitle{Tier 2 Metaprogramming Idioms}
 	\begin{itemize}
-		\item Generally, methods for the interception and interpretation of passed messages
+		\item Generally, methods for the interception and interpretation of passed messages \emph{as handled by you!}
 		\item Hybrids involving earlier techniques
 	\end{itemize}
 	\pause
@@ -602,23 +637,23 @@ he's definitely urging caution over MP's over-use.
 \end{frame}
 \note{
 I will not dwell on these because they are rather complicated \textbf{and} are discoverable via Paolo's book or his site.  Third,
-I will be demonstrating them shortly.
+Also, I will be demonstrating them shortly.
 }
 % subsubsection idioms (end)
 % subsection tier_2_metaprogramming_idioms (end)
 
-\subsection{Tier 3 Metaprogramming} % (fold)
+\subsection{Tier 3 MP} % (fold)
 \label{sub:tier_3_metaprogramming}
 
 \begin{frame}
-	\frametitle{Final Set of Techniques}
+	\frametitle{Tier 3 Metaprogramming}
 	\begin{itemize}
 		\item Dynamic Generation and Inclusion of Modules
 		\begin{itemize}
 			\item Namespace:  Dynamically generate 
 			\item Class Extension:  Dynamically include
 		\end{itemize}
-		\item Unsupervised manipulation of classes and instances
+		\item No-holds-barred manipulation of classes and instances
 		\begin{itemize}
 			\item class\_eval 
 			\item instance\_eval 
@@ -628,14 +663,19 @@ I will be demonstrating them shortly.
 
 \begin{frame}
 	\frametitle{Word from Mom and Dad}
+	\begin{center}
+		\includegraphics[scale=0.35]{img/MomDadMarried50s.jpeg}
+	\end{center}
+	\pause
 	\begin{itemize}
 		\item Most advanced techniques are fancy syntax for the basic techniques
-		\item Offer the most freedom{\ldots}to hurt yourself!
+		\pause
+		\item Uncle Ben's Axiom:  With great power comes great responsibility
 	\end{itemize}	
 \end{frame}
 % subsection tier_3_metaprogramming (end)
 
-\subsection{LatinVerb} % (fold)
+\section{LatinVerb} % (fold)
 \label{sub:_modeling_thought_in_latinverb}
 
 \begin{frame}
@@ -646,91 +686,30 @@ I will be demonstrating them shortly.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Just Enough Latin}
-	\vskip 0.5cm
+	\frametitle{Or as Aaron Patterson once said:}
 	\begin{center}
-		\includegraphics[scale=0.45]{img/captain.jpg}
-	\end{center}
-
-	\vskip 0.5cm
-	\begin{center}
-		\emph{``Captain!  My Captain!''}
-		\vskip 0.5cm
-		\tiny
-		\copyright 1989, \emph{Dead Poet's Society}, Touchstone Pictures
-		\normalsize
+		``Do something worthless of questionable value.'' \\ -- \emph{Aaron Patterson}
 	\end{center}
 \end{frame}
+\note{
+So, let's talk about how I went about modeling this problem.  Here's a specification.
+}
 
 \begin{frame}
-	\frametitle{This Shouldn't Hurt{\ldots}Much}
-	\begin{center}
-		\includegraphics[scale=0.45]{img/MartinWizard.jpg}
-		\vskip 0.5cm
-		\emph{Martin, the Wizard of Latin} \\
-		\vskip 0.5cm
-		\tiny
-		\copyright 1989, \emph{The Simpsons},  20\textsuperscript{th} Century Fox
-		\normalsize
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Conjugation\ldots}
-	Given the \underline{four principle parts}:  ``am\={o}, am\={a}re, am\={a}v\={\i}, amatum''
-	\vskip 0.5cm
-	The Specific Vector: ``Active Voice / indicative mood / present tense/ first person / singular number'' uniquely identifies:
-	\vskip 0.5cm
-	\begin{center}
-		\emph{am\={o}}
-		\vskip 0.5cm
-		This process is called \underline{conjugation}.
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{A Conjugation is a Unique Specification:  Stargate}
-	\begin{center}
-		\includegraphics[scale=0.25]{img/stargate.jpg}
-		\vskip 0.5cm
-		6 Points in Space
-		\vskip 0.5cm
-		\tiny
-		\emph{\copyright 1997, \emph{Stargate:  SG1},  MGM Worldwide Television Productions Inc.}
-		\normalsize
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Unique Specification:  Latin}
-	5 Aspects
-	\begin{enumerate}
-		\item voice
-		\pause
-		\item mood
-		\pause
-		\item tense
-		\pause
-		\item person
-		\pause
-		\item number
-		\pause
-	\end{enumerate}
-	\vskip 0.5cm
-	A unique coordinate is a \emph{vector} or a \emph{conjugation}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Aggregation}
-	Occasionally we want to cluster unique vectors \emph{or} leave out an aspect to get a less-granular result:
-	\pause
+	\frametitle{Specification}
 	\begin{itemize}
-		\item ``active voice indicative mood present tense'' (3 aspects, 6 results)
+		\item Given the \underline{four principle parts}:  ``am\={o}, am\={a}re, am\={a}v\={\i}, amatum''
 		\pause
-		\item ``active voice indicative mood present tense first person'' (4 apsects, 3 results)
+		\item Respond with a unique value (``conjugation''), \emph{am\={o}}, to a call with the parameters: \\
+		``active voice indicative mood present tense first person singular number (Fully-Qualified)''
 		\pause
-		\item ``active voice indicative mood present tense first person singular number (Fully-Qualified)'' (5 aspects, 1 result)
+		\item Flexibly respond to calls that lack some specification datum e.g. leave out the ``number'' parameter, receive with less-granular return values\\
+          e.g. ``active voice indicative mood present tense'' (3 aspects provided, 6 results)
 	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Tabular View}
 	\begin{center}
 		\begin{tabular}{|c|c|c|}
 			\hline
@@ -745,50 +724,12 @@ I will be demonstrating them shortly.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Vector Generation}
-	\begin{itemize}
-		\item Vector generation is a well-known, well-established, heuristically-modeled domain.
-		\pause
-		\item $\approx$ 2,500 years of documentation
-	\end{itemize}
-	\begin{center}
-		\includegraphics[scale=0.5]{img/erasmus.jpg} \\
-		\pause
-		\emph{``Erasmus'' by D\"{u}rer}
-	\end{center}
-\end{frame}
-
-\begin{frame}
 	\frametitle{Model it in Ruby!}
 	\begin{center}
 		\includegraphics[scale=0.45]{img/brosh_all.png}
 		\vskip 0.5cm
 		\emph{Credit:  Allie Brosh}
 	\end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Or as Aaron Patterson once said:}
-	\begin{center}
-		``Do something worthless of questionable value.'' \\ -- \emph{Aaron Patterson}
-	\end{center}
-\end{frame}
-\note{
-So, let's talk about how I went about modeling this problem.  Here's a specification.
-}
-
-
-\begin{frame}
-	\frametitle{LatinVerb's Purpose}
-	LatinVerb should be a library for conjugating Latin verbs provided their ``four principle parts (am\={o}, am\={a}re, am\={a}v\={\i}, amatum).''
-	\pause
-	\vskip 0.5cm
-	Vectors should be accessed by pretty method calls like:
-	\vskip 0.5cm
-
-	\texttt{active\_voice\_indicative\_mood\_present\_tense{\ldots}\\
-	\_first\_person\_singular\_number}
-
 \end{frame}
 
 \begin{frame}
@@ -807,36 +748,15 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
 		\item There are 5 standard paradigms
 		\pause
 		\item \ldots and at least $1,000$ verbs
+		\pause
+		\item Possibly thousands of methods or decision flows in a language with poor MP
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-		\frametitle{Pain}
-		\begin{itemize}
-			\item Typing all of these several hundred(thousand?)-odd values for \emph{fully-specified} vectors would definitely hurt
-			\pause
-			\item What if you had \emph{incomplete} data per our Aggregation section?  4/5 of the vector specification?  3/5?  Write \emph{yet} even more methods
-		\end{itemize}
-		\begin{center}
-			\begin{tabular}{|c|c|c|}
-				\hline
-				  & Singular Number &  Plural Number\\
-				\hline
-				First Person  & laud\={o}  & laud\={a}mus\\
-				Second Person & laud\={a}s & laudatis \\
-				Thrid Person  & laudat     & laudant \\
-				\hline
-			\end{tabular}
-		\end{center}
-\end{frame}
-\note{
-Explore this chart to point out singular vectors or how you might want to slice vertically or horizontally
-}
-
-\begin{frame}
 	\frametitle{Metaprogramming Makes a Saving Throw!}
 	\begin{center}
-		Law II says to MP our way out of the pain
+		MP our way out of the pain
 		\vskip 1.0cm
 		\includegraphics[scale=0.25]{img/natural_20.jpg} \\
 		\tiny
@@ -846,33 +766,7 @@ Explore this chart to point out singular vectors or how you might want to slice 
 \end{frame}
 
 \begin{frame}
-	\frametitle{Specification}
-	Take an array of elements and tack them onto a base, derived from the given, second part, with the results returned as an array.  Sub-specify by \underline{person} (1, 2, 3) and/or \underline{number} or cluster by either.
-	\pause
-	\vskip 0.5cm
-	\emph{Why does that sound familiar?}
-	\vskip 0.5cm
-	\includegraphics[scale=0.45]{img/determined.png}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby (1/3)}
-	\emph{Take an array of elements and tack them onto a base, derived from the
-    given, with the results returned as an array.
-}	\begin{center}
-		\includegraphics[scale=0.38]{img/conj_how.png}
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby (2/3)}
-	\includegraphics[scale=0.39]{img/conj_how_3b.png}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Translating a Domain Problem to Ruby (3/3)}
+	\frametitle{Stuff the logic in the TenseBlock Class}
 	\emph{
 		Sub-specify by \underline{person} (1, 2, 3) or \underline{number} or
     cluster by either. \\
@@ -886,14 +780,43 @@ Explore this chart to point out singular vectors or how you might want to slice 
 \end{frame}
 
 \begin{frame}
+	\frametitle{\texttt{method\_missing} and dynamic dispatch(\texttt{send})}
+	\includegraphics[scale=0.55]{img/tenseblock_mm.png}
+\end{frame}
+
+\begin{frame}
 	\frametitle{MP Provides:  Massive Laziness Win}
 	\begin{itemize}
 		\item $\approx$ 48 methods covered; 6 written
 		\pause
-		\item 2 aspects in play
+		\item 2 aspects of ambiguity left
 		\pause
 		\item One reponse class (\texttt{TenseBlock})
 	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Table becomes TenseBlock}
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			  & Singular Number &  Plural Number\\
+			\hline
+			First Person  & laud\={o}  & laud\={a}mus\\
+			Second Person & laud\={a}s & laudatis \\
+			Thrid Person  & laudat     & laudant \\
+			\hline
+		\end{tabular}
+		\vskip 0.5cm
+		$=$
+		\vskip 0.5cm
+		\texttt{TenseBlock}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Not Bad}
+	\includegraphics[scale=0.75]{img/not_bad.png}
 \end{frame}
 
 \begin{frame}
@@ -920,43 +843,17 @@ The same technique that we used with a Tense Block that gave each one several ex
 \end{frame}
 
 \begin{frame}
-	\frametitle{Benefits via Law II}
+	\frametitle{Result:  Surprises}
 	\begin{itemize}
-		\item Saved many keystrokes by writing using a \underline{Ghost Method}
+		\item ``Aggregator methods'' per tense emerged
 		\pause
-		\item Saved creating \textbf{\$A\_LOT\_OF} additional methods -- \emph{many of which I didn't even think of!}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{The Corollary Emerges}
-	\begin{itemize}
-		\item 	Pursued ``less typing'' but wound up with ``respond to ambiguous calls with unambiguous data''
-		\pause
-		\item  \emph{Insights Emerged!}:  `Modeling Thought'' yields many of these surprises
-	\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Law I Emerges{\ldots}With Surprises}
-	\begin{itemize}
-		\item 5 additional ``aggregate methods'' per tense emerged
-		\begin{itemize}
-			\item {aTenseBlock}.singular\_number (\texttt{3 results})
-			\item {aTenseBlock}.first\_person (\texttt{2 results})
-		\end{itemize}
-
-		\pause
-
 		\item Flexible word order \emph{emerged} that did the right thing
 		\begin{itemize}
 			\item first\_person\_singular\_number
 			\item singular\_number\_first\_person
 		\end{itemize}
-
+		\includegraphics[scale=0.55]{img/tenseblock_mm.png}
 		\pause
-
 		\item Avoided Java-ish paramteterized brain damage
 	\end{itemize}
 \end{frame}
@@ -974,37 +871,62 @@ The same technique that we used with a Tense Block that gave each one several ex
 	\vskip 0.5cm
 	\texttt{Object[] calculated\_values = \{aV, v, m, t, p, n\};}
 	\texttt{String calculate\_vector(calculated\_values)};
+	\vskip 0.5cm
+
+	\begin{center}
+		\textbf{PREFER}
+	\end{center}
+
+	\vskip 0.5cm
+	\texttt{@aFirst.active\_voice\_indicative\_mood{\ldots}}
 \end{frame}
 \note
-{A particular reason that I want to highlight this benefit is because Java/C-style
-parameterization is not how we think.
+{A particular reason that I want to highlight this benefit is because
+Java/C-style parameterization is not how we think. It is certainly not how
+linguists think. Further, the form takes this really nice Objective-C
+stylistic that I think is very clear and sexy.
 }
 
 \begin{frame}
-	\frametitle{anti-Parameterization:  Not How We Think, Not Modeled Thought}
-
-		\begin{center}
-			\includegraphics[scale=0.15]{img/SubwayLogo.png}
-		\end{center}
-
+	\frametitle{Usage of Third-Tier Metaprogramming in LatinVerb}
 	\begin{itemize}
-		\item We \emph{do not} think like we are ordering from Subway.
-		\pause
-		\item NO:  \emph{``I'll have a sandwich:  bread is rustic Italian, meat is salami, cheese is provelone, veggies are an array of lettuce, tomato \ldots''}
-		\pause
-		\item YES:  \emph{``I'll have an Italian on rustic Italian with salami and provelone and from the veggie bin, lessee, lettuce and tomato\ldots''}
+		\item DSL:  \emph{See Evan's talk from Lone Star Ruby Conf}
+		\item Class Extension a.k.a. Mixin
+		\item Module namespace cleanliness
 	\end{itemize}
-
 \end{frame}
-\note{This is probably something \emph{right} about the Objective-C language.}
 
 \begin{frame}
-	\frametitle{Pretty Parameterization}
-	\texttt{instance.active\_voice\_indicative\_mood\_present\_tense}
+	\frametitle{Listen to your mentors}
+	\begin{itemize}
+		\item David Brady:  ``Use modules, kids.''
+		\item JEG2:  ``Understand your ancestor chain''
+		\item Weirich:  ``Polite programmers \texttt{respond\_to?} with true for theri metaprogrammed methods''
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Build beautiful module generators}
 	\begin{center}
-		\textbf{NOT}
-	\end{center}
-	\texttt{instance.calculate\_vector('active','indicative')} \ldots
+		\includegraphics[scale=0.35]{img/ll_dsl.png}
+	\end{center}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Build beautiful module generators}
+	\begin{center}
+		\includegraphics[scale=0.35]{img/ll_mod_inc.png}
+	\end{center}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{\texttt{respond\_to?} and \texttt{ancestors}}
+	\includegraphics[scale=0.45]{img/method_chain_first.png}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\texttt{respond\_to?} and \texttt{ancestors}}
+	\includegraphics[width=10cm, height=0.75cm]{img/respond_to_well.png}
 \end{frame}
 
 \begin{frame}
@@ -1014,91 +936,24 @@ parameterization is not how we think.
 		\includegraphics[scale=0.45]{img/Zen04.jpg}
 	\end{center}
 \end{frame}
+\note{Despite quote-metaprogramming getting such a bad rap, it really doesn't
+\emph{only} obfuscate -- sometimes it really \emph{helps}!}
 
 \begin{frame}
-	\frametitle{Pause for ``applause''}
-	\begin{center}
-		\texttt{LatinVerb:  Demo End}
-		\pause
-		\vskip 0.5cm
-		\emph{Applause is derived from our example word ``laud\={a}re'' meaning ``to praise'' literally meaning ``to praise toward''}
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	\begin{center}
-		\frametitle{I'm not that desperate for approval{\ldots}}
-		\includegraphics[scale=0.45]{img/i_lied.png} \\
-		\pause
-		\emph{I lied{\ldots}}
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{What MP Techniques Make This Possible?}
-	\begin{center}
-		HOW?
-	\end{center}
-\end{frame}
-\note{
-If I were to send you home with anything, I want you to go home with the ``Modeling Thought'' guideline and the knowledge
-of all the spell defined by Perrotta.  But I know you want a few code samples, so let me provide them.
-
-Provided:
-\begin{enumerate}
-	\item Open Class
-	\item Kernel Method
-	\item Singleton Method
-\end{enumerate}
-
-Here are the next tier of spells, and they happen to be what enabled LatinVerb's flexibility.
-}
-
-
-\subsection{MP Techniques} % (fold)
-\label{sub:methods}
-
-\begin{frame}
-	\frametitle{\underline{Ghost Method} in \texttt{TenseBlock}}
-	\begin{center}
-		\includegraphics[scale=0.45]{img/tenseblock_mm.png}
-	\end{center}
-\end{frame}
-
-\begin{frame}
-	\frametitle{MP Techniques Used:  Second-Degree Spells}
+	\frametitle{Goals Checklist}
 	\begin{enumerate}
-		\item \underline{Blank Slate}:  A TenseBlock is a Blank Slate, effectively
-		\item \underline{Ghost Method}:  Dont define a method (in \texttt{TenseBlock}) so that its \texttt{method\_missing} acts as \texttt{method\_called} for dispatching
-		\item \underline{Dynamic Dispatch}:  \texttt{self.send} in \texttt{TenseBlock}
+		\item ``Metaprogram'' \textbf{boldly}!
+		\begin{itemize}
+			\item Metaprogramming is ``just programming'' -- \emph{and you're already better at it than you know!}
+			\item Study and experiment with the four ``tiers'' of metaprogramming spells
+			\item Remain humble and continue to listen for guidance
+		\end{itemize}
+		\pause
+		\item Use the ancestor chain as your guide -- \emph{Answer Gray's mandate \textbf{boldly}!}
+		\pause
+		\item Let MP surprise you, model ambiguity cleanly, and help communicate your domain
 	\end{enumerate}
 \end{frame}
-
-\begin{frame}
-	\frametitle{Third-Degree Spells}
-	\begin{itemize}
-		\item Dynamic Method
-		\item Around Alias
-		\item DSL:  \emph{See Evan's talk!}
-		\item Class Extension a.k.a. Mixin
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Conclusion:  Goals Into Action!}
-	\begin{enumerate}
-		\item \textbf{Let's provide a clearer path to learning} MP in the Ruby community \ldots
-		\pause
-		\item \textbf{since we know we} can't \emph{not} learn this.
-		\pause
-		\item \textbf{Since we know when we} should reach for the MP ``hammer'' \textbf{thanks to the ``modeling thought'' guideline}
-		\pause
-		\item \textbf{and have a demonstrated} example of thinking in terms of MP
-		\pause
-		\item \textbf{we will} use MP \textbf{boldly}
-	\end{enumerate}
-\end{frame}
-% section modeling_thought (end)
 
 \section{Supplementary} % (fold)
 \label{sec:supplementary}
@@ -1150,7 +1005,7 @@ Here are the next tier of spells, and they happen to be what enabled LatinVerb's
 \end{frame}
 
 \begin{frame}
-	\frametitle{Contact Me! (Again)}
+	\frametitle{Work with Me / Have Me Teach / Contact Me! (Again)}
 	\begin{center}
 		Steven G. Harms \\
 		\vskip 1.25cm
@@ -1158,6 +1013,8 @@ Here are the next tier of spells, and they happen to be what enabled LatinVerb's
 		Email:  \texttt{rubyconfXI@sgharms.oib.com} \\
 		Twitter / GitHub:  \texttt{sgharms} \\
 		G+
+		\vskip 1.0cm
+		Questions?
 	\end{center}
 \end{frame}
 
