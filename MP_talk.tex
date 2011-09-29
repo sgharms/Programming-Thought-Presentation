@@ -28,6 +28,9 @@
 \usepackage{pgfpages}
 % \pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm]
 
+% Include support for strikethrough etc.
+%\usepackage{ulem}
+
 \ifx\pdftexversion\undefined
 \usepackage[dvips]{graphicx}
 \else
@@ -37,7 +40,7 @@
 \title{Practical Metaprogramming:  Modeling Thought}
 \author{ Steven G. Harms }
 
-\date{2011-08-12}
+\date{2011-09-30}
 
 \begin{document}
 
@@ -51,7 +54,7 @@
 \section{Introduction} % (fold)
 \label{sec:introduction}
 \begin{frame}
-	\maketitle
+	\maketitle{Pragmatic Metaprogramming:  Modeling Thought}
 \end{frame}
 
 \subsection{Administration}
@@ -86,39 +89,14 @@ be back here.
 }
 
 
-\subsection{Overview}
+\subsection{Practical and Impractical }
 
 \begin{frame}
 	\frametitle{What We'll Cover}
 	\begin{center}
-		Practical Metaprogramming:  ``Modeling Thought''
+		Practical Metaprogramming
 	\end{center}
 \end{frame}
-\note
-{
-\tiny
-\begin{itemize}
-	\item \emph{Practical Metaprogramming}
-	\item Magic of MP
-	\begin{itemize}
-		\tiny
-		\item Short intro cycle
-		\item Possibly why we start Ruby in the first place
-	\end{itemize}
-	\item Poll
-	\begin{itemize}
-		\tiny
-		\item Who was introduced to Ruby as a side effect of ``Hey isn't it neat that Ruby can do this?''
-		\item How many of you have no idea what I'm talking about when I say ``metaprogramming?''; you will also be able to benefit from this discussion
-	\end{itemize}
-	\item Introduced as a gimmick
-	\item This talk can	help you dispel FUD, feel confident in metaprogramming
-	\item I	will not have the ability to cover all the MP code blocks
-	\item Modeling thought: a technique or a dispotition which is designed to help intermediate metaprogrammers evaluate whether an MP-based
-	solution is the right solution for them.  While not infallible, pretty good.
-\end{itemize}
-\normalsize
-}
 
 \begin{frame}
 	\frametitle{\textbf{Im}-practical Metaprogramming}
@@ -126,51 +104,124 @@ be back here.
 	\begin{center}
 		\includegraphics[scale=0.3]{img/rubyrogues.png}
 	\end{center}
+	\vskip 0.25cm
+	Episode 012:  Metaprogramming
+	\vskip 0.25cm
 	\begin{itemize}
-		\item 10 minutes into defining metaprogramming they covered{\ldots}
+		\pause
+		\item 10 minutes into defining ``metaprogramming'' they had covered{\ldots}
 		\begin{itemize}
-			\item Smalltalk
+			\item Lisp
 			\pause
-			\item Marshaling code 
+			\item Marshaling code, closures, state 
 			\pause
-			\item Code as data?
+			\item Code as data?  AST's versus bytecode?
+			\pause
+			\item Code generation versus runtime behavior changes
 		\end{itemize}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{\textbf{Im}-practical Metaprogramming Continued{\ldots}}
+	\frametitle{Huh?}
+	\begin{center}
+		\includegraphics[scale=0.5]{img/chan.png}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{\textbf{Im}-practical Metaprogramming:  Metaprogramming \textbf{un}-defined}
+	A sample of responses:
 	\begin{itemize}
 		\item ``Code that writes code''
 		\pause
-		\item ``Writing code that writes other constructs''
+		\item ``API for dynamic programming within the Ruby language''
 		\pause
 		\item ``Programming other peoples' programs''
 		\pause
 		\item ``Bowkett:  There's no such thing as MP, there is just programming''
 		\pause
-		\item ``Things that treat code as data (does Ruby do this in the same way that Lisp does?)''
-		\item ``Anything that would blow the mind of a Java programmer..''
+		\item ``Things that treat code as data''
+		\pause
+		\item ``Anything that would blow the mind of a Java programmer.''
 	\end{itemize}
 \end{frame}
+\note{
+	\begin{itemize}
+		\item All of these are true
+		\item Unfair to pick on misuse in the next segment
+	\end{itemize}
+}
+
+\begin{frame}
+	\frametitle Practical Metaprogramming
+	\begin{itemize}
+		\pause
+		\item Written by a Ruby Average Joe{\texttrademark}, not Ruby-legend
+		\pause
+		\item Focuses on relatable experiences, not theory
+		\pause
+		\item Builds from basic Ruby
+	\end{itemize}
+\end{frame}
+
+\subsection{Why You Must Understand MP} % (fold)
+\label{sub:benefits}
+
+\begin{frame}
+	\frametitle{You Need To Learn This:  Precedent}
+	\begin{enumerate}
+		\item Precedent:  Virtually all core libraries make use of MP
+		\pause
+		\includegraphics[scale=0.45, width=0.89\textwidth]{img/e2mmap.png}
+		\pause
+		\item Community expectation:  Rails uses MP all over the place
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{You Need To Learn This:  Your Future}
+	\begin{enumerate}
+		\item Save yourself a lot of typing
+		\pause
+		\item Reflect the interior world of your problem domain in your application code
+		\pause
+		\item Pleasant surprises
+	\end{enumerate}
+\end{frame}
+\note{I believe you will start to see some of these benefits if I am able to attain some of the following goals in this presentation.}
+
 
 \begin{frame}
 	\frametitle{Goals}
 	\begin{enumerate}
-		\item Reflect upon how we learn MP in the Ruby community
+		\item Dispel FUD around Metaprogramming: you should metaprogram \textbf{boldly} -- \emph{I want you to feel awesome!}
 		\pause
-		\item Demonstrate MP's ubiquity:  you can't \emph{not} learn this
+		\begin{itemize}
+			\item Demonstrate that metaprogramming is ``just programming''
+			\pause
+			\item Describe four ``tiers'' of metaprogramming spells so you know how to ``level up''
+		\end{itemize}
 		\pause
-		\item Advise when you should reach for the MP ``hammer''
+		\item Let the ancestor chain guide us (\emph{``Gray's Mandate''})
 		\pause
-		\item Provide a real-world example of thinking in terms of MP
-		\pause
-		\item Give you the confidence to use MP \textbf{boldly}
+		\item Show a real-world example of the benefits of MP
 	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Gray's Mandate}
+	\begin{center}
+		\emph{Ruby's method call system is really important{\ldots}and you have to get your
+head around it at some point about how it does these lookups{\ldots}method call
+system is a straight line with stops along the way…once you get the hang of
+it{\ldots}you realize you can put a module at any point on that line.}
+	-- James Edward Gray II (\texttt{@JEGII}), $\approx$ 23m
+	\end{center}
 \end{frame}
 \note{
 That's the lay of the land for this talk. If you're thinking this talk might
-not be for you, then you're welcome to hop over to the other track.
+not be for you, then you're welcome to hop over to the other tracks.
 }
 
 \begin{frame}
@@ -200,7 +251,7 @@ Whew, I'm glad we only lost those few.
 \end{frame}
 
 
-\section{Practical MP} % (fold)
+\section{Understanding MP, Practically} % (fold)
 \label{sub:practical_metaprogramming}
 
 \subsection{Early Exposure} % (fold)
@@ -213,67 +264,139 @@ Whew, I'm glad we only lost those few.
 \end{frame}
 \note{
 	\begin{itemize}
-		\item How we, as a community, educate our newest members in the technology of metaprogramming.
-		\item ``How do we start exploring MP in Ruby?''
-	\end{itemize}
-}
-
-\begin{frame} \frametitle{To Metaprogramming via Ruby}
-	\texttt{attr\_*} \emph{Page 30}
-	\vskip 0.5cm
-	\begin{center}
-		\includegraphics[scale=0.45]{img/ruby_pickaxe.jpg}
-	\end{center}
-\end{frame}
-\note{
-	\begin{itemize}
-		\item Page thrity of the PickAxe book
-		\item \texttt{attr\_reader, attr\_writer, and attr\_accessor}
+		\item 
 	\end{itemize}
 }
 
 \begin{frame}
-	\frametitle{Dynamic Getter / Setter Generation}
-	\includegraphics[scale=0.45]{img/attr_demo_1.png}
-\end{frame}
-
-\begin{frame} \frametitle{To Metaprogramming via Rails}
-	Rails (\texttt{order.discount=0.5}):  \emph{Page 28}
+	\frametitle{So, seriously, what \textbf{is} metaprogramming?}
 	\begin{center}
-		\includegraphics[scale=0.55]{img/awdwr_mp.png}
+		\pause
+		``Writing code that re-directs passed messages at runtime or
+that provides or alters the structures that do said processing.''
+		\pause
+		\emph{-- Steven Harms}
 	\end{center}
 \end{frame}
-\note{
-	\begin{itemize}
-		\item Ruby \emph{via Rails}
-		\item Page 28 AWDWR
-		\item ORM calculation
-	\end{itemize}
-}
+\note{}
 
 \begin{frame}
-	\frametitle{Practical Metaprogramming}
-	\begin{itemize}
-		\item \texttt{attr\_*}:  \emph{Page 30}
-		\item Rails (ORM):  \emph{Page 28}
-	\end{itemize}
+	\frametitle{But wait{\ldots}isn't that just \emph{regular} programming?}
+	\begin{center}
+		Yes.  Exactly.  Ergo:  ``There is no metaprogramming -- just programming''
+	\end{center}
 	\pause
-	\vskip 0.5cm
-	\emph{But then what?}
+	\emph{Let's see it in action}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Start simply}
+		\begin{center}
+			\includegraphics[scale=0.25]{img/undefined_method_chain.png}
+		\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Why did this fail?}
+	\pause
+	\begin{center}
+		\emph{Because a message was passed that Ruby did not know about}
+		\pause
+		\includegraphics{img/duh.jpg}		
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{``How can we re-direct this message?''}
+	\pause
+	\begin{center}
+		\texttt{\textbf{def}} \\
+		\vskip 0.5cm
+		\pause		
+		\includegraphics[scale=0.45]{img/def_as_mp.png}		
+	\end{center}
 \end{frame}
 \note{
-	\begin{itemize}
-		\item Skim the surface
-		\item Seems like you have a lot of power
-		\item Experimentation
-		\item ``First Tier of Metaprogramming Spells''
-		\item We tend to use them \emph{impractically} though
-	\end{itemize}
+Here we have put the def into the default ``main'' object of the Ruby 
 }
 
-% subsection early_exposure (end)
-\subsection{Intermediate Use} % (fold)
-\label{sub:intermediate_use}
+\begin{frame}
+	\frametitle{Put the \texttt{defs} in a class}
+	\includegraphics[scale=0.45]{img/frob_classmethod.png} \\
+	\vskip 0.25cm
+	\includegraphics[scale=0.45]{img/frob_classmethod_output.png}		
+\end{frame}
+
+\begin{frame}
+	\frametitle{Put the \texttt{def}s in a module}
+	\includegraphics[scale=0.45]{img/frob_module.png} \\
+	\vskip 0.25cm
+	\includegraphics[scale=0.45]{img/frob_module_output.png}		
+\end{frame}
+
+\begin{frame}
+	\frametitle{Put the \texttt{def}s in the module into the class (\emph{mixin})}
+	\includegraphics[scale=0.45]{img/frob_mixin.png} \\
+	\vskip 0.25cm
+	\includegraphics[scale=0.45]{img/frob_mixin_output.png}		
+\end{frame}
+
+\begin{frame}
+	\frametitle{Put the \texttt{def}s in the module into the class (\emph{mixin})}
+	\includegraphics[scale=0.45]{img/frob_double_mod.png} \\
+	\vskip 0.25cm
+	\includegraphics[scale=0.45]{img/frob_double_mod_output.png}		
+\end{frame}
+
+\begin{frame}
+	\frametitle{Put the \texttt{def}s in the modules based on random}
+	\includegraphics[scale=0.45]{img/frob_random.png} \\
+\end{frame}
+
+\begin{frame}
+	\frametitle{Quod Erat Demonstrandum{\ldots}}
+	With:
+	\begin{itemize}
+		\item Ancestor chain
+		\item Modules and Classes
+	\end{itemize}
+	
+	Catching, intercepting, and re-routing messages based on conditions (e.g.
+\texttt{rand}) occurs; We ``wrote code that re-directed passed messages at
+runtime or that provided or altered the structures that do said processing.''
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{We were metaprogramming!}
+	\begin{itemize}
+		\item We were metaprogramming (by my definition)
+		\pause
+		\item We used only techniques from Ruby basics tutorials (e.g. \texttt{def}, \texttt{module}, \texttt{class}) but reacted and re-directed based on runtime logic ( \texttt{$>$rand})
+		\pause
+		\item Therefore:  Either metaprogramming is much easier than we thought, OR
+		\pause
+		\item The difference between ``programming'' and ``metaprogramming'' is unimportant
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{That Said\ldots}
+	\begin{itemize}
+		\item It is convenient to refer to metaprogramming as a \emph{style} of programming
+		\item When the language has a clear function to do X, don't write a MP re-implementation
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Metaprogramming Pre-Requisites}
+	\begin{itemize}
+		\item Basic Method Manipulation
+		\item Basic Class Definition
+		\item Basic Module Definition
+		\item The Mix-In
+	\end{itemize}
+\end{frame}
 
 \begin{frame}
 	\frametitle{Momentary Aside: Terminology}
@@ -294,10 +417,39 @@ Whew, I'm glad we only lost those few.
 }
 
 \begin{frame}
-	\frametitle{``Slightly Impractical Metaprogramming:''  Open Classes}
+	\frametitle{Tier 1 Metaprogramming}
 	\begin{itemize}
-		\item Open Classes
+		\item Open Class
+			\begin{itemize}
+				\item Kernel Method
+				\item Monkeypatch
+			\end{itemize}
+		\item \texttt{attr\_*} methods
+		\item alias :new :old
 	\end{itemize}
+\end{frame}
+
+
+\begin{frame} \frametitle{Tier 1 Metaprogramming in Ruby}
+	\vskip 0.5cm
+	\begin{center}
+		\includegraphics[scale=0.45]{img/ruby_pickaxe.jpg}
+	\end{center}
+\end{frame}
+\note{
+	\begin{itemize}
+		\item Page thrity of the PickAxe book
+		\item \texttt{attr\_reader, attr\_writer, and attr\_accessor}
+	\end{itemize}
+}
+
+\begin{frame}
+	\frametitle{Dynamic Getter / Setter Generation}
+	\includegraphics[scale=0.45]{img/attr_demo_1.png}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Tier 1 Metaprogramming:  Open Classes}
 		\includegraphics[scale=0.42]{img/open_class.png}
 \end{frame}
 \note{
@@ -310,11 +462,7 @@ Whew, I'm glad we only lost those few.
 
 
 \begin{frame}
-	\frametitle{``Slightly Impractical Metaprogramming:''  Kernel Method}
-	\begin{itemize}
-		\item Open Classes
-		\item Kernel Method
-	\end{itemize}
+	\frametitle{Tier 1 Metaprogramming:  Kernel Method}
 		\includegraphics[scale=0.55]{img/kernel_method.png}
 \end{frame}
 \note{
@@ -324,11 +472,6 @@ create methods that behave as if they were core builtins to the language.
 
 \begin{frame}
 	\frametitle{``Slightly Impractical Metaprogramming:''  Singleton Method}
-	\begin{itemize}
-		\item Open Classes
-		\item Kernel Method
-		\item Singleton Method
-	\end{itemize}
 		\includegraphics[scale=0.35]{img/singleton_method.png}
 \end{frame}
 \note{
@@ -391,38 +534,6 @@ he's definitely urging caution over MP's over-use.
 \end{itemize}
 }
 
-\subsection{Benefits} % (fold)
-\label{sub:benefits}
-
-\begin{frame}
-	\frametitle{Synthesis:  You Need To Learn This:  Precedent}
-	\begin{enumerate}
-		\item Virtually all core libraries make use of MP
-		\pause
-		\includegraphics[scale=0.45, width=0.89\textwidth]{img/e2mmap.png}
-		\pause
-		\item Rails uses MP all over the place
-	\end{enumerate}
-\end{frame}
-\note{
-	\begin{itemize}
-		\item Part of a community
-		\item Precedent
-	\end{itemize}
-}
-
-\begin{frame}
-	\frametitle{Synthesis:  You Need To Learn This:  Your Future}
-	\begin{enumerate}
-		\item Save yourself a lot of typing
-		\pause
-		\item Reflect the interior world of your problem domain in your application code
-		\pause
-		\item Pleasant surprises
-	\end{enumerate}
-\end{frame}
-\note{ \textbf{How will I know when to use MP?}}
-
 \begin{frame}
 	\frametitle{How Will I Know?}
 	\begin{center}
@@ -433,152 +544,96 @@ he's definitely urging caution over MP's over-use.
   \emph{Quickly}: Turn the \underline{benefits} just described into \underline{conditions}.
 }
 
-\section{Modeling Thought} % (fold)
-\label{sec:modeling_thought}
+\begin{frame}
+	\frametitle{Explain this: Why are these methods identical structurally?}
+	\includegraphics{img/challenge.png}
+\end{frame}
+
+\subsection{Tier 2 Metaprogramming Idioms} % (fold)
+\label{sub:tier_2_metaprogramming_idioms}
+
+\subsubsection{Teenagers} % (fold)
+\label{ssub:teenagers}
 
 \begin{frame}
-	\frametitle{Let This Be Your Guide}
-	\begin{center}
-		``Modeling Thought''
-	\end{center}
+	\frametitle{Teens:  Foolishness}
+	\includegraphics[scale=0.45]{img/license.jpg}
+\end{frame}
+\note{All the power and free will, but not a whole lot of judgment, and poor impulse control.}
+
+\begin{frame}
+	\frametitle{Teens:  Brilliance}
+	\includegraphics[scale=0.45]{img/daniel.jpg}	
 \end{frame}
 
 \begin{frame}
-	\frametitle{``Modeling Thought''}
-	\large
-	\centering{First Law of MP \\ + \\ Second Law of MP \\ = \\ }
-	\vskip 0.5cm
+	\frametitle{Good Parenting, or Alloparenting}
 	\begin{center}
-		``Modeling Thought''
+		\emph{``{\ldots}if root's strong, tree survive''}
 	\end{center}
-
-	\normalsize
-\end{frame}
-\note{
 	\begin{itemize}
-		\item a conceptual rubric for evaluating when a solution calls for a metaprogrammatic solution
-		\item Let's transform those motivations just mentioned into some ``Laws'' and ``Corollaries.''
+		\item Singleton Method
+		\item Module\#ancestors
 	\end{itemize}
-}
+\end{frame}
+\note{You all have a good root, but be careful with these!  You'll paint yourself into a corner or two, but keep a git branch or two handy.}
 
-\subsection{Laws} % (fold)
-\label{sub:laws}
+% subsubsection teenagers (end)
+
+\subsubsection{Idioms} % (fold)
+\label{ssub:idioms}
 
 \begin{frame}
-	\frametitle{First Law of Metaprogramming}
-	\centering{\emph{	A metaprogrammatic solution is suitable when you need to provide
-	unambiguous answers (return values) to ambiguous questions (flexible /
-	incomplete method calls)}
-	\pause
-	\vskip 0.5cm
-	\centering{\emph{e.g. Rails' ORM Calculation}}
-	\pause
-	\vskip 0.5cm
-	\begin{center}
-		\emph{AKA: ``Pursuit of Insight''}
-	\end{center}
-}\end{frame}
-\note{
+	\frametitle{Tier 2 Metaprogramming Idioms}
 	\begin{itemize}
-		\item Not really ``laws''
-		\item Guidelines too weak
-		\item Too egotistical to call them ``Steven\'s laws of metaprogramming.''
-		\item Rails
+		\item Generally, methods for the interception and interpretation of passed messages
+		\item Hybrids involving earlier techniques
+	\end{itemize}
+	\pause
+	\begin{itemize}
+		\item Dynamic Dispatch:  Object\#send
+		\pause
+		\item Method Missing:  use \texttt{method\_missing(sym,\*args)} 
+		\pause
+		\item Ghost Method:  call methods on a BasicObject to trigger \texttt{method\_missing}
+		\pause
+		\item Around Alias:  Monkeypatch a method call and keep a reference to the original
+	\end{itemize}
+\end{frame}
+\note{
+I will not dwell on these because they are rather complicated \textbf{and} are discoverable via Paolo's book or his site.  Third,
+I will be demonstrating them shortly.
+}
+% subsubsection idioms (end)
+% subsection tier_2_metaprogramming_idioms (end)
+
+\subsection{Tier 3 Metaprogramming} % (fold)
+\label{sub:tier_3_metaprogramming}
+
+\begin{frame}
+	\frametitle{Final Set of Techniques}
+	\begin{itemize}
+		\item Dynamic Generation and Inclusion of Modules
 		\begin{itemize}
-			\item ``Get my attributes.''
-			\item Ambiguous call
-			\item Always a discrete, clear, singular answer that is ``correct.''
-			\item Modeling for ambiguity is hard, but Ruby makes this easy-ish
+			\item Namespace:  Dynamically generate 
+			\item Class Extension:  Dynamically include
+		\end{itemize}
+		\item Unsupervised manipulation of classes and instances
+		\begin{itemize}
+			\item class\_eval 
+			\item instance\_eval 
 		\end{itemize}
 	\end{itemize}
-}
-
-
-\begin{frame}
-	\frametitle{Second Law of Metaprogramming}
-	\centering{\emph
-	{
-	A metaprogrammatic solution is suitable when the mechanical recording of the
-the values is time-inefficient when compared to learning the generating
-heuristic.
-	}
-}
-	\pause
-	\vskip 0.5cm
-	\centering{\emph{e.g. attr\_* methods}}
-	\pause
-	\vskip 0.5cm
-	\begin{center}
-		\emph{AKA: ``Avoidance of Typing''}
-	\end{center}
-\end{frame}
-\note{
-\begin{itemize}
-	\item Typing a lot is a code smell
-	\item Some try to fix this in IDE
-	\item Others try to fix in preprocessor macros
-	\item That is dumb and opaque
-	\item Rubyists should eschew this
-	\item An interesting tendency has emerged during my work with Ruby's MP model, and that's this first Corollary:
-\end{itemize}
-}
-
-\begin{frame}
-	\frametitle{First Corollary:}
-	\begin{center}
-		\emph{Any significant metaprogramming work undertaken to meet either of
-    the laws will eventually look like it was undertaken for a reason in
-    service to the opposite law}
-		\pause
-		\vskip 0.5cm
-		\emph{Avoidance of typing reveals insight; pursuit of insight reduces typing}
-	\end{center}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Fascinating Symmetries:  Metaprogramming and Thinking}
-	Law I:  \textbf{Thinking} provides unambiguous answers to ambiguously asked things \\
-	Law II: \textbf{Thinking} is the more efficient learning of generating heuristics opposed to rote recording of data \\
-	\vskip 0.5cm
-	This symmetry is the basis of ``Modeling Thought.''
-\end{frame}
-
-\begin{frame}
-	\frametitle{``Modeling Thought:'' Born That Way}
-	\begin{center}
-		\includegraphics[scale=0.6]{img/matz.jpg}
-	\end{center}
-\end{frame}
-\note{
-And no language supports the ``modeling thought'' paradigm like Ruby.
-}
-
-\begin{frame}
-	\frametitle{Stepwise Support in Ruby for ``Modeling Thought''}
+	\frametitle{Word from Mom and Dad}
 	\begin{itemize}
-		\item Matz' Design
-		\pause
-		\item Perrotta's ``Spells''
-		\pause
-		\item A rule of thumb:  ``Modeling Thought''
-		\pause
-		\item Your \textbf{bold} usage
-	\end{itemize}
+		\item Most advanced techniques are fancy syntax for the basic techniques
+		\item Offer the most freedom{\ldots}to hurt yourself!
+	\end{itemize}	
 \end{frame}
-\note{
-\begin{itemize}
-	\item Matz made Ruby with this ``thinking'' symmetry in mind
-	\item He made Ruby to be a programmer's friend
-	\item Paolo distilled and named these techniques
-	\item I
-	\begin{itemize}
-		\item I hope to provide you a rule of thumb for development
-		\item I hope to give you a demo of how I used MP to tackle a non-trivial problem
-	\end{itemize}
-	\item I want you to use MP \textbf{boldly}
-	\item Let me demonstrate my library: LatinVerb
-\end{itemize}
-}
+% subsection tier_3_metaprogramming (end)
 
 \subsection{LatinVerb} % (fold)
 \label{sub:_modeling_thought_in_latinverb}
@@ -1087,7 +1142,7 @@ Here are the next tier of spells, and they happen to be what enabled LatinVerb's
 
 \begin{frame}
 	\frametitle{SpeakerRate}
-	\centering{Help Me Get Better!}
+	\center{Help Me Get Better!}
 	\vskip 1.25cm
 	\begin{center}
 		\texttt{TODO}
