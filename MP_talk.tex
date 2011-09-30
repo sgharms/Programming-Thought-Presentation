@@ -274,7 +274,9 @@ Whew, I'm glad we only lost those few.
 
 \begin{frame}
 	\frametitle{``Practical Metaprogramming:  First Contact''}
-	\includegraphics[scale=0.55]{img/first_contact.jpg} \\
+	\begin{center}
+		\includegraphics[scale=0.55]{img/first_contact.jpg} \\
+	\end{center}
 	\emph{\ldots and is it to be called an ``eigenclass'' or a ``singleton class,'' ma'am?}
 \end{frame}
 \note{
@@ -587,7 +589,10 @@ he's definitely urging caution over MP's over-use.
 
 \begin{frame}
 	\frametitle{Teens:  Brilliance}
-	\includegraphics[scale=0.25]{img/daniel.jpg}	
+	\begin{center}
+		\includegraphics[scale=0.25]{img/daniel.jpg}	
+	\end{center}
+	
 \end{frame}
 
 \begin{frame}
@@ -598,7 +603,7 @@ he's definitely urging caution over MP's over-use.
 	\end{center}
 	\begin{itemize}
 		\item Singleton Module (``Eigenclass'')
-		\item Module\#ancestors
+		\item \texttt{Module\#ancestors}
 	\end{itemize}
 \end{frame}
 \note{You all have a good root, but be careful with these!  You'll paint yourself into a corner or two, but keep a git branch or two handy.}
@@ -634,7 +639,7 @@ he's definitely urging caution over MP's over-use.
 	\end{itemize}
 	\pause
 	\begin{itemize}
-		\item Dynamic Dispatch:  Object\#send
+		\item Dynamic Dispatch:  \texttt{Object\#send}
 		\pause
 		\item Method Missing:  use \texttt{method\_missing(sym,\*args)} 
 		\pause
@@ -789,7 +794,7 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
 
 \begin{frame}
 	\frametitle{\texttt{method\_missing} and dynamic dispatch(\texttt{send})}
-	\includegraphics[scale=0.55]{img/tenseblock_mm.png}
+	\includegraphics[scale=0.45]{img/tenseblock_mm.png}
 \end{frame}
 
 \begin{frame}
@@ -1013,17 +1018,21 @@ stylistic that I think is very clear and sexy.
 \end{frame}
 
 \begin{frame}
-	\frametitle{Work with Me / Have Me Teach / Contact Me! (Again)}
+	\frametitle{Work with Me / Have Me Teach / Contact Me!}
 	\begin{center}
+		\LARGE
+		Thank You! \\
+		\normalsize
+		\vskip 0.75cm
 		Steven G. Harms \\
-		\vskip 1.25cm
+		\vskip 0.75cm
 		Physically:  San Francisco, CA\\
 		Email:  \texttt{rubyconfXI@sgharms.oib.com} \\
 		Twitter / GitHub:  \texttt{sgharms} \\
 		G+
 		\vskip 1.0cm
 				\texttt{http://spkr8.com/t/8534}
-		\vskip 1.0cm
+		\vskip .80cm
 		Questions?
 	\end{center}
 \end{frame}
