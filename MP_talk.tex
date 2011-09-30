@@ -90,7 +90,7 @@ be back here.
 }
 
 
-\subsection{Practical and Impractical }
+\subsection{Practicality}
 
 \begin{frame}
 	\frametitle{What We'll Cover}
@@ -110,7 +110,7 @@ be back here.
 	\vskip 0.25cm
 	\begin{itemize}
 		\pause
-		\item 10 minutes into defining ``metaprogramming'' they had covered{\ldots}
+		\item 10 minutes into attempting to define ``metaprogramming'' they had covered{\ldots}
 		\begin{itemize}
 			\item Lisp
 			\pause
@@ -166,7 +166,7 @@ be back here.
 	\end{itemize}
 \end{frame}
 
-\subsection{Why You Must Understand MP} % (fold)
+\subsection{Benefit To You} % (fold)
 \label{sub:benefits}
 
 \begin{frame}
@@ -191,6 +191,9 @@ be back here.
 	\end{enumerate}
 \end{frame}
 \note{I believe you will start to see some of these benefits if I am able to attain some of the following goals in this presentation.}
+
+\subsection{Goals} % (fold)
+\label{sub:goals}
 
 \begin{frame}
 	\frametitle{Goals}
@@ -220,6 +223,10 @@ it{\ldots}you realize you can put a module at any point on that line.}
 	\end{center}
 \end{frame}
 
+% subsection goals (end)
+
+\subsection{Audience} % (fold)
+\label{sub:audience}
 \begin{frame}
 	\frametitle{Audience}
 	Beginner / Intermediate Rubyists will benefit from the first part of this talk.
@@ -230,6 +237,7 @@ it{\ldots}you realize you can put a module at any point on that line.}
 That's the lay of the land for this talk. If you're thinking this talk might
 not be for you, then you're welcome to hop over to the other tracks.
 }
+% subsection audience (end)
 
 \begin{frame}
 	\frametitle{Intermission}
@@ -280,7 +288,7 @@ Whew, I'm glad we only lost those few.
 	\begin{center}
 		\pause
 		``Writing code that re-directs passed messages at runtime \\ \textbf{or} \\
-that provides or alters the structures that do said processing.''
+that provides or alters the structures that do said passing.''
 		\pause
 		\emph{\\ --Steven Harms}
 	\end{center}
@@ -420,7 +428,7 @@ logic ( \texttt{$>$rand})
 	\frametitle{That Said\ldots}
 	\begin{itemize}
 		\item It is convenient to refer to metaprogramming as a \emph{style} of programming
-		\item When the language has a clear function to do X, don't write a MP re-implementation
+		\item When the language has a clear function to do X, don't write a MP re-implementation without good reason
 	\end{itemize}
 \end{frame}
 \note{Now that we see that we've all been quote-metaprogramming since the beginning
@@ -675,7 +683,7 @@ Also, I will be demonstrating them shortly.
 \end{frame}
 % subsection tier_3_metaprogramming (end)
 
-\section{LatinVerb} % (fold)
+\section{LatinVerb Demo} % (fold)
 \label{sub:_modeling_thought_in_latinverb}
 
 \begin{frame}
@@ -701,7 +709,7 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
 		\item Given the \underline{four principle parts}:  ``am\={o}, am\={a}re, am\={a}v\={\i}, amatum''
 		\pause
 		\item Respond with a unique value (``conjugation''), \emph{am\={o}}, to a call with the parameters: \\
-		``active voice indicative mood present tense first person singular number (Fully-Qualified)''
+		``active voice indicative mood present tense first person singular number'' (Fully-Qualified)
 		\pause
 		\item Flexibly respond to calls that lack some specification datum e.g. leave out the ``number'' parameter, receive with less-granular return values\\
           e.g. ``active voice indicative mood present tense'' (3 aspects provided, 6 results)
@@ -788,8 +796,6 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
 	\frametitle{MP Provides:  Massive Laziness Win}
 	\begin{itemize}
 		\item $\approx$ 48 methods covered; 6 written
-		\pause
-		\item 2 aspects of ambiguity left
 		\pause
 		\item One reponse class (\texttt{TenseBlock})
 	\end{itemize}
@@ -901,14 +907,15 @@ stylistic that I think is very clear and sexy.
 	\begin{itemize}
 		\item David Brady:  ``Use modules, kids.''
 		\item JEG2:  ``Understand your ancestor chain''
-		\item Weirich:  ``Polite programmers \texttt{respond\_to?} with true for theri metaprogrammed methods''
+		\item Weirich:  ``Polite programmers \texttt{respond\_to?} with true for their metaprogrammed methods''
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Build beautiful module generators}
 	\begin{center}
-		\includegraphics[scale=0.35]{img/ll_dsl.png}
+		\includegraphics[scale=0.35]{img/ll_dsl.png} \\
+		\emph{from \texttt{latinverb.rb}}
 	\end{center}	
 \end{frame}
 
@@ -1018,6 +1025,8 @@ stylistic that I think is very clear and sexy.
 		Email:  \texttt{rubyconfXI@sgharms.oib.com} \\
 		Twitter / GitHub:  \texttt{sgharms} \\
 		G+
+		\vskip 1.0cm
+				\texttt{http://spkr8.com/t/8534}
 		\vskip 1.0cm
 		Questions?
 	\end{center}
