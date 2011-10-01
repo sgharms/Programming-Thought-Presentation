@@ -116,9 +116,9 @@ be back here.
 			\pause
 			\item Marshaling code, closures, state 
 			\pause
-			\item Code as data?  AST's versus bytecode?
+			\item Code as data?  AST's versus bytecode
 			\pause
-			\item Code generation versus runtime behavior changes
+			\item Code generation versus runtime behavior changes?!?
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -645,7 +645,7 @@ he's definitely urging caution over MP's over-use.
 		\pause
 		\item Ghost Method:  call methods on a BasicObject to trigger \texttt{method\_missing}
 		\pause
-		\item Around Alias:  Monkeypatch a method call and keep a reference to the original
+		\item Around Alias:  Monkeypatch / Open Class a method call and keep a reference to the original
 	\end{itemize}
 \end{frame}
 \note{
@@ -714,7 +714,7 @@ So, let's talk about how I went about modeling this problem.  Here's a specifica
 		\item Given the \underline{four principle parts}:  ``am\={o}, am\={a}re, am\={a}v\={\i}, amatum''
 		\pause
 		\item Respond with a unique value (``conjugation''), \emph{am\={o}}, to a call with the parameters: \\
-		``active voice indicative mood present tense first person singular number'' (Fully-Qualified)
+		``(active voice), (indicative mood), (present tense), (first person), (singular number)'' (Fully-Qualified)
 		\pause
 		\item Flexibly respond to calls that lack some specification datum e.g. leave out the ``number'' parameter, receive with less-granular return values\\
           e.g. ``active voice indicative mood present tense'' (3 aspects provided, 6 results)
